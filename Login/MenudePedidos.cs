@@ -25,6 +25,7 @@ namespace Login
             datosU = new DatosU();
             CargarEstadosProduccion();
             CargarDatosMenu();
+            //CargarPacksConMenus();
 
         }
         private void CargarDatosMenu()
@@ -34,6 +35,7 @@ namespace Login
                 List<string> tiposMenu = userModel.ObtenerInfoMenu();
                 cbTipomenu.DataSource = tiposMenu;
                 cbTipomenu.SelectedIndex = -1; // Deja el ComboBox en blanco al principio.
+                cbTipomenuLoaded = true;
             }
             catch (Exception ex)
             {
@@ -69,8 +71,14 @@ namespace Login
             {
                 string menuSeleccionado = cbTipomenu.SelectedItem.ToString();
                 CargarViandasPorMenu(menuSeleccionado);
-            }
 
+                // Ahora también cargamos los packs asociados al menú seleccionado
+                CargarPacksAsociadosAMenu(menuSeleccionado);
+            }
+            else
+            {
+                cbPacks.DataSource = null;
+            }
         }
 
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,14 +115,28 @@ namespace Login
 
         private void cbPacks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbPacks.SelectedItem != null)
+            
+        }
+
+        
+
+        private void CargarPacksAsociadosAMenu(string menuSeleccionado)
+        {
+            try
             {
-                int idPackSeleccionado = Convert.ToInt32(cbPacks.SelectedValue);
-                DataTable menusTable = userModel.ObtenerMenusAsociadosAPack(idPackSeleccionado);
-                lbMenusAsociados.DataSource = menusTable;
-                lbMenusAsociados.DisplayMember = "Infomenu"; // Asegurarse de cambiar a la columna correcta en tu tabla Menú
+                int idMenuSeleccionado = datosU.ObtenerIdMenuPorNombre(menuSeleccionado);
+                DataTable packsTable = datosU.ObtenerPacksAsociadosAMenu(idMenuSeleccionado);
+
+                cbPacks.DisplayMember = "NombrePack";
+                cbPacks.ValueMember = "IdPack";
+                cbPacks.DataSource = packsTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los packs asociados al menú: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
 

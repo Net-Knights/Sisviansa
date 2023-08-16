@@ -466,30 +466,78 @@ WHERE ru.Roles IS NOT NULL;
         }
 
 
-        public DataTable ObtenerMenusAsociadosAPack(int idPack)
+    
+
+        //public DataTable ObtenerPacksConMenus()
+        //{
+        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+
+        //        string query = @"
+        //        SELECT p.IdPack, p.NombrePack, m.Infomenu
+        //        FROM Packs p
+        //        INNER JOIN MenuPack mp ON p.IdPack = mp.IdPack
+        //        INNER JOIN Menu m ON mp.IdMenu = m.IdMenu;";
+
+        //        MySqlCommand command = new MySqlCommand(query, connection);
+        //        MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+        //        DataTable packsTable = new DataTable();
+        //        adapter.Fill(packsTable);
+
+        //        return packsTable;
+        //    }
+        //}
+        public int ObtenerIdMenuPorNombre(string nombreMenu)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT IdMenu FROM Menu WHERE InfoMenu = @NombreMenu;";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NombreMenu", nombreMenu);
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    return -1; // Valor de error si no se encuentra el menú
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el Id del menú desde la capa de datos.", ex);
+            }
+        }
+
+       
+
+        public DataTable ObtenerPacksAsociadosAMenu(int idMenu)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 string query = @"
-                SELECT m.Infomenu
-                FROM Menu m
-                INNER JOIN MenuPack mp ON m.IdMenu = mp.IdMenu
-                WHERE mp.IdPack = @IdPack;";
+            SELECT p.IdPacks, p.NombrePack
+            FROM Packs p
+            INNER JOIN MenuPack mp ON p.IdPacks = mp.IdPack
+            WHERE mp.IdMenu = @IdMenu;";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@IdPack", idPack);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                DataTable menusTable = new DataTable();
-                adapter.Fill(menusTable);
+                command.Parameters.AddWithValue("@IdMenu", idMenu);
 
-                return menusTable;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable packsTable = new DataTable();
+                adapter.Fill(packsTable);
+
+                return packsTable;
             }
         }
-
-
-
 
     }
 

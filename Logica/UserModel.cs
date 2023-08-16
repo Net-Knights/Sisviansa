@@ -102,17 +102,23 @@ namespace Logica
             }
         }
 
-        public DataTable ObtenerMenusAsociadosAPack(int idPack)
-        {
-            try
-            {
-                return datosU.ObtenerMenusAsociadosAPack(idPack);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los menús asociados al pack.", ex);
-            }
-        }
+        //public DataTable ObtenerPacksConMenus()
+        //{
+        //    try
+        //    {
+        //        return datosU.ObtenerPacksConMenus();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error al obtener los packs y sus menús asociados.", ex);
+        //    }
+        //}
+        
+
+
+            
+
+
 
 
     }
