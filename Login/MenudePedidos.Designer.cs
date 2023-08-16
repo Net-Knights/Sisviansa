@@ -30,6 +30,7 @@
         {
             button1 = new Button();
             panel1 = new Panel();
+            lbMenusAsociados = new ListBox();
             label8 = new Label();
             dgvPedidos = new DataGridView();
             numCantidadViandas = new NumericUpDown();
@@ -55,7 +56,6 @@
             label4 = new Label();
             textBox5 = new TextBox();
             label2 = new Label();
-            lbMenusAsociados = new ListBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidadViandas).BeginInit();
@@ -89,6 +89,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(801, 510);
             panel1.TabIndex = 24;
+            // 
+            // lbMenusAsociados
+            // 
+            lbMenusAsociados.FormattingEnabled = true;
+            lbMenusAsociados.ItemHeight = 15;
+            lbMenusAsociados.Location = new Point(580, 204);
+            lbMenusAsociados.Name = "lbMenusAsociados";
+            lbMenusAsociados.Size = new Size(195, 154);
+            lbMenusAsociados.TabIndex = 55;
             // 
             // label8
             // 
@@ -207,7 +216,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(329, 37);
+            cbViandas.Location = new Point(320, 37);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -332,15 +341,6 @@
             label2.Size = new Size(171, 28);
             label2.TabIndex = 24;
             label2.Text = "Consultar pedidos";
-            // 
-            // lbMenusAsociados
-            // 
-            lbMenusAsociados.FormattingEnabled = true;
-            lbMenusAsociados.ItemHeight = 15;
-            lbMenusAsociados.Location = new Point(223, 104);
-            lbMenusAsociados.Name = "lbMenusAsociados";
-            lbMenusAsociados.Size = new Size(120, 94);
-            lbMenusAsociados.TabIndex = 55;
             // 
             // MenudePedidos
             // 

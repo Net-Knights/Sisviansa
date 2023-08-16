@@ -121,21 +121,21 @@ namespace Persistencia
                 connection.Open();
 
                 string query = @"
-SELECT 
-    c.NroCliente,
-    c.Autorizacion,
-    c.Mail AS 'Mail',
-    c.Telefono AS 'Telefono',
-    c.Direccion AS 'Direccion',
-    co.Ci AS 'Ci',
-    co.Nombre AS 'Nombre',
-    co.Apellido AS 'Apellido',
-    ru.Roles AS 'Rol'
-FROM Cliente c
-LEFT JOIN Comun co ON c.NroCliente = co.NroCliente
-LEFT JOIN roles_usuarios ru ON ru.Roles = 'Comun'
-WHERE ru.Roles IS NOT NULL;
-";
+                SELECT 
+                c.NroCliente,
+                            c.Autorizacion,
+                c.Mail AS 'Mail',
+                c.Telefono AS 'Telefono',
+                c.Direccion AS 'Direccion',
+                co.Ci AS 'Ci',
+                co.Nombre AS 'Nombre',
+                co.Apellido AS 'Apellido',
+                    ru.Roles AS 'Rol'
+                FROM Cliente c
+                LEFT JOIN Comun co ON c.NroCliente = co.NroCliente
+                LEFT JOIN roles_usuarios ru ON ru.Roles = 'Comun'
+                WHERE ru.Roles IS NOT NULL;
+                ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
