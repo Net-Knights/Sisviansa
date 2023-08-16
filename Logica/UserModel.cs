@@ -78,60 +78,41 @@ namespace Logica
 
 
 
-
-        public List<string> ObtenerMenus()
+        public List<string> ObtenerInfoMenu()
         {
-            return datosU.ObtenerMenus();
-        }
-
-        public List<string> ObtenerViandasPorMenu(string menu)
-        {
-            return datosU.ObtenerViandasPorMenu(menu);
-        }
-
-        public int ObtenerStockDisponible(string menu, string vianda)
-        {
-            return datosU.ObtenerStockDisponible(menu, vianda);
-        }
-
-        public int ObtenerStockMinimo(string menu, string vianda)
-        {
-            return datosU.ObtenerStockMinimo(menu, vianda);
-        }
-
-        public int GenerarNumeroPedido()
-        {
-            return datosU.GenerarNumeroPedido();
-        }
-
-        public int GenerarNumeroCaja()
-        {
-            return datosU.GenerarNumeroCaja();
-        }
-
-        public void ActualizarStock(string menu, string vianda, int cantidadViandas)
-        {
-            datosU.ActualizarStock(menu, vianda, cantidadViandas);
-        }
-
-        public void AgregarPedidoIntegra(string vianda, string menu, int nroPedido, string estadoProduccion, int stockReal, int cantidadViandas, int nroCaja)
-        {
-            datosU.AgregarPedidoIntegra(vianda, menu, nroPedido, estadoProduccion, stockReal, cantidadViandas, nroCaja);
-        }
-
-        public bool VerificarSeleccionViandaMenu(string menuSeleccionado, string viandaSeleccionada)
-        {
-            if (string.IsNullOrEmpty(menuSeleccionado) || string.IsNullOrEmpty(viandaSeleccionada))
+            try
             {
-                throw new ArgumentException("Por favor, seleccione un tipo de menú y una vianda.");
+                return datosU.ObtenerInfoMenu();
             }
-
-            // Resto de la lógica de verificación de stock
-            int stockDisponible = ObtenerStockDisponible(menuSeleccionado, viandaSeleccionada);
-
-            return stockDisponible >= 1; // Se verifica si hay al menos una vianda disponible
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la información del menú.", ex);
+            }
         }
-        
+
+        public DataTable ObtenerViandasPorMenu(string menu)
+        {
+            try
+            {
+                return datosU.ObtenerViandasPorMenu(menu);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las viandas asociadas al menú.", ex);
+            }
+        }
+
+        public DataTable ObtenerMenusAsociadosAPack(int idPack)
+        {
+            try
+            {
+                return datosU.ObtenerMenusAsociadosAPack(idPack);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los menús asociados al pack.", ex);
+            }
+        }
 
 
     }

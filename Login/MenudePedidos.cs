@@ -16,115 +16,104 @@ namespace Login
     public partial class MenudePedidos : Form
     {
         private UserModel userModel;
+        private bool cbTipomenuLoaded = false;
         private DatosU datosU;
         public MenudePedidos()
         {
             InitializeComponent();
             userModel = new UserModel();
-            datosU = new DatosU();  
+            datosU = new DatosU();
             CargarEstadosProduccion();
+            CargarDatosMenu();
+
+        }
+        private void CargarDatosMenu()
+        {
+            try
+            {
+                List<string> tiposMenu = userModel.ObtenerInfoMenu();
+                cbTipomenu.DataSource = tiposMenu;
+                cbTipomenu.SelectedIndex = -1; // Deja el ComboBox en blanco al principio.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la información del menú: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarViandasPorMenu(string menu)
+        {
+            try
+            {
+                DataTable viandasTable = userModel.ObtenerViandasPorMenu(menu);
+                cbViandas.DataSource = viandasTable;
+                cbViandas.DisplayMember = "Nombre_Vianda";
+                cbViandas.ValueMember = "IdVianda";
+                cbTipomenu.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las viandas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void MenudePedidos_Load(object sender, EventArgs e)
         {
-            List<string> menus = userModel.ObtenerMenus();
-            cbTipomenu.DataSource = menus;
+            CargarDatosMenu();
+
         }
 
         private void cbTipomenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string menuSeleccionado = cbTipomenu.SelectedItem.ToString();
-            List<string> viandas = userModel.ObtenerViandasPorMenu(menuSeleccionado);
-            cbViandas.DataSource = viandas;
+            if (cbTipomenu.SelectedItem != null)
+            {
+                string menuSeleccionado = cbTipomenu.SelectedItem.ToString();
+                CargarViandasPorMenu(menuSeleccionado);
+            }
 
-            ActualizarStock();
         }
 
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ActualizarStock();
+
         }
 
         private void CargarEstadosProduccion()
         {
-            List<string> estadosProduccion = datosU.ObtenerEstadosProduccion();
 
-            // Asignar la lista al ComboBox y seleccionar el índice 0
-            cbEstadoProduccion.DataSource = estadosProduccion;
-            cbEstadoProduccion.SelectedIndex = 0;
         }
         private void ActualizarStock()
         {
-            if (cbTipomenu.SelectedItem == null || cbViandas.SelectedItem == null)
-            {
-                return;
-            }
 
-            string menuSeleccionado = cbTipomenu.SelectedItem.ToString();
-            string viandaSeleccionada = cbViandas.SelectedItem.ToString();
-
-            int stockDisponible = userModel.ObtenerStockDisponible(menuSeleccionado, viandaSeleccionada);
-            int stockMinimo = userModel.ObtenerStockMinimo(menuSeleccionado, viandaSeleccionada);
-
-            txtStock.Text = stockDisponible.ToString();
-
-            if (stockDisponible < stockMinimo)
-            {
-                lblMensajeStock.Text = "Stock insuficiente";
-                lblMensajeStock.ForeColor = Color.Red;
-                btnAgregar.Enabled = false;
-            }
-            else
-            {
-                lblMensajeStock.Text = "Stock suficiente";
-                lblMensajeStock.ForeColor = Color.Green;
-                btnAgregar.Enabled = true;
-            }
         }
 
         private void btnVerificarStock_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string menuSeleccionado = cbTipomenu.SelectedItem?.ToString();
-                string viandaSeleccionada = cbViandas.SelectedItem?.ToString();
 
-                bool stockSuficiente = userModel.VerificarSeleccionViandaMenu(menuSeleccionado, viandaSeleccionada);
-
-                if (stockSuficiente)
-                {
-                    MessageBox.Show("Stock suficiente para realizar el pedido.", "Verificación de Stock", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Stock insuficiente para realizar el pedido.", "Verificación de Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string menuSeleccionado = cbTipomenu.SelectedItem.ToString();
-            string viandaSeleccionada = cbViandas.SelectedItem.ToString();
-            int cantidadViandas = Convert.ToInt32(numCantidadViandas.Value);
-            int nroCliente = Convert.ToInt32(txtNroclienteb.Text); // Obtener el número de cliente
 
-            int nroPedido = userModel.GenerarNumeroPedido();
-            int nroCaja = userModel.GenerarNumeroCaja();
-            string estadoProduccion = cbEstadoProduccion.SelectedItem.ToString();
-            int stockReal = userModel.ObtenerStockDisponible(menuSeleccionado, viandaSeleccionada);
+        }
 
-            userModel.ActualizarStock(menuSeleccionado, viandaSeleccionada, cantidadViandas);
-            userModel.AgregarPedidoIntegra(viandaSeleccionada, menuSeleccionado, nroPedido, estadoProduccion, stockReal, cantidadViandas, nroCaja);
+        private void cbTipomenu_DropDown(object sender, EventArgs e)
+        {
+            if (!cbTipomenuLoaded)
+            {
+                CargarDatosMenu();
+            }
+        }
 
-            // Agregar el pedido al DataGridView
-            dgvPedidos.Rows.Add(nroPedido, viandaSeleccionada, menuSeleccionado, estadoProduccion, stockReal, cantidadViandas, nroCaja, nroCliente);
-
-            MessageBox.Show("Pedido agregado exitosamente.", "Agregar Pedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        private void cbPacks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbPacks.SelectedItem != null)
+            {
+                int idPackSeleccionado = Convert.ToInt32(cbPacks.SelectedValue);
+                DataTable menusTable = userModel.ObtenerMenusAsociadosAPack(idPackSeleccionado);
+                lbMenusAsociados.DataSource = menusTable;
+                lbMenusAsociados.DisplayMember = "Infomenu"; // Asegurarse de cambiar a la columna correcta en tu tabla Menú
+            }
         }
     }
 }

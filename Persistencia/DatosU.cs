@@ -226,7 +226,7 @@ WHERE ru.Roles IS NOT NULL;
         }
 
         
-     public void GuardarCliente(string tipoCliente, string nombre, string apellido, string correoElectronico, string telefono, string ci, string direccion, string rut, string nombreEmpresa, string direccionEmpresa)
+         public void GuardarCliente(string tipoCliente, string nombre, string apellido, string correoElectronico, string telefono, string ci, string direccion, string rut, string nombreEmpresa, string direccionEmpresa)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -268,7 +268,7 @@ WHERE ru.Roles IS NOT NULL;
 
 
         }
-        public void ActualizarAutorizacionEnBaseDeDatos(int nroCliente, string autorizacion)
+         public void ActualizarAutorizacionEnBaseDeDatos(int nroCliente, string autorizacion)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -289,7 +289,7 @@ WHERE ru.Roles IS NOT NULL;
 
 
         //Abm usuarios
-       public List<string> ObtenerRoles()
+        public List<string> ObtenerRoles()
         {
             List<string> roles = new List<string>();
 
@@ -384,220 +384,9 @@ WHERE ru.Roles IS NOT NULL;
             }
         }
 
-
-
-
-        //Pedidos
-
-        public List<string> ObtenerMenus()
-        {
-            List<string> menus = new List<string>();
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT InfoMenu FROM Menu;";
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        menus.Add(reader.GetString("InfoMenu"));
-                    }
-                }
-            }
-
-            return menus;
-        }
-
-        public List<string> ObtenerViandasPorMenu(string menu)
-        {
-            List<string> viandas = new List<string>();
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT Nombre_Vianda FROM Vianda;";
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        viandas.Add(reader.GetString("Nombre_Vianda"));
-                    }
-                }
-            }
-
-            return viandas;
-        }
-
-        public int ObtenerStockDisponible(string menu, string vianda)
-        {
-            int stockReal = 0;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = @"
-            SELECT s.StockReal
-            FROM Integra i
-            JOIN Stock s ON i.IdVianda = s.IdVianda
-            WHERE i.Infomenu = @Menu AND i.Nombre_Vianda = @Vianda;
-        ";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Menu", menu);
-                command.Parameters.AddWithValue("@Vianda", vianda);
-
-                object result = command.ExecuteScalar();
-                if (result != null)
-                {
-                    stockReal = Convert.ToInt32(result);
-                }
-            }
-
-            return stockReal;
-        }
-
-        public int ObtenerStockMinimo(string menu, string vianda)
-        {
-            int stockMinimo = 0;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = @"
-    SELECT s.StockMinimo
-    FROM Integra i
-    JOIN Stock s ON i.IdVianda = s.IdVianda
-    WHERE i.Infomenu = @Menu AND i.Nombre_Vianda = @Vianda;
-";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Menu", menu);
-                command.Parameters.AddWithValue("@Vianda", vianda);
-
-                object result = command.ExecuteScalar();
-                if (result != null)
-                {
-                    stockMinimo = Convert.ToInt32(result);
-                }
-            }
-
-            return stockMinimo;
-        }
-
-        public int GenerarNumeroPedido()
-        {
-            int nroPedido = 0;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT MAX(NroPedido) FROM Pedido;";
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                object result = command.ExecuteScalar();
-                if (result != null && !Convert.IsDBNull(result))
-                {
-                    nroPedido = Convert.ToInt32(result) + 1;
-                }
-                else
-                {
-                    nroPedido = 1;
-                }
-            }
-
-            return nroPedido;
-        }
-
-        public int GenerarNumeroCaja()
-        {
-            int nroCaja = 0;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT MAX(NroCaja) FROM Envasado;";
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                object result = command.ExecuteScalar();
-                if (result != null && !Convert.IsDBNull(result))
-                {
-                    nroCaja = Convert.ToInt32(result) + 1;
-                }
-                else
-                {
-                    nroCaja = 1;
-                }
-            }
-
-            return nroCaja;
-        }
-
-        public void ActualizarStock(string menu, string vianda, int cantidadViandas)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "UPDATE Stock SET StockReal = StockReal - @CantidadViandas WHERE IdVianda IN (SELECT IdVianda FROM Integra WHERE Infomenu = @Menu AND Nombre_Vianda = @Vianda);";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CantidadViandas", cantidadViandas);
-                command.Parameters.AddWithValue("@Menu", menu);
-                command.Parameters.AddWithValue("@Vianda", vianda);
-
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void AgregarPedidoIntegra(string vianda, string menu, int nroPedido, string estadoProduccion, int stockReal, int cantidadViandas, int nroCaja)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Obtener el último IdVianda generado en la tabla Vianda
-                int idVianda;
-                using (MySqlCommand getIdCommand = new MySqlCommand("SELECT LAST_INSERT_ID();", connection))
-                {
-                    idVianda = Convert.ToInt32(getIdCommand.ExecuteScalar());
-                }
-
-                string query = @"
-            INSERT INTO Integra (IdVianda, Nombre_Vianda, InfoMenu, NroPedido, EstadosProduccion, Stock, CantidadViandas, NroCaja)
-            VALUES (@IdVianda, @Vianda, @Menu, @NroPedido, @EstadoProduccion, @Stock, @CantidadViandas, @NroCaja);
-        ";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@IdVianda", idVianda);
-                command.Parameters.AddWithValue("@Vianda", vianda);
-                command.Parameters.AddWithValue("@Menu", menu);
-                command.Parameters.AddWithValue("@NroPedido", nroPedido);
-                command.Parameters.AddWithValue("@EstadoProduccion", estadoProduccion);
-                command.Parameters.AddWithValue("@Stock", stockReal);
-                command.Parameters.AddWithValue("@CantidadViandas", cantidadViandas);
-                command.Parameters.AddWithValue("@NroCaja", nroCaja);
-
-                command.ExecuteNonQuery();
-            }
-
-
-
-
-        }
-
+        //pedidos
         public List<string> ObtenerEstadosProduccion()
         {
-            List<string> estadosProduccion = new List<string>();
-
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
@@ -605,17 +394,102 @@ WHERE ru.Roles IS NOT NULL;
                 string query = "SELECT Estados_Produccion FROM estadosproduccion;";
                 MySqlCommand command = new MySqlCommand(query, connection);
 
+                List<string> estadosProduccion = new List<string>();
+
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        estadosProduccion.Add(reader.GetString("Estados_Produccion"));
+                        estadosProduccion.Add(reader.GetString("estadoProduccion"));
                     }
+                }
+
+                return estadosProduccion;
+            }
+        }
+
+        public List<string> ObtenerInfoMenu()
+        {
+            
+            
+                try
+                {
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        string query = "SELECT infomenu FROM menu;";
+                        MySqlCommand command = new MySqlCommand(query, connection);
+
+                        List<string> infoMenu = new List<string>();
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                infoMenu.Add(reader.GetString("infomenu"));
+                            }
+                        }
+
+                        return infoMenu;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener la información del menú desde la capa de datos.", ex);
                 }
             }
 
-            return estadosProduccion;
+
+        public DataTable ObtenerViandasPorMenu(string menu)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+        SELECT v.IdVianda, v.Nombre_Vianda
+        FROM Vianda v
+        INNER JOIN MenuVianda mv ON v.IdVianda = mv.IdVianda
+        INNER JOIN Menu m ON mv.IdMenu = m.IdMenu
+        WHERE m.Infomenu = @Menu;";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Menu", menu);
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable viandasTable = new DataTable();
+                adapter.Fill(viandasTable);
+
+                return viandasTable;
+            }
         }
+
+
+        public DataTable ObtenerMenusAsociadosAPack(int idPack)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                SELECT m.Infomenu
+                FROM Menu m
+                INNER JOIN MenuPack mp ON m.IdMenu = mp.IdMenu
+                WHERE mp.IdPack = @IdPack;";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdPack", idPack);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable menusTable = new DataTable();
+                adapter.Fill(menusTable);
+
+                return menusTable;
+            }
+        }
+
+
+
 
     }
 
