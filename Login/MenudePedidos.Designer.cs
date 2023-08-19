@@ -30,7 +30,7 @@
         {
             button1 = new Button();
             panel1 = new Panel();
-            lbMenusAsociados = new ListBox();
+            lbViandasPacks = new ListBox();
             label8 = new Label();
             dgvPedidos = new DataGridView();
             numCantidadViandas = new NumericUpDown();
@@ -75,7 +75,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(lbMenusAsociados);
+            panel1.Controls.Add(lbViandasPacks);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(dgvPedidos);
             panel1.Controls.Add(numCantidadViandas);
@@ -90,19 +90,19 @@
             panel1.Size = new Size(801, 510);
             panel1.TabIndex = 24;
             // 
-            // lbMenusAsociados
+            // lbViandasPacks
             // 
-            lbMenusAsociados.FormattingEnabled = true;
-            lbMenusAsociados.ItemHeight = 15;
-            lbMenusAsociados.Location = new Point(580, 204);
-            lbMenusAsociados.Name = "lbMenusAsociados";
-            lbMenusAsociados.Size = new Size(195, 154);
-            lbMenusAsociados.TabIndex = 55;
+            lbViandasPacks.FormattingEnabled = true;
+            lbViandasPacks.ItemHeight = 15;
+            lbViandasPacks.Location = new Point(527, 204);
+            lbViandasPacks.Name = "lbViandasPacks";
+            lbViandasPacks.Size = new Size(220, 289);
+            lbViandasPacks.TabIndex = 55;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(660, 127);
+            label8.Location = new Point(553, 96);
             label8.Name = "label8";
             label8.Size = new Size(114, 15);
             label8.TabIndex = 54;
@@ -119,7 +119,7 @@
             // 
             // numCantidadViandas
             // 
-            numCantidadViandas.Location = new Point(687, 163);
+            numCantidadViandas.Location = new Point(622, 114);
             numCantidadViandas.Name = "numCantidadViandas";
             numCantidadViandas.Size = new Size(45, 23);
             numCantidadViandas.TabIndex = 53;
@@ -139,7 +139,7 @@
             btnAgregar.FlatStyle = FlatStyle.Flat;
             btnAgregar.Image = Properties.Resources.shopping_cart_add_button_icon_icons_com_56132;
             btnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregar.Location = new Point(660, 30);
+            btnAgregar.Location = new Point(683, 96);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(115, 63);
             btnAgregar.TabIndex = 37;
@@ -163,7 +163,7 @@
             groupBox3.Controls.Add(label9);
             groupBox3.Location = new Point(3, 22);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(639, 71);
+            groupBox3.Size = new Size(795, 71);
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             groupBox3.Text = "Agregar un nuevo pedido";
@@ -196,7 +196,7 @@
             // 
             // btnVerificarStock
             // 
-            btnVerificarStock.Location = new Point(574, 37);
+            btnVerificarStock.Location = new Point(739, 37);
             btnVerificarStock.Name = "btnVerificarStock";
             btnVerificarStock.Size = new Size(59, 23);
             btnVerificarStock.TabIndex = 51;
@@ -207,7 +207,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(329, 19);
+            label7.Location = new Point(474, 19);
             label7.Name = "label7";
             label7.Size = new Size(51, 15);
             label7.TabIndex = 50;
@@ -216,7 +216,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(320, 37);
+            cbViandas.Location = new Point(474, 42);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -225,7 +225,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(435, 19);
+            label3.Location = new Point(605, 20);
             label3.Name = "label3";
             label3.Size = new Size(70, 15);
             label3.TabIndex = 48;
@@ -233,7 +233,7 @@
             // 
             // txtNroclienteb
             // 
-            txtNroclienteb.Location = new Point(456, 37);
+            txtNroclienteb.Location = new Point(633, 38);
             txtNroclienteb.Name = "txtNroclienteb";
             txtNroclienteb.Size = new Size(31, 23);
             txtNroclienteb.TabIndex = 47;
@@ -251,7 +251,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(511, 19);
+            label11.Location = new Point(681, 19);
             label11.Name = "label11";
             label11.Size = new Size(39, 15);
             label11.TabIndex = 44;
@@ -260,7 +260,7 @@
             // txtStock
             // 
             txtStock.BackColor = Color.Silver;
-            txtStock.Location = new Point(511, 37);
+            txtStock.Location = new Point(681, 38);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(52, 23);
             txtStock.TabIndex = 43;
@@ -393,6 +393,6 @@
         private Label label8;
         private Label label1;
         private ComboBox cbPacks;
-        private ListBox lbMenusAsociados;
+        private ListBox lbViandasPacks;
     }
 }

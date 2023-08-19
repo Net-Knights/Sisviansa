@@ -143,6 +143,7 @@ namespace Login
             // Ajustar el diseño del DataGridView, si es necesario
             // Ejemplo:
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void pbBuscar_Click(object sender, EventArgs e)
@@ -151,11 +152,23 @@ namespace Login
             {
                 // Buscar cliente por NroCliente y mostrar resultados en el DataGridView
                 DataTable clienteEncontrado = datosU.BuscarClientePorNroCliente(nroCliente);
-                dgvClientes.DataSource = clienteEncontrado;
+
+                if (clienteEncontrado.Rows.Count > 0)
+                {
+                   
+                    dgvClientes.DataSource = clienteEncontrado;
+                }
+                else
+                {
+                    // Si no se encontraron resultados, mostrar un mensaje al usuario
+                    MessageBox.Show("No se encontraron resultados para el NroCliente especificado.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvClientes.DataSource = null; 
+                }
             }
             else
             {
                 MessageBox.Show("Ingrese un NroCliente válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dgvClientes.DataSource = null; 
             }
         }
 

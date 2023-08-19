@@ -90,39 +90,31 @@ namespace Logica
             }
         }
 
-        public DataTable ObtenerViandasPorMenu(string menu)
+        public DataTable ObtenerViandasPorMenu(string menuId)
+        {
+            return datosU.ObtenerViandasPorMenu(menuId);
+        }
+        public List<string> ObtenerPacksPorMenu(string menuId)
         {
             try
             {
-                return datosU.ObtenerViandasPorMenu(menu);
+                return datosU.ObtenerPacksPorMenu(menuId);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener las viandas asociadas al menú.", ex);
+                throw new Exception("Error al obtener los packs asociados al menú.", ex);
             }
         }
 
-        //public DataTable ObtenerPacksConMenus()
-        //{
-        //    try
-        //    {
-        //        return datosU.ObtenerPacksConMenus();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Error al obtener los packs y sus menús asociados.", ex);
-        //    }
-        //}
-        
 
-
-            
-
-
-
-
+        public List<string> ObtenerViandasPorPack(string packId)
+        {
+            return datosU.ObtenerViandasPorPack(packId);
+        }
     }
+
 }
+
 
 
 

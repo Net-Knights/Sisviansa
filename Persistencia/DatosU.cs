@@ -123,7 +123,7 @@ namespace Persistencia
                 string query = @"
                 SELECT 
                 c.NroCliente,
-                            c.Autorizacion,
+                c.Autorizacion,
                 c.Mail AS 'Mail',
                 c.Telefono AS 'Telefono',
                 c.Direccion AS 'Direccion',
@@ -162,12 +162,10 @@ namespace Persistencia
                 co.Nombre AS 'NombreComun',
                 co.Apellido AS 'ApellidoComun',
                 e.RUT AS 'RutEmpresa',
-                e.NombreEmpresa AS 'NombreEmpresa',
-                ru.Roles AS 'Rol'
+                e.NombreEmpresa AS 'NombreEmpresa'
             FROM Cliente c
             LEFT JOIN Comun co ON c.NroCliente = co.NroCliente
             LEFT JOIN Empresa e ON c.NroCliente = e.NroCliente
-            LEFT JOIN roles_usuario ru ON c.NroCliente = ru.NroCliente
             WHERE c.NroCliente = @NroCliente;";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
@@ -203,7 +201,7 @@ namespace Persistencia
                 connection.Open();
 
                 string query = @"
-        SELECT 
+            SELECT 
             e.NroCliente,
             e.RUT AS 'RUT',
             e.NombreEmpresa AS 'NombreEmpresa',
@@ -211,10 +209,10 @@ namespace Persistencia
             c.Telefono AS 'Telefono',
             c.Autorizacion AS 'Autorizacion',
             ru.Roles AS 'Rol'
-        FROM Empresa e
-        LEFT JOIN Cliente c ON e.NroCliente = c.NroCliente
-        LEFT JOIN roles_usuarios ru ON ru.Roles = 'Empresa'
-        ;";
+            FROM Empresa e
+            LEFT JOIN Cliente c ON e.NroCliente = c.NroCliente
+            LEFT JOIN roles_usuarios ru ON ru.Roles = 'Empresa'
+            ;";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -448,11 +446,11 @@ namespace Persistencia
                 connection.Open();
 
                 string query = @"
-        SELECT v.IdVianda, v.Nombre_Vianda
-        FROM Vianda v
-        INNER JOIN MenuVianda mv ON v.IdVianda = mv.IdVianda
-        INNER JOIN Menu m ON mv.IdMenu = m.IdMenu
-        WHERE m.Infomenu = @Menu;";
+                SELECT v.IdVianda, v.Nombre_Vianda
+                FROM Vianda v
+                INNER JOIN MenuVianda mv ON v.IdVianda = mv.IdVianda
+                INNER JOIN Menu m ON mv.IdMenu = m.IdMenu
+                WHERE m.Infomenu = @Menu;";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Menu", menu);
@@ -468,26 +466,7 @@ namespace Persistencia
 
     
 
-        //public DataTable ObtenerPacksConMenus()
-        //{
-        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-
-        //        string query = @"
-        //        SELECT p.IdPack, p.NombrePack, m.Infomenu
-        //        FROM Packs p
-        //        INNER JOIN MenuPack mp ON p.IdPack = mp.IdPack
-        //        INNER JOIN Menu m ON mp.IdMenu = m.IdMenu;";
-
-        //        MySqlCommand command = new MySqlCommand(query, connection);
-        //        MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-        //        DataTable packsTable = new DataTable();
-        //        adapter.Fill(packsTable);
-
-        //        return packsTable;
-        //    }
-        //}
+       
         public int ObtenerIdMenuPorNombre(string nombreMenu)
         {
             try
@@ -514,31 +493,69 @@ namespace Persistencia
             }
         }
 
-       
 
-        public DataTable ObtenerPacksAsociadosAMenu(int idMenu)
+
+        public List<string> ObtenerPacksPorMenu(string menuId)
         {
+            List<string> packs = new List<string>();
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 string query = @"
-            SELECT p.IdPacks, p.NombrePack
-            FROM Packs p
+            SELECT p.NombrePack
+            FROM packs p
             INNER JOIN MenuPack mp ON p.IdPacks = mp.IdPack
-            WHERE mp.IdMenu = @IdMenu;";
+            WHERE mp.IdMenu = @MenuId";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@IdMenu", idMenu);
+                command.Parameters.AddWithValue("@MenuId", menuId);
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                DataTable packsTable = new DataTable();
-                adapter.Fill(packsTable);
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        packs.Add(reader.GetString("NombrePack"));
+                    }
+                }
 
-                return packsTable;
+                // Agregar esta línea para verificar si se obtienen resultados
+                Console.WriteLine("Número de packs obtenidos: " + packs.Count);
             }
+
+            return packs;
         }
 
+
+        public List<string> ObtenerViandasPorPack(string packId)
+        {
+            List<string> viandas = new List<string>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                    SELECT v.Nombre_Vianda
+                    FROM Vianda v
+                    INNER JOIN PackVianda pv ON v.IdVianda = pv.IdVianda
+                    WHERE pv.IdPack = @PackId";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PackId", packId);
+
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        viandas.Add(reader.GetString("Nombre_Vianda"));
+                    }
+                }
+            }
+
+            return viandas;
+        }
     }
 
 
@@ -546,4 +563,11 @@ namespace Persistencia
 
 
 
+
 }
+
+
+
+
+
+
