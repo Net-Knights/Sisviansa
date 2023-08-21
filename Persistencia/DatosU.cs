@@ -536,6 +536,7 @@ namespace Persistencia
                 return -1; // Valor de error si no se encuentra el pack
             }
         }
+       
 
         // Método para obtener las viandas asociadas a un pack por su ID
         public List<string> ObtenerViandasDePack(int idPack)
@@ -567,6 +568,52 @@ namespace Persistencia
                 return viandas;
             }
         }
+
+
+        //Stock
+        public int ObtenerStockReal(int idMenu)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT StockReal FROM stock WHERE IdMenu = @IdMenu";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdMenu", idMenu);
+               
+
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+                return -1; // Valor de error si no se encuentra el stock
+            }
+        }
+
+        
+        public int ObtenerStockMinimo(int idMenu)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT StockMinimo FROM stock WHERE IdMenu = @IdMenu";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdMenu", idMenu);
+               
+
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+                return -1; // Valor de error si no se encuentra el stock mínimo
+            }
+        }
+
+
+
 
 
     }

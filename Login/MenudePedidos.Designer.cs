@@ -56,6 +56,7 @@
             label4 = new Label();
             textBox5 = new TextBox();
             label2 = new Label();
+            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidadViandas).BeginInit();
@@ -75,6 +76,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(label6);
             panel1.Controls.Add(lbViandasPacks);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(dgvPedidos);
@@ -196,7 +198,7 @@
             // 
             // btnVerificarStock
             // 
-            btnVerificarStock.Location = new Point(739, 37);
+            btnVerificarStock.Location = new Point(702, 36);
             btnVerificarStock.Name = "btnVerificarStock";
             btnVerificarStock.Size = new Size(59, 23);
             btnVerificarStock.TabIndex = 51;
@@ -207,7 +209,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(474, 19);
+            label7.Location = new Point(442, 19);
             label7.Name = "label7";
             label7.Size = new Size(51, 15);
             label7.TabIndex = 50;
@@ -216,7 +218,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(474, 42);
+            cbViandas.Location = new Point(442, 42);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -225,7 +227,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(605, 20);
+            label3.Location = new Point(569, 19);
             label3.Name = "label3";
             label3.Size = new Size(70, 15);
             label3.TabIndex = 48;
@@ -233,7 +235,7 @@
             // 
             // txtNroclienteb
             // 
-            txtNroclienteb.Location = new Point(633, 38);
+            txtNroclienteb.Location = new Point(584, 42);
             txtNroclienteb.Name = "txtNroclienteb";
             txtNroclienteb.Size = new Size(31, 23);
             txtNroclienteb.TabIndex = 47;
@@ -251,7 +253,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(681, 19);
+            label11.Location = new Point(645, 20);
             label11.Name = "label11";
             label11.Size = new Size(39, 15);
             label11.TabIndex = 44;
@@ -260,7 +262,7 @@
             // txtStock
             // 
             txtStock.BackColor = Color.Silver;
-            txtStock.Location = new Point(681, 38);
+            txtStock.Location = new Point(644, 38);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(52, 23);
             txtStock.TabIndex = 43;
@@ -342,6 +344,15 @@
             label2.TabIndex = 24;
             label2.Text = "Consultar pedidos";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(518, 172);
+            label6.Name = "label6";
+            label6.Size = new Size(113, 15);
+            label6.TabIndex = 56;
+            label6.Text = "Contenido del pack:";
+            // 
             // MenudePedidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -394,5 +405,6 @@
         private Label label1;
         private ComboBox cbPacks;
         private ListBox lbViandasPacks;
+        private Label label6;
     }
 }

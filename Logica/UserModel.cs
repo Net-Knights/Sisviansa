@@ -102,10 +102,15 @@ namespace Logica
             }
         }
 
+       
+
+        // Sobrecarga del método para obtener el ID del pack solo por nombre (sin ID del menú)
         public int ObtenerIdPackPorNombre(string nombrePack)
         {
             try
             {
+                // Puedes proporcionar un valor predeterminado para el ID del menú, o simplemente no usarlo en este caso.
+                int idMenu = -1; // Esto es un ejemplo, puedes ajustarlo según tus necesidades.
                 return datosU.ObtenerIdPackPorNombre(nombrePack);
             }
             catch (Exception ex)
@@ -124,6 +129,32 @@ namespace Logica
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener las viandas del pack desde la capa de datos.", ex);
+            }
+        }
+
+
+        public int ObtenerStockReal(int idMenu)
+        {
+            try
+            {
+                return datosU.ObtenerStockReal(idMenu);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock real desde la capa de datos.", ex);
+            }
+        }
+
+        // Método para obtener el stock mínimo desde la capa de datos
+        public int ObtenerStockMinimo(int idMenu)
+        {
+            try
+            {
+                return datosU.ObtenerStockMinimo(idMenu);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock mínimo desde la capa de datos.", ex);
             }
         }
 

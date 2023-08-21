@@ -25,7 +25,7 @@ namespace Login
             datosU = new DatosU();
             CargarEstadosProduccion();
             CargarDatosMenu();
-          
+
 
         }
         private void CargarDatosMenu()
@@ -95,7 +95,7 @@ namespace Login
         }
         private void CargarViandasDePack(int idPack)
         {
-            lbViandasPacks.Items.Clear(); // Limpia el ListBox
+            lbViandasPacks.Items.Clear();
 
             try
             {
@@ -132,13 +132,13 @@ namespace Login
                 }
             }
         }
-       
-       
+
+
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-       
+
         private void CargarEstadosProduccion()
         {
 
@@ -150,7 +150,22 @@ namespace Login
 
         private void btnVerificarStock_Click(object sender, EventArgs e)
         {
+            // Obtener el Id del menú seleccionado
+            string nombreMenu = cbTipomenu.SelectedItem.ToString();
+            int idMenu = userModel.ObtenerIdMenuPorNombre(nombreMenu);
 
+            // Consultar el stock real en la base de datos
+            int stockReal = userModel.ObtenerStockReal(idMenu);
+
+            // Mostrar el stock real en el TextBox
+            txtStock.Text = stockReal.ToString();
+
+            // Verificar si el stock real es menor o igual al stock mínimo
+            int stockMinimo = userModel.ObtenerStockMinimo(idMenu);
+            if (stockReal <= stockMinimo)
+            {
+                MessageBox.Show("Advertencia: El stock real es igual o menor que el stock mínimo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -180,24 +195,24 @@ namespace Login
                 }
                 else
                 {
-                    // No se encontró el pack seleccionado, limpia el ListBox
+
                     lbViandasPacks.Items.Clear();
                 }
             }
         }
 
-   
-    
-    
-    
-    
+
+
+
+
+
     }
 
 
 
-        
 
-    }
+
+}
 
 
 
