@@ -90,27 +90,44 @@ namespace Logica
             }
         }
 
-        public DataTable ObtenerViandasPorMenu(string menuId)
-        {
-            return datosU.ObtenerViandasPorMenu(menuId);
-        }
-        public List<string> ObtenerPacksPorMenu(string menuId)
+        public int ObtenerIdMenuPorNombre(string nombreMenu)
         {
             try
             {
-                return datosU.ObtenerPacksPorMenu(menuId);
+                return datosU.ObtenerIdMenuPorNombre(nombreMenu);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los packs asociados al menú.", ex);
+                throw new Exception("Error al obtener el Id del menú desde la capa de datos.", ex);
+            }
+        }
+
+        public int ObtenerIdPackPorNombre(string nombrePack)
+        {
+            try
+            {
+                return datosU.ObtenerIdPackPorNombre(nombrePack);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el ID del pack desde la capa de datos.", ex);
+            }
+        }
+
+        // Método para obtener las viandas asociadas a un pack por su ID
+        public List<string> ObtenerViandasDePack(int idPack)
+        {
+            try
+            {
+                return datosU.ObtenerViandasDePack(idPack);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las viandas del pack desde la capa de datos.", ex);
             }
         }
 
 
-        public List<string> ObtenerViandasPorPack(string packId)
-        {
-            return datosU.ObtenerViandasPorPack(packId);
-        }
     }
 
 }

@@ -25,7 +25,7 @@ namespace Login
             datosU = new DatosU();
             CargarEstadosProduccion();
             CargarDatosMenu();
-            //CargarPacksConMenus();
+          
 
         }
         private void CargarDatosMenu()
@@ -33,9 +33,12 @@ namespace Login
             try
             {
                 List<string> tiposMenu = userModel.ObtenerInfoMenu();
-                cbTipomenu.DataSource = tiposMenu;
-                cbTipomenu.SelectedIndex = -1; // Deja el ComboBox en blanco al principio.
-                cbTipomenuLoaded = true;
+                if (tiposMenu != null)
+                {
+                    cbTipomenu.DataSource = tiposMenu;
+                    cbTipomenu.SelectedIndex = -1;
+                    cbTipomenuLoaded = true;
+                }
             }
             catch (Exception ex)
             {
@@ -43,81 +46,99 @@ namespace Login
             }
         }
 
-        //private void CargarViandasPorMenu(string menu)
-        //{
-        //    try
-        //    {
-        //        DataTable viandasTable = userModel.ObtenerViandasPorMenu(menu);
-        //        cbViandas.DataSource = viandasTable;
-        //        cbViandas.SelectedIndex = -1;
-        //        cbViandas.DisplayMember = "Nombre_Vianda";
-        //        cbViandas.ValueMember = "IdVianda";
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al cargar las viandas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+        private void CargarPacksConMenus(int idMenu)
+        {
+            try
+            {
+                DataTable packsTable = datosU.ObtenerPacksPorMenu(idMenu);
+                List<string> packs = new List<string>();
 
+                foreach (DataRow row in packsTable.Rows)
+                {
+                    packs.Add(row["NombrePack"].ToString());
+                }
+
+                cbPacks.DataSource = packs;
+                cbPacks.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los packs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarViandasConMenus(int idMenu)
+        {
+            try
+            {
+                DataTable viandasTable = datosU.ObtenerViandasPorMenu(idMenu);
+                List<string> viandas = new List<string>();
+
+                foreach (DataRow row in viandasTable.Rows)
+                {
+                    viandas.Add(row["Nombre_Vianda"].ToString());
+                }
+
+                cbViandas.DataSource = viandas;
+                cbViandas.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las viandas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void MenudePedidos_Load(object sender, EventArgs e)
         {
             CargarDatosMenu();
 
         }
+        private void CargarViandasDePack(int idPack)
+        {
+            lbViandasPacks.Items.Clear(); // Limpia el ListBox
 
+            try
+            {
+                // Llama a la capa lógica para obtener las viandas asociadas al pack
+                List<string> viandas = userModel.ObtenerViandasDePack(idPack);
+
+                // Agrega las viandas al ListBox
+                lbViandasPacks.Items.AddRange(viandas.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las viandas del pack: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void cbTipomenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipomenu.SelectedItem != null)
+            if (cbTipomenuLoaded && cbTipomenu.SelectedItem != null)
             {
-                string menuSeleccionado = cbTipomenu.SelectedItem.ToString();
-                CargarPacksPorMenu(menuSeleccionado);
-                CargarViandasPorMenu(menuSeleccionado); // Cargar viandas asociadas al menú
-            }
-            else
-            {
-                cbPacks.DataSource = null;
-                cbViandas.DataSource = null;
-            }
-        }
-        private void CargarPacksPorMenu(string menuSeleccionado)
-        {
-            try
-            {
-                // Obtener la lista de packs asociados al menú seleccionado desde la capa lógica
-                List<string> packs = userModel.ObtenerPacksPorMenu(menuSeleccionado);
+                // Obtener el ID del menú seleccionado
+                string nombreMenu = cbTipomenu.SelectedItem.ToString();
+                int idMenu = userModel.ObtenerIdMenuPorNombre(nombreMenu);
 
-                // Configurar el ComboBox cbPacks con la lista de packs
-                cbPacks.DataSource = packs;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los packs asociados al menú: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void CargarViandasPorMenu(string menuId)
-        {
-            try
-            {
-                DataTable viandasTable = userModel.ObtenerViandasPorMenu(menuId);
-                cbViandas.DataSource = viandasTable;
-                cbViandas.DisplayMember = "Nombre_Vianda"; // La columna que se mostrará en el ComboBox
-                cbViandas.ValueMember = "IdVianda";        // El valor asociado a la selección
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar las viandas asociadas al menú: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (idMenu != -1)
+                {
+                    // Cargar los packs y las viandas asociadas al menú seleccionado
+                    CargarPacksConMenus(idMenu);
+                    CargarViandasConMenus(idMenu);
+                }
+                else
+                {
+                    // No se encontró el menú seleccionado, limpia los ComboBox de packs y viandas
+                    cbPacks.DataSource = null;
+                    cbViandas.DataSource = null;
+                }
             }
         }
+       
+       
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        private void CargarViandasPorPack(string packId)
-        {
-            List<string> viandas = userModel.ObtenerViandasPorPack(packId);
-            lbViandasPacks.DataSource = viandas;
-        }
+       
         private void CargarEstadosProduccion()
         {
 
@@ -149,15 +170,27 @@ namespace Login
         {
             if (cbPacks.SelectedItem != null)
             {
-                string packSeleccionado = cbPacks.SelectedItem.ToString();
-                CargarViandasPorPack(packSeleccionado); // Cargar viandas asociadas al pack
-            }
-            else
-            {
-                lbViandasPacks.DataSource = null;
+                string nombrePack = cbPacks.SelectedItem.ToString();
+                int idPack = userModel.ObtenerIdPackPorNombre(nombrePack);
+
+                if (idPack != -1)
+                {
+                    // Cargar las viandas asociadas al pack seleccionado
+                    CargarViandasDePack(idPack);
+                }
+                else
+                {
+                    // No se encontró el pack seleccionado, limpia el ListBox
+                    lbViandasPacks.Items.Clear();
+                }
             }
         }
 
+   
+    
+    
+    
+    
     }
 
 

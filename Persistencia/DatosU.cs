@@ -439,34 +439,11 @@ namespace Persistencia
             }
 
 
-        public DataTable ObtenerViandasPorMenu(string menu)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = @"
-                SELECT v.IdVianda, v.Nombre_Vianda
-                FROM Vianda v
-                INNER JOIN MenuVianda mv ON v.IdVianda = mv.IdVianda
-                INNER JOIN Menu m ON mv.IdMenu = m.IdMenu
-                WHERE m.Infomenu = @Menu;";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Menu", menu);
-
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                DataTable viandasTable = new DataTable();
-                adapter.Fill(viandasTable);
-
-                return viandasTable;
-            }
-        }
 
 
-    
 
-       
+
+
         public int ObtenerIdMenuPorNombre(string nombreMenu)
         {
             try
@@ -493,57 +470,91 @@ namespace Persistencia
             }
         }
 
-
-
-        public List<string> ObtenerPacksPorMenu(string menuId)
+        public DataTable ObtenerPacksPorMenu(int idMenu)
         {
-            List<string> packs = new List<string>();
-
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 string query = @"
-            SELECT p.NombrePack
-            FROM packs p
-            INNER JOIN MenuPack mp ON p.IdPacks = mp.IdPack
-            WHERE mp.IdMenu = @MenuId";
+                SELECT p.NombrePack
+                FROM packs p
+                INNER JOIN menupack mp ON p.IdPacks = mp.IdPack
+                WHERE mp.IdMenu = @IdMenu;
+            ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@MenuId", menuId);
+                command.Parameters.AddWithValue("@IdMenu", idMenu);
 
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        packs.Add(reader.GetString("NombrePack"));
-                    }
-                }
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
 
-                // Agregar esta línea para verificar si se obtienen resultados
-                Console.WriteLine("Número de packs obtenidos: " + packs.Count);
+                return dataTable;
             }
-
-            return packs;
         }
 
-
-        public List<string> ObtenerViandasPorPack(string packId)
+        public DataTable ObtenerViandasPorMenu(int idMenu)
         {
-            List<string> viandas = new List<string>();
-
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 string query = @"
-                    SELECT v.Nombre_Vianda
-                    FROM Vianda v
-                    INNER JOIN PackVianda pv ON v.IdVianda = pv.IdVianda
-                    WHERE pv.IdPack = @PackId";
+                SELECT v.Nombre_Vianda
+                FROM vianda v
+                INNER JOIN menuvianda mv ON v.IdVianda = mv.IdVianda
+                WHERE mv.IdMenu = @IdMenu;
+            ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@PackId", packId);
+                command.Parameters.AddWithValue("@IdMenu", idMenu);
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
+            }
+        }
+
+        public int ObtenerIdPackPorNombre(string nombrePack)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT IdPacks FROM packs WHERE NombrePack = @NombrePack;";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NombrePack", nombrePack);
+
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+                return -1; // Valor de error si no se encuentra el pack
+            }
+        }
+
+        // Método para obtener las viandas asociadas a un pack por su ID
+        public List<string> ObtenerViandasDePack(int idPack)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                SELECT v.Nombre_Vianda
+                FROM packvianda pv
+                INNER JOIN vianda v ON pv.IdVianda = v.IdVianda
+                WHERE pv.IdPacks = @IdPack;
+        ";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdPack", idPack);
+
+                List<string> viandas = new List<string>();
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
@@ -552,10 +563,12 @@ namespace Persistencia
                         viandas.Add(reader.GetString("Nombre_Vianda"));
                     }
                 }
-            }
 
-            return viandas;
+                return viandas;
+            }
         }
+
+
     }
 
 
