@@ -225,7 +225,7 @@
             btn_Perfil.FlatStyle = FlatStyle.Flat;
             btn_Perfil.Image = Properties.Resources.Why_Us_80_icon_icons_com_57240;
             btn_Perfil.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Perfil.Location = new Point(3, 62);
+            btn_Perfil.Location = new Point(0, 62);
             btn_Perfil.Name = "btn_Perfil";
             btn_Perfil.Size = new Size(157, 23);
             btn_Perfil.TabIndex = 17;

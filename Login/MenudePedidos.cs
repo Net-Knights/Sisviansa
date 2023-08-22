@@ -164,7 +164,7 @@ namespace Login
             int stockMinimo = userModel.ObtenerStockMinimo(idMenu);
             if (stockReal <= stockMinimo)
             {
-                MessageBox.Show("Advertencia: El stock real es igual o menor que el stock mínimo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay stock.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
