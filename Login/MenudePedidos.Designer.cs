@@ -30,6 +30,7 @@
         {
             button1 = new Button();
             panel1 = new Panel();
+            label6 = new Label();
             lbViandasPacks = new ListBox();
             label8 = new Label();
             dgvPedidos = new DataGridView();
@@ -56,7 +57,6 @@
             label4 = new Label();
             textBox5 = new TextBox();
             label2 = new Label();
-            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidadViandas).BeginInit();
@@ -92,11 +92,20 @@
             panel1.Size = new Size(801, 510);
             panel1.TabIndex = 24;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(518, 172);
+            label6.Name = "label6";
+            label6.Size = new Size(113, 15);
+            label6.TabIndex = 56;
+            label6.Text = "Contenido del pack:";
+            // 
             // lbViandasPacks
             // 
             lbViandasPacks.FormattingEnabled = true;
             lbViandasPacks.ItemHeight = 15;
-            lbViandasPacks.Location = new Point(527, 204);
+            lbViandasPacks.Location = new Point(498, 196);
             lbViandasPacks.Name = "lbViandasPacks";
             lbViandasPacks.Size = new Size(220, 289);
             lbViandasPacks.TabIndex = 55;
@@ -198,7 +207,7 @@
             // 
             // btnVerificarStock
             // 
-            btnVerificarStock.Location = new Point(702, 36);
+            btnVerificarStock.Location = new Point(730, 36);
             btnVerificarStock.Name = "btnVerificarStock";
             btnVerificarStock.Size = new Size(59, 23);
             btnVerificarStock.TabIndex = 51;
@@ -209,7 +218,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(442, 19);
+            label7.Location = new Point(454, 8);
             label7.Name = "label7";
             label7.Size = new Size(51, 15);
             label7.TabIndex = 50;
@@ -218,7 +227,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(442, 42);
+            cbViandas.Location = new Point(454, 36);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -227,7 +236,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(569, 19);
+            label3.Location = new Point(583, 8);
             label3.Name = "label3";
             label3.Size = new Size(70, 15);
             label3.TabIndex = 48;
@@ -235,7 +244,7 @@
             // 
             // txtNroclienteb
             // 
-            txtNroclienteb.Location = new Point(584, 42);
+            txtNroclienteb.Location = new Point(606, 36);
             txtNroclienteb.Name = "txtNroclienteb";
             txtNroclienteb.Size = new Size(31, 23);
             txtNroclienteb.TabIndex = 47;
@@ -253,7 +262,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(645, 20);
+            label11.Location = new Point(709, 18);
             label11.Name = "label11";
             label11.Size = new Size(39, 15);
             label11.TabIndex = 44;
@@ -262,7 +271,7 @@
             // txtStock
             // 
             txtStock.BackColor = Color.Silver;
-            txtStock.Location = new Point(644, 38);
+            txtStock.Location = new Point(678, 36);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(52, 23);
             txtStock.TabIndex = 43;
@@ -343,15 +352,6 @@
             label2.Size = new Size(171, 28);
             label2.TabIndex = 24;
             label2.Text = "Consultar pedidos";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(518, 172);
-            label6.Name = "label6";
-            label6.Size = new Size(113, 15);
-            label6.TabIndex = 56;
-            label6.Text = "Contenido del pack:";
             // 
             // MenudePedidos
             // 
