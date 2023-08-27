@@ -109,8 +109,8 @@ namespace Logica
         {
             try
             {
-                // Puedes proporcionar un valor predeterminado para el ID del menú, o simplemente no usarlo en este caso.
-                int idMenu = -1; // Esto es un ejemplo, puedes ajustarlo según tus necesidades.
+                
+                int idMenu = -1; 
                 return datosU.ObtenerIdPackPorNombre(nombrePack);
             }
             catch (Exception ex)
@@ -158,7 +158,17 @@ namespace Logica
             }
         }
 
-
+        public List<string> ObtenerEstadosProduccion()
+        {
+            try
+            {
+                return datosU.ObtenerEstadosProduccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los estados de producción desde la capa de datos.", ex);
+            }
+        }
     }
 
 }

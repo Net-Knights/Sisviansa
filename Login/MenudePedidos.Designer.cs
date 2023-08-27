@@ -38,6 +38,8 @@
             label13 = new Label();
             btnAgregar = new Button();
             groupBox3 = new GroupBox();
+            label5 = new Label();
+            cbEstadoProduccion = new ComboBox();
             label1 = new Label();
             cbPacks = new ComboBox();
             lblMensajeStock = new Label();
@@ -51,8 +53,6 @@
             txtStock = new TextBox();
             label9 = new Label();
             groupBox2 = new GroupBox();
-            cbEstadoProduccion = new ComboBox();
-            label5 = new Label();
             BtnBuscar = new Button();
             label4 = new Label();
             textBox5 = new TextBox();
@@ -160,6 +160,8 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(label5);
+            groupBox3.Controls.Add(cbEstadoProduccion);
             groupBox3.Controls.Add(label1);
             groupBox3.Controls.Add(cbPacks);
             groupBox3.Controls.Add(lblMensajeStock);
@@ -178,6 +180,23 @@
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             groupBox3.Text = "Agregar un nuevo pedido";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(563, 18);
+            label5.Name = "label5";
+            label5.Size = new Size(42, 15);
+            label5.TabIndex = 29;
+            label5.Text = "Estado";
+            // 
+            // cbEstadoProduccion
+            // 
+            cbEstadoProduccion.FormattingEnabled = true;
+            cbEstadoProduccion.Location = new Point(563, 37);
+            cbEstadoProduccion.Name = "cbEstadoProduccion";
+            cbEstadoProduccion.Size = new Size(82, 23);
+            cbEstadoProduccion.TabIndex = 30;
             // 
             // label1
             // 
@@ -218,7 +237,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(454, 8);
+            label7.Location = new Point(338, 19);
             label7.Name = "label7";
             label7.Size = new Size(51, 15);
             label7.TabIndex = 50;
@@ -227,7 +246,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(454, 36);
+            cbViandas.Location = new Point(338, 36);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -236,7 +255,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(583, 8);
+            label3.Location = new Point(465, 18);
             label3.Name = "label3";
             label3.Size = new Size(70, 15);
             label3.TabIndex = 48;
@@ -244,7 +263,7 @@
             // 
             // txtNroclienteb
             // 
-            txtNroclienteb.Location = new Point(606, 36);
+            txtNroclienteb.Location = new Point(483, 37);
             txtNroclienteb.Name = "txtNroclienteb";
             txtNroclienteb.Size = new Size(31, 23);
             txtNroclienteb.TabIndex = 47;
@@ -271,7 +290,7 @@
             // txtStock
             // 
             txtStock.BackColor = Color.Silver;
-            txtStock.Location = new Point(678, 36);
+            txtStock.Location = new Point(672, 36);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(52, 23);
             txtStock.TabIndex = 43;
@@ -287,8 +306,6 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(cbEstadoProduccion);
-            groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(BtnBuscar);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(textBox5);
@@ -298,23 +315,6 @@
             groupBox2.TabIndex = 30;
             groupBox2.TabStop = false;
             groupBox2.Text = "Informacion del cliente";
-            // 
-            // cbEstadoProduccion
-            // 
-            cbEstadoProduccion.FormattingEnabled = true;
-            cbEstadoProduccion.Location = new Point(95, 37);
-            cbEstadoProduccion.Name = "cbEstadoProduccion";
-            cbEstadoProduccion.Size = new Size(82, 23);
-            cbEstadoProduccion.TabIndex = 30;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(95, 19);
-            label5.Name = "label5";
-            label5.Size = new Size(42, 15);
-            label5.TabIndex = 29;
-            label5.Text = "Estado";
             // 
             // BtnBuscar
             // 

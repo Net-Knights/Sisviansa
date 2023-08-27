@@ -17,14 +17,16 @@ namespace Login
     {
         private UserModel userModel;
         private bool cbTipomenuLoaded = false;
+        private bool cbEstadoProduccionLoeaded = false;
         private DatosU datosU;
         public MenudePedidos()
         {
             InitializeComponent();
             userModel = new UserModel();
             datosU = new DatosU();
-            CargarEstadosProduccion();
+
             CargarDatosMenu();
+            
 
 
         }
@@ -91,6 +93,8 @@ namespace Login
         private void MenudePedidos_Load(object sender, EventArgs e)
         {
             CargarDatosMenu();
+            CargarComboBoxEstadosProduccion();
+
 
         }
         private void CargarViandasDePack(int idPack)
@@ -133,20 +137,35 @@ namespace Login
             }
         }
 
+        private void CargarComboBoxEstadosProduccion()
+        {
+            try
+            {
+                List<string> estadosProduccion = userModel.ObtenerEstadosProduccion();
+                if (estadosProduccion != null)
+                {
+                    cbEstadoProduccion.DataSource = estadosProduccion;
+                    cbEstadoProduccion.SelectedIndex = -1;
+                    cbEstadoProduccionLoeaded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la información de los estados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
 
+
+         
+          
+        }
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void CargarEstadosProduccion()
-        {
-
-        }
-        private void ActualizarStock()
-        {
-
-        }
+        
+      
 
         private void btnVerificarStock_Click(object sender, EventArgs e)
         {
@@ -203,9 +222,7 @@ namespace Login
 
 
 
-
-
-
+        
     }
 
 

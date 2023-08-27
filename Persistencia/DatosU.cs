@@ -385,26 +385,27 @@ namespace Persistencia
         //pedidos
         public List<string> ObtenerEstadosProduccion()
         {
+            List<string> estadosProduccion = new List<string>();
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT Estados_Produccion FROM estadosproduccion;";
+                string query = "SELECT NombreEstados FROM estadosproduccion;";
                 MySqlCommand command = new MySqlCommand(query, connection);
-
-                List<string> estadosProduccion = new List<string>();
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        estadosProduccion.Add(reader.GetString("estadoProduccion"));
+                        estadosProduccion.Add(reader.GetString("NombreEstados"));
                     }
                 }
-
-                return estadosProduccion;
             }
+
+            return estadosProduccion;
         }
+
 
         public List<string> ObtenerInfoMenu()
         {
