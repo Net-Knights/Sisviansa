@@ -55,7 +55,7 @@
             groupBox2 = new GroupBox();
             BtnBuscar = new Button();
             label4 = new Label();
-            textBox5 = new TextBox();
+            txtNrclienteBuscar = new TextBox();
             label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
@@ -95,7 +95,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(518, 172);
+            label6.Location = new Point(553, 172);
             label6.Name = "label6";
             label6.Size = new Size(113, 15);
             label6.TabIndex = 56;
@@ -105,7 +105,7 @@
             // 
             lbViandasPacks.FormattingEnabled = true;
             lbViandasPacks.ItemHeight = 15;
-            lbViandasPacks.Location = new Point(498, 196);
+            lbViandasPacks.Location = new Point(553, 196);
             lbViandasPacks.Name = "lbViandasPacks";
             lbViandasPacks.Size = new Size(220, 289);
             lbViandasPacks.TabIndex = 55;
@@ -125,7 +125,7 @@
             dgvPedidos.Location = new Point(3, 204);
             dgvPedidos.Name = "dgvPedidos";
             dgvPedidos.RowTemplate.Height = 25;
-            dgvPedidos.Size = new Size(469, 281);
+            dgvPedidos.Size = new Size(544, 281);
             dgvPedidos.TabIndex = 39;
             // 
             // numCantidadViandas
@@ -308,7 +308,7 @@
             // 
             groupBox2.Controls.Add(BtnBuscar);
             groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(textBox5);
+            groupBox2.Controls.Add(txtNrclienteBuscar);
             groupBox2.Location = new Point(3, 127);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(191, 75);
@@ -326,6 +326,7 @@
             BtnBuscar.Size = new Size(35, 23);
             BtnBuscar.TabIndex = 28;
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // label4
             // 
@@ -336,12 +337,12 @@
             label4.TabIndex = 28;
             label4.Text = "Nro Cliente:";
             // 
-            // textBox5
+            // txtNrclienteBuscar
             // 
-            textBox5.Location = new Point(6, 37);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(39, 23);
-            textBox5.TabIndex = 27;
+            txtNrclienteBuscar.Location = new Point(6, 37);
+            txtNrclienteBuscar.Name = "txtNrclienteBuscar";
+            txtNrclienteBuscar.Size = new Size(39, 23);
+            txtNrclienteBuscar.TabIndex = 27;
             // 
             // label2
             // 
@@ -380,7 +381,7 @@
         private Panel panel1;
         private Label label2;
         private Button BtnBuscar;
-        private TextBox textBox5;
+        private TextBox txtNrclienteBuscar;
         private GroupBox groupBox2;
         private ComboBox cbEstadoProduccion;
         private Label label5;

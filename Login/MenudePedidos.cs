@@ -26,7 +26,7 @@ namespace Login
             datosU = new DatosU();
 
             CargarDatosMenu();
-            
+
 
 
         }
@@ -94,6 +94,7 @@ namespace Login
         {
             CargarDatosMenu();
             CargarComboBoxEstadosProduccion();
+            CargarDatosIntegra();
 
 
         }
@@ -153,19 +154,19 @@ namespace Login
             {
                 MessageBox.Show("Error al cargar la información de los estados: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
 
 
-         
-          
+
+
+
         }
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        
-      
+
+
 
         private void btnVerificarStock_Click(object sender, EventArgs e)
         {
@@ -189,7 +190,45 @@ namespace Login
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Obtener los valores seleccionados y/o ingresados en el formulario
+                string nombrePack = cbPacks.SelectedItem.ToString();
+                string infoMenu = cbTipomenu.SelectedItem.ToString();
+                int nroCliente = int.Parse(txtNroclienteb.Text);
+                int cantidadViandas = (int)numCantidadViandas.Value;
+                string estado = cbEstadoProduccion.SelectedItem.ToString();
 
+                // Obtener el IdMenu correspondiente al valor seleccionado en el ComboBox cbTipomenu
+                int idMenu = userModel.ObtenerIdMenuPorNombre(infoMenu);
+
+                // Obtener el valor del stock del TextBox txtStock
+                int stock = int.Parse(txtStock.Text);
+
+                // Llamar al método en la capa de lógica para agregar la información a la base de datos
+                userModel.AgregarIntegra(idMenu, nombrePack, infoMenu, nroCliente, cantidadViandas, estado, stock);
+
+                // Mostrar un mensaje de éxito
+                MessageBox.Show("Pedido agregado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpiar el formulario o realizar otras acciones necesarias después de agregar
+                LimpiarFormulario();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar el pedido: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void LimpiarFormulario()
+        {
+            // Agrega aquí el código para limpiar los campos del formulario si es necesario
+            // Por ejemplo:
+            cbTipomenu.SelectedIndex = -1;
+            cbPacks.SelectedIndex = -1;
+            txtNroclienteb.Clear();
+            numCantidadViandas.Value = 0;
+            cbEstadoProduccion.SelectedIndex = -1;
         }
 
         private void cbTipomenu_DropDown(object sender, EventArgs e)
@@ -221,8 +260,42 @@ namespace Login
         }
 
 
+        private void CargarDatosIntegra()
+        {
+            try
+            {
+                // Llamar al método de la capa lógica para obtener los datos de integra
+                DataTable dataTable = userModel.ObtenerDatosIntegra();
 
-        
+                // Asignar los datos al DataGridView dgvPedidos
+                dgvPedidos.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos de integra: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            int nroCliente;
+            if (int.TryParse(txtNrclienteBuscar.Text, out nroCliente))
+            {
+                try
+                {
+                    DataTable dataTable = datosU.BuscarPedidosPorCliente(nroCliente);
+                    dgvPedidos.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al buscar pedidos: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un número de cliente válido.");
+            }
+        }
     }
 
 

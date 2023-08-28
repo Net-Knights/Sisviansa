@@ -10,9 +10,6 @@ using Persistencia;
 using RegistroUsuarios.Entities;
 using System.Text.RegularExpressions;
 using Persistencia;
-
-
-
 namespace Logica
 {
     
@@ -169,6 +166,37 @@ namespace Logica
                 throw new Exception("Error al obtener los estados de producción desde la capa de datos.", ex);
             }
         }
+
+
+        public void AgregarIntegra(int idMenu, string nombrePack, string infoMenu, int nroCliente, int cantidadViandas, string estado, int stock)
+        {
+            try
+            {
+                int stockReal = datosU.ObtenerStockReal(idMenu);
+                int stockMinimo = datosU.ObtenerStockMinimo(idMenu);
+
+                // Llamar al método correspondiente en la capa de acceso a datos
+                datosU.AgregarIntegra(idMenu, nombrePack, infoMenu, nroCliente, cantidadViandas, estado, stock);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa lógica al agregar en la tabla integra: " + ex.Message);
+            }
+        }
+
+        public DataTable ObtenerDatosIntegra()
+        {
+            try
+            {
+                // Llamar al método correspondiente en la capa de acceso a datos
+                return datosU.ObtenerDatosIntegra();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa lógica al obtener los datos de integra: " + ex.Message);
+            }
+        }
+
     }
 
 }

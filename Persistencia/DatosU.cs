@@ -8,6 +8,8 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using RegistroUsuarios.Entities;
 using System.Text.RegularExpressions;
+using System.Transactions;
+using System.Data.Common;
 
 namespace Persistencia
 {
@@ -613,19 +615,148 @@ namespace Persistencia
             }
         }
 
+       
+
+        //Tabla integra
+        public void AgregarIntegra(int idMenu, string nombrePack, string infoMenu, int nroCliente, int cantidadViandas, string estado, int stock)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (MySqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Insertar un registro en la tabla "pedido" para obtener NroPedido generado automáticamente
+                        string insertPedidoQuery = "INSERT INTO pedido DEFAULT VALUES";
+                        using (MySqlCommand command = new MySqlCommand(insertPedidoQuery, connection, transaction))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+
+                        // Obtener el NroPedido generado automáticamente
+                        string obtenerNroPedidoQuery = "SELECT LAST_INSERT_ID()";
+                        int nroPedido;
+                        using (MySqlCommand command = new MySqlCommand(obtenerNroPedidoQuery, connection, transaction))
+                        {
+                            nroPedido = Convert.ToInt32(command.ExecuteScalar());
+                        }
+
+                        // Insertar un registro en la tabla "caja" para obtener NroCaja generado automáticamente
+                        string insertCajaQuery = "INSERT INTO caja DEFAULT VALUES";
+                        using (MySqlCommand command = new MySqlCommand(insertCajaQuery, connection, transaction))
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                        // Obtener el IdMenu correspondiente al valor seleccionado en el ComboBox cbTipomenu
+                        string obtenerIdMenuQuery = "SELECT IdMenu FROM menu WHERE InfoMenu = @InfoMenu";
+
+                        using (MySqlCommand command = new MySqlCommand(obtenerIdMenuQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@InfoMenu", infoMenu);
+                            idMenu = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                        // Obtener el NroCaja generado automáticamente
+                        string obtenerNroCajaQuery = "SELECT LAST_INSERT_ID()";
+                        int nroCaja;
+                        using (MySqlCommand command = new MySqlCommand(obtenerNroCajaQuery, connection, transaction))
+                        {
+                            nroCaja = Convert.ToInt32(command.ExecuteScalar());
+                        }
+
+                        // Insertar el registro en la tabla "envasado" con los valores ingresados
+                        string insertEnvasadoQuery = "INSERT INTO envasado (Cantidad_Viandas, NroCaja, InfoMenu, NombrePack) " +
+                                                     "VALUES (@CantidadViandas, @NroCaja, @InfoMenu, @NombrePack)";
+                        using (MySqlCommand command = new MySqlCommand(insertEnvasadoQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@CantidadViandas", cantidadViandas);
+                            command.Parameters.AddWithValue("@NroCaja", nroCaja);
+                            command.Parameters.AddWithValue("@InfoMenu", infoMenu);
+                            command.Parameters.AddWithValue("@NombrePack", nombrePack);
+                            command.ExecuteNonQuery();
+                        }
+
+                        // Insertar el registro en la tabla "integra" con los valores obtenidos e ingresados
+                        string insertIntegraQuery = "INSERT INTO integra (IdMenu, NombrePack, InfoMenu, NroPedido, NroCaja, NroCliente, CantidadViandas, Estado, Stock) " +
+                                                    "VALUES (@IdMenu, @NombrePack, @InfoMenu, @NroPedido, @NroCaja, @NroCliente, " +
+                                                    "(SELECT Cantidad_Viandas FROM envasado WHERE NroCaja = @NroCaja AND InfoMenu = @InfoMenu AND NombrePack = @NombrePack), " +
+                                                    "@Estado, @Stock)";
+                        using (MySqlCommand command = new MySqlCommand(insertIntegraQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@IdMenu", idMenu);
+                            command.Parameters.AddWithValue("@NombrePack", nombrePack);
+                            command.Parameters.AddWithValue("@InfoMenu", infoMenu);
+                            command.Parameters.AddWithValue("@NroPedido", nroPedido);
+                            command.Parameters.AddWithValue("@NroCaja", nroCaja);
+                            command.Parameters.AddWithValue("@NroCliente", nroCliente);
+                            command.Parameters.AddWithValue("@Estado", estado);
+                            command.Parameters.AddWithValue("@Stock", stock);
+                            command.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error al agregar en la tabla integra: " + ex.Message);
+                    }
+                }
+            }
+        }
 
 
 
 
+        public DataTable ObtenerDatosIntegra()
+        {
+            DataTable dataTable = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string obtenerDatosIntegraQuery = "SELECT * FROM integra";
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(obtenerDatosIntegraQuery, connection))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+
+            return dataTable;
+        }
+
+        public DataTable BuscarPedidosPorCliente(int nroCliente)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM integra WHERE NroCliente = @NroCliente";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NroCliente", nroCliente);
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
+            }
+        }
+
+    }
     }
 
 
+    
 
 
 
 
 
-}
+
+
+
 
 
 
