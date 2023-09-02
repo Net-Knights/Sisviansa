@@ -57,6 +57,7 @@
             label4 = new Label();
             txtNrclienteBuscar = new TextBox();
             label2 = new Label();
+            btnEliminar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidadViandas).BeginInit();
@@ -76,6 +77,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnEliminar);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(lbViandasPacks);
             panel1.Controls.Add(label8);
@@ -113,7 +115,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(553, 96);
+            label8.Location = new Point(494, 96);
             label8.Name = "label8";
             label8.Size = new Size(114, 15);
             label8.TabIndex = 54;
@@ -130,7 +132,7 @@
             // 
             // numCantidadViandas
             // 
-            numCantidadViandas.Location = new Point(622, 114);
+            numCantidadViandas.Location = new Point(521, 118);
             numCantidadViandas.Name = "numCantidadViandas";
             numCantidadViandas.Size = new Size(45, 23);
             numCantidadViandas.TabIndex = 53;
@@ -354,6 +356,16 @@
             label2.TabIndex = 24;
             label2.Text = "Consultar pedidos";
             // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(591, 107);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(86, 41);
+            btnEliminar.TabIndex = 57;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
             // MenudePedidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -407,5 +419,6 @@
         private ComboBox cbPacks;
         private ListBox lbViandasPacks;
         private Label label6;
+        private Button btnEliminar;
     }
 }

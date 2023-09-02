@@ -216,7 +216,23 @@ namespace Login
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar el pedido: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null && ex.InnerException is MySql.Data.MySqlClient.MySqlException)
+                {
+                    var mysqlEx = (MySql.Data.MySqlClient.MySqlException)ex.InnerException;
+
+                    if (mysqlEx.Number == 1062) // Número de error para clave duplicada
+                    {
+                        MessageBox.Show("Ya existe un pedido con la misma cantidad de viandas. Puede actualizar el pedido existente si es necesario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al agregar el pedido: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error al agregar el pedido: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
@@ -294,6 +310,28 @@ namespace Login
             else
             {
                 MessageBox.Show("Ingrese un número de cliente válido.");
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
+
+            if (dgvPedidos.SelectedRows.Count > 0)
+            {
+                // Obtener el NroPedido seleccionado en el DataGridView
+                int nroPedidoSeleccionado = Convert.ToInt32(dgvPedidos.SelectedRows[0].Cells["NroPedido"].Value);
+
+                // Llamar al método de la capa lógica para eliminar los datos en las tablas
+                UserModel userModel = new UserModel();
+                userModel.EliminarDatosPedido(nroPedidoSeleccionado);
+
+                // Recargar los datos en el DataGridView después de la eliminación
+                CargarDatosIntegra();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

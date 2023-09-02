@@ -744,11 +744,39 @@ namespace Persistencia
             }
         }
 
+
+        public void EliminarDatosPedido(int nroPedido)
+        {
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(connectionString))
+                {
+                    conexion.Open();
+
+                    // Consulta para eliminar datos en la tabla Integra
+                    string consultaIntegra = "DELETE FROM integra WHERE NroPedido = @NroPedido";
+                    using (MySqlCommand comandoIntegra = new MySqlCommand(consultaIntegra, conexion))
+                    {
+                        comandoIntegra.Parameters.AddWithValue("@NroPedido", nroPedido);
+                        comandoIntegra.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar los datos de Integra.", ex);
+            }
+        }
+
+
     }
     }
 
 
-    
+
+
+
+
 
 
 

@@ -197,6 +197,22 @@ namespace Logica
             }
         }
 
+
+        public void EliminarDatosPedido(int nroPedido)
+        {
+            try
+            {
+                // Llamar a la capa de datos para eliminar los datos en las tablas
+                datosU.EliminarDatosPedido(nroPedido);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar los datos del pedido.", ex);
+            }
+        }
+
+
+
     }
 
 }
