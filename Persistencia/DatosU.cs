@@ -10,17 +10,18 @@ using RegistroUsuarios.Entities;
 using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Data.Common;
+using System.Configuration;
 
 namespace Persistencia
 {
     public class DatosU 
     {
-        private string connectionString = "Server=localhost;Database=sisviansa;Uid=root;Pwd=auditoredash3;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["BdConection"].ConnectionString;
 
-        
-       
 
-      
+
+
+
         // estos es para cliente comun
         public void RegistrarCliente(string mail, string telefono, string direccion, string ci, string nombre, string apellido, string usuario, string contraseña)
         {
