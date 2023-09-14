@@ -16,6 +16,8 @@ namespace Logica
     public class UserModel
     {
         private DatosU datosU;
+        private DatosP datosP;
+        private DatosL datosL;
 
         public UserModel()
         {
@@ -79,7 +81,7 @@ namespace Logica
         {
             try
             {
-                return datosU.ObtenerInfoMenu();
+                return datosP.ObtenerInfoMenu();
             }
             catch (Exception ex)
             {
@@ -91,7 +93,7 @@ namespace Logica
         {
             try
             {
-                return datosU.ObtenerIdMenuPorNombre(nombreMenu);
+                return datosP.ObtenerIdMenuPorNombre(nombreMenu);
             }
             catch (Exception ex)
             {
@@ -108,7 +110,7 @@ namespace Logica
             {
                 
                 int idMenu = -1; 
-                return datosU.ObtenerIdPackPorNombre(nombrePack);
+                return datosP.ObtenerIdPackPorNombre(nombrePack);
             }
             catch (Exception ex)
             {
@@ -121,7 +123,7 @@ namespace Logica
         {
             try
             {
-                return datosU.ObtenerViandasDePack(idPack);
+                return datosP.ObtenerViandasDePack(idPack);
             }
             catch (Exception ex)
             {
@@ -134,7 +136,7 @@ namespace Logica
         {
             try
             {
-                return datosU.ObtenerStockReal(idMenu);
+                return datosP.ObtenerStockReal(idMenu);
             }
             catch (Exception ex)
             {
@@ -147,7 +149,7 @@ namespace Logica
         {
             try
             {
-                return datosU.ObtenerStockMinimo(idMenu);
+                return datosP.ObtenerStockMinimo(idMenu);
             }
             catch (Exception ex)
             {
@@ -155,11 +157,11 @@ namespace Logica
             }
         }
 
-        public List<string> ObtenerEstadosProduccion()
+        public List<string> ObtenerEstadosProduccion()  
         {
             try
             {
-                return datosU.ObtenerEstadosProduccion();
+                return datosP.ObtenerEstadosProduccion();
             }
             catch (Exception ex)
             {
@@ -172,11 +174,11 @@ namespace Logica
         {
             try
             {
-                int stockReal = datosU.ObtenerStockReal(idMenu);
-                int stockMinimo = datosU.ObtenerStockMinimo(idMenu);
+                int stockReal = datosP  .ObtenerStockReal(idMenu);
+                int stockMinimo = datosP.ObtenerStockMinimo(idMenu);
 
                 // Llamar al método correspondiente en la capa de acceso a datos
-                datosU.AgregarIntegra(idMenu, nombrePack, infoMenu, nroCliente, cantidadViandas, estado, stock);
+                datosP.AgregarIntegra(idMenu, nombrePack, infoMenu, nroCliente, cantidadViandas, estado, stock);
             }
             catch (Exception ex)
             {
@@ -184,12 +186,12 @@ namespace Logica
             }
         }
 
-        public DataTable ObtenerDatosIntegra()
+        public DataTable ObtenerDatosIntegra()                  
         {
             try
             {
                 // Llamar al método correspondiente en la capa de acceso a datos
-                return datosU.ObtenerDatosIntegra();
+                return datosP.ObtenerDatosIntegra();
             }
             catch (Exception ex)
             {
@@ -203,7 +205,7 @@ namespace Logica
             try
             {
                 // Llamar a la capa de datos para eliminar los datos en las tablas
-                datosU.EliminarDatosPedido(nroPedido);
+                datosP.EliminarDatosPedido(nroPedido);
             }
             catch (Exception ex)
             {

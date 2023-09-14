@@ -21,6 +21,9 @@ namespace Login
     {
         private UserModel userModel;
         private DatosU datosU;
+        private DatosP datosP;
+        private DatosL datosL;
+        
 
         [STAThread]
         static void Main()
@@ -36,6 +39,8 @@ namespace Login
         {
             InitializeComponent();
             datosU = new DatosU();
+            datosP = new DatosP();
+            datosL = new DatosL();
             txtPassword.PasswordChar = '*';
 
         }
@@ -59,7 +64,7 @@ namespace Login
                     return;
                 }
 
-               LoginGeneral usuarioLogueado = datosU.IniciarSesion(usuario, contraseña);
+               LoginGeneral usuarioLogueado = datosL.IniciarSesion(usuario, contraseña);
 
                 if (usuarioLogueado != null)
                 {

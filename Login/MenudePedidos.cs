@@ -19,6 +19,7 @@ namespace Login
         private bool cbTipomenuLoaded = false;
         private bool cbEstadoProduccionLoeaded = false;
         private DatosU datosU;
+        private DatosP datosP;
         public MenudePedidos()
         {
             InitializeComponent();
@@ -53,7 +54,7 @@ namespace Login
         {
             try
             {
-                DataTable packsTable = datosU.ObtenerPacksPorMenu(idMenu);
+                DataTable packsTable = datosP.ObtenerPacksPorMenu(idMenu);
                 List<string> packs = new List<string>();
 
                 foreach (DataRow row in packsTable.Rows)
@@ -74,7 +75,7 @@ namespace Login
         {
             try
             {
-                DataTable viandasTable = datosU.ObtenerViandasPorMenu(idMenu);
+                DataTable viandasTable = datosP.ObtenerViandasPorMenu(idMenu);
                 List<string> viandas = new List<string>();
 
                 foreach (DataRow row in viandasTable.Rows)
@@ -299,7 +300,7 @@ namespace Login
             {
                 try
                 {
-                    DataTable dataTable = datosU.BuscarPedidosPorCliente(nroCliente);
+                    DataTable dataTable = datosP.BuscarPedidosPorCliente(nroCliente);
                     dgvPedidos.DataSource = dataTable;
                 }
                 catch (Exception ex)
