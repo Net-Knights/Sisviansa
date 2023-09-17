@@ -22,6 +22,8 @@ namespace Logica
         public UserModel()
         {
             datosU = new DatosU();
+            datosP = new DatosP();
+            datosP = new DatosP();
         }
         private bool IsValidEmail(string email)
         {
@@ -77,6 +79,8 @@ namespace Logica
 
 
 
+        //logica para los pedidos
+
         public List<string> ObtenerInfoMenu()
         {
             try
@@ -88,6 +92,8 @@ namespace Logica
                 throw new Exception("Error al obtener la información del menú.", ex);
             }
         }
+
+
 
         public int ObtenerIdMenuPorNombre(string nombreMenu)
         {
@@ -101,15 +107,15 @@ namespace Logica
             }
         }
 
-       
+
 
         // Sobrecarga del método para obtener el ID del pack solo por nombre (sin ID del menú)
         public int ObtenerIdPackPorNombre(string nombrePack)
         {
             try
             {
-                
-                int idMenu = -1; 
+
+                int idMenu = -1;
                 return datosP.ObtenerIdPackPorNombre(nombrePack);
             }
             catch (Exception ex)
@@ -118,100 +124,7 @@ namespace Logica
             }
         }
 
-        // Método para obtener las viandas asociadas a un pack por su ID
-        public List<string> ObtenerViandasDePack(int idPack)
-        {
-            try
-            {
-                return datosP.ObtenerViandasDePack(idPack);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener las viandas del pack desde la capa de datos.", ex);
-            }
-        }
 
-
-        public int ObtenerStockReal(int idMenu)
-        {
-            try
-            {
-                return datosP.ObtenerStockReal(idMenu);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el stock real desde la capa de datos.", ex);
-            }
-        }
-
-        // Método para obtener el stock mínimo desde la capa de datos
-        public int ObtenerStockMinimo(int idMenu)
-        {
-            try
-            {
-                return datosP.ObtenerStockMinimo(idMenu);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el stock mínimo desde la capa de datos.", ex);
-            }
-        }
-
-        public List<string> ObtenerEstadosProduccion()  
-        {
-            try
-            {
-                return datosP.ObtenerEstadosProduccion();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los estados de producción desde la capa de datos.", ex);
-            }
-        }
-
-
-        public void AgregarIntegra(int idMenu, string nombrePack, string infoMenu, int nroCliente, int cantidadViandas, string estado, int stock)
-        {
-            try
-            {
-                int stockReal = datosP  .ObtenerStockReal(idMenu);
-                int stockMinimo = datosP.ObtenerStockMinimo(idMenu);
-
-                // Llamar al método correspondiente en la capa de acceso a datos
-                datosP.AgregarIntegra(idMenu, nombrePack, infoMenu, nroCliente, cantidadViandas, estado, stock);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error en la capa lógica al agregar en la tabla integra: " + ex.Message);
-            }
-        }
-
-        public DataTable ObtenerDatosIntegra()                  
-        {
-            try
-            {
-                // Llamar al método correspondiente en la capa de acceso a datos
-                return datosP.ObtenerDatosIntegra();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error en la capa lógica al obtener los datos de integra: " + ex.Message);
-            }
-        }
-
-
-        public void EliminarDatosPedido(int nroPedido)
-        {
-            try
-            {
-                // Llamar a la capa de datos para eliminar los datos en las tablas
-                datosP.EliminarDatosPedido(nroPedido);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar los datos del pedido.", ex);
-            }
-        }
 
 
 
