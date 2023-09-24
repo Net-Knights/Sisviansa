@@ -14,6 +14,8 @@ namespace Login
     public partial class MenuPrincipal : Form
     {
         private string tipoUsuario;
+        private PedidoPersonalizado pedidoPersonalizadoForm;
+
 
         public MenuPrincipal()
         {

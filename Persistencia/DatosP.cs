@@ -120,5 +120,75 @@ namespace Persistencia
             }
         }
 
+        public List<string> ObtenerNombresViandas()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT Nombre_Vianda FROM vianda;";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    List<string> nombresViandas = new List<string>();
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            nombresViandas.Add(reader.GetString("Nombre_Vianda"));
+                        }
+                    }
+
+                    return nombresViandas;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los nombres de las viandas desde la capa de datos.", ex);
+            }
+        }
+
+
+        public List<string> ObtenerViandasPorPack(string nombrePack)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                        SELECT v.Nombre_Vianda
+                        FROM packvianda pv
+                        JOIN vianda v ON pv.IdVianda = v.IdVianda
+                        JOIN packs p ON pv.IdPack = p.IdPack
+                        WHERE p.NombrePack = @NombrePack;
+                    ";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NombrePack", nombrePack);
+
+                    List<string> viandas = new List<string>();
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            viandas.Add(reader.GetString("Nombre_Vianda"));
+                        }
+                    }
+
+                    return viandas;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las viandas asociadas al pack desde la capa de datos.", ex);
+            }
+        }
+
+
     }
 }

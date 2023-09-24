@@ -125,8 +125,20 @@ namespace Logica
         }
 
 
+        public List<string> ObtenerNombresViandas()
+        {
+            DatosP datosP = new DatosP();
+            return datosP.ObtenerNombresViandas();
+        }
 
-
+        public List<string> ObtenerViandasPorPack(string nombrePack)
+        {
+            return datosP.ObtenerViandasPorPack(nombrePack);
+        }
+        public DataTable ObtenerPacksPorMenu(int idMenu)
+        {
+            return datosP.ObtenerPacksPorMenu(idMenu);
+        }
 
     }
 

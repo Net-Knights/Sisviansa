@@ -28,9 +28,9 @@ namespace Login
             datosP = new DatosP();
 
             CargarDatosMenu();
-
-
-
+            cbViandas.SelectedIndex = -1;
+            cbViandas.DropDown += (sender, e) => CargarViandasEnComboBox();//utilize un lambda porque puedo dea
+            lbViandasPacks.Items.Clear();
 
         }
         private void CargarDatosMenu()
@@ -54,7 +54,7 @@ namespace Login
         {
             try
             {
-                DataTable packsTable = datosP.ObtenerPacksPorMenu(idMenu);
+                DataTable packsTable = userModel.ObtenerPacksPorMenu(idMenu);
                 List<string> packs = new List<string>();
 
                 foreach (DataRow row in packsTable.Rows)
@@ -62,8 +62,9 @@ namespace Login
                     packs.Add(row["NombrePack"].ToString());
                 }
 
+                // Llena el ComboBox cbPacks con los packs disponibles
                 cbPacks.DataSource = packs;
-                cbPacks.SelectedIndex = -1;
+                cbPacks.SelectedIndex = -1; // Deja el ComboBox vacío
             }
             catch (Exception ex)
             {
@@ -78,10 +79,22 @@ namespace Login
                 CargarDatosMenu();
             }
         }
+        private void CargarViandasEnListBox(string nombrePack)
+        {
+            List<string> viandas = userModel.ObtenerViandasPorPack(nombrePack);
+
+            lbViandasPacks.Items.Clear();
+            lbViandasPacks.Items.AddRange(viandas.ToArray());
+        }
 
 
+        private void CargarViandasEnComboBox()
+        {
+            List<string> nombresViandas = userModel.ObtenerNombresViandas();
 
-
+            // Llena el ComboBox cbViandas con los nombres de las viandas
+            cbViandas.DataSource = nombresViandas;
+        }
 
 
 
@@ -93,10 +106,10 @@ namespace Login
             CargarDatosMenu();
 
         }
-       
+
         private void cbTipomenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipomenuLoaded && cbTipomenu.SelectedItem != null)
+            if (cbTipomenu.SelectedItem != null)
             {
                 // Obtener el ID del menú seleccionado
                 string nombreMenu = cbTipomenu.SelectedItem.ToString();
@@ -106,18 +119,20 @@ namespace Login
                 {
                     // Cargar los packs y las viandas asociadas al menú seleccionado
                     CargarPacksConMenus(idMenu);
-                   
+                    // Deja el ListBox lbViandaspack vacío hasta que se seleccione un pack
+                    lbViandasPacks.Items.Clear();
                 }
                 else
                 {
                     // No se encontró el menú seleccionado, limpia los ComboBox de packs y viandas
                     cbPacks.DataSource = null;
-                    cbViandas.DataSource = null;
+                    cbPacks.SelectedIndex = -1;
+                    lbViandasPacks.Items.Clear();
                 }
             }
         }
 
-       
+
         private void cbViandas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -128,12 +143,12 @@ namespace Login
 
         private void btnVerificarStock_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-           
+
 
         }
         private void LimpiarFormulario()
@@ -143,25 +158,58 @@ namespace Login
             cbTipomenu.SelectedIndex = -1;
         }
 
-       
+
 
         private void cbPacks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbPacks.SelectedItem != null)
+            {
+                string selectedPack = cbPacks.SelectedItem.ToString();
+                CargarViandasEnListBox(selectedPack);
+                if (EsPackPersonalizado(selectedPack))
+                {
+                    // Abre la ventana PedidoPersonalizado
+                    PedidoPersonalizado pedidoPersonalizadoForm = new PedidoPersonalizado();
+                    pedidoPersonalizadoForm.Show(this);
+                    Hide();
+                }
+            }
+        }
+
+        private bool EsPackPersonalizado(string packNombre)
+        {
+            // Define una lista de palabras clave que indican packs personalizados
+            List<string> palabrasClavePersonalizado = new List<string>
+    {
+        "Pack P", // Ejemplo: "Pack P Vegetariano"
+        "Pack Personalizado", // Ejemplo: "Pack Personalizado Especial"
+        // Agrega aquí más palabras clave si es necesario
+    };
+
+            // Verifica si el nombre del pack contiene alguna palabra clave de packs personalizados
+            foreach (string palabraClave in palabrasClavePersonalizado)
+            {
+                if (packNombre.Contains(palabraClave))
+                {
+                    return true; // El pack es personalizado
+                }
+            }
+
+            return false; // El pack no es personalizado
         }
 
 
-      
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
 
-           
+
+
         }
     }
 

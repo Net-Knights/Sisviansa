@@ -30,6 +30,7 @@
         {
             button1 = new Button();
             panel1 = new Panel();
+            btnEliminar = new Button();
             label6 = new Label();
             lbViandasPacks = new ListBox();
             label8 = new Label();
@@ -57,7 +58,6 @@
             label4 = new Label();
             txtNrclienteBuscar = new TextBox();
             label2 = new Label();
-            btnEliminar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidadViandas).BeginInit();
@@ -93,6 +93,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(801, 510);
             panel1.TabIndex = 24;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(591, 107);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(86, 41);
+            btnEliminar.TabIndex = 57;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // label6
             // 
@@ -239,7 +249,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(338, 19);
+            label7.Location = new Point(306, 19);
             label7.Name = "label7";
             label7.Size = new Size(51, 15);
             label7.TabIndex = 50;
@@ -248,7 +258,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(338, 36);
+            cbViandas.Location = new Point(306, 42);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -257,7 +267,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(465, 18);
+            label3.Location = new Point(487, 18);
             label3.Name = "label3";
             label3.Size = new Size(70, 15);
             label3.TabIndex = 48;
@@ -265,7 +275,7 @@
             // 
             // txtNroclienteb
             // 
-            txtNroclienteb.Location = new Point(483, 37);
+            txtNroclienteb.Location = new Point(504, 37);
             txtNroclienteb.Name = "txtNroclienteb";
             txtNroclienteb.Size = new Size(31, 23);
             txtNroclienteb.TabIndex = 47;
@@ -355,16 +365,6 @@
             label2.Size = new Size(171, 28);
             label2.TabIndex = 24;
             label2.Text = "Consultar pedidos";
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.Location = new Point(591, 107);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(86, 41);
-            btnEliminar.TabIndex = 57;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
-            btnEliminar.Click += btnEliminar_Click;
             // 
             // MenudePedidos
             // 
