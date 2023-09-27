@@ -138,6 +138,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "PedidoPersonalizado";
             Text = "PedidoPersonalizado";
+            FormClosing += PedidoPersonalizado_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

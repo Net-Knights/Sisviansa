@@ -107,7 +107,7 @@ namespace Persistencia
             {
                 connection.Open();
 
-                string query = "SELECT IdPacks FROM packs WHERE NombrePack = @NombrePack;";
+                string query = "SELECT IdPack FROM packs WHERE NombrePack = @NombrePack;";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@NombrePack", nombrePack);
 
@@ -151,7 +151,7 @@ namespace Persistencia
         }
 
 
-        public List<string> ObtenerViandasPorPack(string nombrePack)
+        public List<string> ObtenerViandasPorMenuYPack(string nombreMenu, string nombrePack)
         {
             try
             {
@@ -164,10 +164,12 @@ namespace Persistencia
                         FROM packvianda pv
                         JOIN vianda v ON pv.IdVianda = v.IdVianda
                         JOIN packs p ON pv.IdPack = p.IdPack
-                        WHERE p.NombrePack = @NombrePack;
+                        JOIN menu m ON p.IdMenu = m.IdMenu
+                        WHERE m.InfoMenu = @NombreMenu AND p.NombrePack = @NombrePack;
                     ";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NombreMenu", nombreMenu);
                     command.Parameters.AddWithValue("@NombrePack", nombrePack);
 
                     List<string> viandas = new List<string>();

@@ -79,9 +79,9 @@ namespace Login
                 CargarDatosMenu();
             }
         }
-        private void CargarViandasEnListBox(string nombrePack)
+        private void CargarViandasEnListBox(string nombreMenu, string nombrePack)
         {
-            List<string> viandas = userModel.ObtenerViandasPorPack(nombrePack);
+            List<string> viandas = userModel.ObtenerViandasPorMenuYPack(nombreMenu, nombrePack);
 
             lbViandasPacks.Items.Clear();
             lbViandasPacks.Items.AddRange(viandas.ToArray());
@@ -164,14 +164,30 @@ namespace Login
         {
             if (cbPacks.SelectedItem != null)
             {
+                string selectedMenu = cbTipomenu.SelectedItem.ToString();
                 string selectedPack = cbPacks.SelectedItem.ToString();
-                CargarViandasEnListBox(selectedPack);
+                CargarViandasEnListBox(selectedMenu, selectedPack);
                 if (EsPackPersonalizado(selectedPack))
                 {
+                    // Oculta MenuPrincipal y MenudePedidos
+                    this.Hide();
+                    MenuPrincipal menuPrincipal = (MenuPrincipal)this.Owner;
+                    if (menuPrincipal != null)
+                    {
+                        menuPrincipal.Hide();
+                    }
+
                     // Abre la ventana PedidoPersonalizado
                     PedidoPersonalizado pedidoPersonalizadoForm = new PedidoPersonalizado();
-                    pedidoPersonalizadoForm.Show(this);
-                    Hide();
+                    pedidoPersonalizadoForm.FormClosed += (s, args) => {
+                        // Muestra nuevamente MenuPrincipal y MenudePedidos al cerrar PedidoPersonalizado
+                        this.Show();
+                        if (menuPrincipal != null)
+                        {
+                            menuPrincipal.Show();
+                        }
+                    };
+                    pedidoPersonalizadoForm.Show();
                 }
             }
         }

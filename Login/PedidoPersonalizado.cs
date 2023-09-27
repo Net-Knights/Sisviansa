@@ -42,9 +42,7 @@ namespace Login
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
-            menuPrincipal.Show(this);
-            Hide();
+            this.Close();
         }
 
         private void btnAgregarAlCarrito_Click(object sender, EventArgs e)
@@ -71,6 +69,14 @@ namespace Login
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void PedidoPersonalizado_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.Owner != null)
+            {
+                this.Owner.Visible = true; // Restaura la visibilidad de MenudePedidos
+            }
         }
     }
 }
