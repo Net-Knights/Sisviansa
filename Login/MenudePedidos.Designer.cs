@@ -125,11 +125,11 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(494, 96);
+            label8.Location = new Point(462, 96);
             label8.Name = "label8";
-            label8.Size = new Size(114, 15);
+            label8.Size = new Size(104, 15);
             label8.TabIndex = 54;
-            label8.Text = "Cantidad de viandas";
+            label8.Text = "Cantidad de Packs";
             // 
             // dgvPedidos
             // 
@@ -142,7 +142,7 @@
             // 
             // numCantidadViandas
             // 
-            numCantidadViandas.Location = new Point(521, 118);
+            numCantidadViandas.Location = new Point(478, 118);
             numCantidadViandas.Name = "numCantidadViandas";
             numCantidadViandas.Size = new Size(45, 23);
             numCantidadViandas.TabIndex = 53;

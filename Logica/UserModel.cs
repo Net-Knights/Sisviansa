@@ -140,6 +140,61 @@ namespace Logica
             return datosP.ObtenerPacksPorMenu(idMenu);
         }
 
+
+
+
+        public int ObtenerStockMinimoPorPack(string nombreMenu, string nombrePack)
+        {
+            try
+            {
+                return datosP.ObtenerStockMinimoPorPack(nombreMenu, nombrePack);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock mínimo por pack desde la capa de lógica.", ex);
+            }
+        }
+
+        public int ObtenerStockMaximoPorPack(string nombreMenu, string nombrePack)
+        {
+            try
+            {
+                return datosP.ObtenerStockMaximoPorPack(nombreMenu, nombrePack);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock máximo por pack desde la capa de lógica.", ex);
+            }
+        }
+
+        public int ObtenerStockRealPorPack(string nombreMenu, string nombrePack)
+        {
+            try
+            {
+                return datosP.ObtenerStockRealPorPack(nombreMenu, nombrePack);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock real por pack desde la capa de lógica.", ex);
+            }
+        }
+
+
+        public List<string> ObtenerEstadosProduccion()
+        {
+            try
+            {
+                return datosP.ObtenerEstadosProduccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al obtener los estados de producción.", ex);
+            }
+        }
+
+
+
+
     }
 
 }

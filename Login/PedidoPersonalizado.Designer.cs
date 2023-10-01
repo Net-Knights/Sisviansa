@@ -36,6 +36,7 @@
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            btnGuardar = new Button();
             SuspendLayout();
             // 
             // btnVolver
@@ -51,29 +52,29 @@
             // 
             // lbViandas
             // 
-            lbViandas.BackColor = Color.FromArgb(41, 128, 185);
+            lbViandas.BackColor = Color.Gray;
             lbViandas.BorderStyle = BorderStyle.None;
             lbViandas.FormattingEnabled = true;
             lbViandas.ItemHeight = 15;
-            lbViandas.Location = new Point(12, 126);
+            lbViandas.Location = new Point(12, 93);
             lbViandas.Name = "lbViandas";
             lbViandas.Size = new Size(217, 405);
             lbViandas.TabIndex = 34;
             // 
             // lbCarrito
             // 
-            lbCarrito.BackColor = Color.FromArgb(41, 128, 185);
+            lbCarrito.BackColor = Color.Gray;
             lbCarrito.BorderStyle = BorderStyle.None;
             lbCarrito.FormattingEnabled = true;
             lbCarrito.ItemHeight = 15;
-            lbCarrito.Location = new Point(469, 126);
+            lbCarrito.Location = new Point(469, 93);
             lbCarrito.Name = "lbCarrito";
             lbCarrito.Size = new Size(208, 435);
             lbCarrito.TabIndex = 35;
             // 
             // btnAgregarAlCarrito
             // 
-            btnAgregarAlCarrito.Location = new Point(302, 152);
+            btnAgregarAlCarrito.Location = new Point(257, 126);
             btnAgregarAlCarrito.Name = "btnAgregarAlCarrito";
             btnAgregarAlCarrito.Size = new Size(75, 23);
             btnAgregarAlCarrito.TabIndex = 36;
@@ -83,7 +84,7 @@
             // 
             // btnQuitarDelCarrito
             // 
-            btnQuitarDelCarrito.Location = new Point(302, 291);
+            btnQuitarDelCarrito.Location = new Point(368, 126);
             btnQuitarDelCarrito.Name = "btnQuitarDelCarrito";
             btnQuitarDelCarrito.Size = new Size(75, 23);
             btnQuitarDelCarrito.TabIndex = 37;
@@ -95,7 +96,7 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = SystemColors.Info;
-            label1.Location = new Point(23, 80);
+            label1.Location = new Point(12, 61);
             label1.Name = "label1";
             label1.Size = new Size(111, 15);
             label1.TabIndex = 38;
@@ -105,7 +106,7 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = SystemColors.Info;
-            label2.Location = new Point(512, 80);
+            label2.Location = new Point(514, 61);
             label2.Name = "label2";
             label2.Size = new Size(43, 15);
             label2.TabIndex = 39;
@@ -121,12 +122,23 @@
             panel1.TabIndex = 40;
             panel1.MouseDown += panel1_MouseDown;
             // 
+            // btnGuardar
+            // 
+            btnGuardar.Location = new Point(598, 594);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(100, 27);
+            btnGuardar.TabIndex = 41;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
             // PedidoPersonalizado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(698, 622);
+            Controls.Add(btnGuardar);
             Controls.Add(panel1);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -153,5 +165,6 @@
         private Label label1;
         private Label label2;
         private Panel panel1;
+        private Button btnGuardar;
     }
 }

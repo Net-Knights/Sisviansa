@@ -9,19 +9,30 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Login
 {
     public partial class PedidoPersonalizado : Form
     {
         private UserModel userModel = new UserModel();
+        private List<string> viandasSeleccionadas = new List<string>();
 
-
-        public PedidoPersonalizado()
+        public PedidoPersonalizado(List<string> viandasSeleccionadas)
         {
             InitializeComponent();
+            this.viandasSeleccionadas = viandasSeleccionadas; // Inicializa la lista con los datos pasados
             CargarViandasDisponibles();
         }
+        public void SetViandasSeleccionadas(List<string> viandasSeleccionadas)
+        {
+            this.viandasSeleccionadas = viandasSeleccionadas;
+        }
+        public List<string> GetViandasSeleccionadas()
+        {
+            return viandasSeleccionadas;
+        }
+
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
@@ -47,21 +58,23 @@ namespace Login
 
         private void btnAgregarAlCarrito_Click(object sender, EventArgs e)
         {
-            if (lbViandas.SelectedItem != null)
+            // Agregar vianda al carrito
+            string viandaSeleccionada = lbViandas.SelectedItem as string;
+            if (!string.IsNullOrEmpty(viandaSeleccionada) && !viandasSeleccionadas.Contains(viandaSeleccionada))
             {
-                string viandaSeleccionada = lbViandas.SelectedItem.ToString();
-
-                // Agrega la vianda seleccionada al carrito
+                viandasSeleccionadas.Add(viandaSeleccionada);
                 lbCarrito.Items.Add(viandaSeleccionada);
             }
         }
 
         private void btnQuitarDelCarrito_Click(object sender, EventArgs e)
         {
-            if (lbCarrito.SelectedItem != null)
+            // Eliminar vianda del carrito
+            string viandaSeleccionada = lbCarrito.SelectedItem as string;
+            if (!string.IsNullOrEmpty(viandaSeleccionada))
             {
-                // Remueve la vianda seleccionada del carrito
-                lbCarrito.Items.Remove(lbCarrito.SelectedItem);
+                viandasSeleccionadas.Remove(viandaSeleccionada);
+                lbCarrito.Items.Remove(viandaSeleccionada);
             }
         }
 
@@ -78,5 +91,36 @@ namespace Login
                 this.Owner.Visible = true; // Restaura la visibilidad de MenudePedidos
             }
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            // Ruta completa del archivo
+            string filePath = @"C:\Users\sergi\source\repos\Net-Knights\Sisviansa\viandas_seleccionadas.txt";
+
+            // Guardar las viandas seleccionadas en un archivo
+            try
+            {
+                // Crear un archivo de texto o sobrescribir si ya existe
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    foreach (string vianda in viandasSeleccionadas)
+                    {
+                        writer.WriteLine(vianda);
+                    }
+                }
+
+                MessageBox.Show("Viandas seleccionadas guardadas con éxito.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar las viandas seleccionadas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+
     }
-}
+    }
+

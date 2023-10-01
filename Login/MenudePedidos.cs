@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logica;
 using Persistencia;
+using System.IO;
 
 namespace Login
 {
@@ -20,6 +21,7 @@ namespace Login
         private bool cbEstadoProduccionLoeaded = false;
         private DatosU datosU;
         private DatosP datosP;
+        private List<string> viandasSeleccionadas = new List<string>(); // Variable para mantener las viandas seleccionadas
         public MenudePedidos()
         {
             InitializeComponent();
@@ -103,9 +105,64 @@ namespace Login
         private void MenudePedidos_Load(object sender, EventArgs e)
         {
 
+
+
             CargarDatosMenu();
+           
+            cbEstadoProduccion.DropDown += CargarEstadosProduccion;
+            CargarViandasSeleccionadas();
 
         }
+        private void CargarViandasSeleccionadas()
+        {
+            try
+            {
+                string filePath = @"C:\Users\sergi\source\repos\Net-Knights\Sisviansa\viandas_seleccionadas.txt";
+
+                if (File.Exists(filePath))
+                {
+                    // Leer las viandas seleccionadas desde el archivo
+                    List<string> viandasSeleccionadas = new List<string>();
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            viandasSeleccionadas.Add(line);
+                        }
+                    }
+
+                    // Mostrar las viandas en el ListBox correspondiente (lbViandasPacks)
+                    lbViandasPacks.Items.AddRange(viandasSeleccionadas.ToArray());
+                }
+                else
+                {
+                    // Agregar una vianda predeterminada si el archivo no existe
+                    lbViandasPacks.Items.Add("Vianda Predeterminada");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las viandas seleccionadas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void CargarEstadosProduccion(object sender, EventArgs e)
+        {
+            // aca se cargan los datos del ComboBox cuando se despliega
+
+            List<string> estadosProduccion = userModel.ObtenerEstadosProduccion();
+
+            // Limpia el ComboBox 
+            cbEstadoProduccion.Items.Clear();
+
+            // Agrega los datos al ComboBox
+            cbEstadoProduccion.Items.AddRange(estadosProduccion.ToArray());
+
+            // Una vez cargados los datos, desuscribe el evento para evitar que se recarguen innecesariamente
+            cbEstadoProduccion.DropDown -= CargarEstadosProduccion;
+        }
+
+
 
         private void cbTipomenu_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -144,7 +201,28 @@ namespace Login
         private void btnVerificarStock_Click(object sender, EventArgs e)
         {
 
+            if (cbPacks.SelectedItem != null && cbTipomenu.SelectedItem != null)
+            {
+                string selectedMenu = cbTipomenu.SelectedItem.ToString();
+                string selectedPack = cbPacks.SelectedItem.ToString();
+                int stockReal = userModel.ObtenerStockRealPorPack(selectedMenu, selectedPack);
+
+                txtStock.Text = stockReal.ToString();
+
+
+                if (stockReal < 0)
+                {
+                    MessageBox.Show("No se encontró información de stock para este pack.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (stockReal < userModel.ObtenerStockMinimoPorPack(selectedMenu, selectedPack))
+                {
+                    MessageBox.Show("El stock real es menor que el stock mínimo. Debe enviarse a producción.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
+
+
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -153,8 +231,7 @@ namespace Login
         }
         private void LimpiarFormulario()
         {
-            // Agrega aquí el código para limpiar los campos del formulario si es necesario
-            // Por ejemplo:
+
             cbTipomenu.SelectedIndex = -1;
         }
 
@@ -169,23 +246,22 @@ namespace Login
                 CargarViandasEnListBox(selectedMenu, selectedPack);
                 if (EsPackPersonalizado(selectedPack))
                 {
-                    // Oculta MenuPrincipal y MenudePedidos
+                    // Oculta MenudePedidos
                     this.Hide();
-                    MenuPrincipal menuPrincipal = (MenuPrincipal)this.Owner;
-                    if (menuPrincipal != null)
-                    {
-                        menuPrincipal.Hide();
-                    }
 
-                    // Abre la ventana PedidoPersonalizado
-                    PedidoPersonalizado pedidoPersonalizadoForm = new PedidoPersonalizado();
-                    pedidoPersonalizadoForm.FormClosed += (s, args) => {
-                        // Muestra nuevamente MenuPrincipal y MenudePedidos al cerrar PedidoPersonalizado
+                    PedidoPersonalizado pedidoPersonalizadoForm = new PedidoPersonalizado(viandasSeleccionadas);
+                    pedidoPersonalizadoForm.Owner = this; // Establece la ventana principal como propietaria
+                    pedidoPersonalizadoForm.FormClosed += (s, args) =>
+                    {
+                        // Muestra nuevamente MenudePedidos al cerrar PedidoPersonalizado
                         this.Show();
-                        if (menuPrincipal != null)
-                        {
-                            menuPrincipal.Show();
-                        }
+
+                        // Recupera las viandas seleccionadas desde la ventana PedidoPersonalizado
+                        viandasSeleccionadas = pedidoPersonalizadoForm.GetViandasSeleccionadas();
+
+                        // Actualiza el ListBox lbViandasPacks con las viandas seleccionadas
+                        lbViandasPacks.Items.Clear();
+                        lbViandasPacks.Items.AddRange(viandasSeleccionadas.ToArray());
                     };
                     pedidoPersonalizadoForm.Show();
                 }

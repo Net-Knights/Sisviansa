@@ -192,5 +192,145 @@ namespace Persistencia
         }
 
 
+        public int ObtenerStockMinimoPorPack(string nombreMenu, string nombrePack)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT s.StockMinimo
+                FROM stock s
+                INNER JOIN packs p ON s.IdPack = p.IdPack
+                INNER JOIN menu m ON p.IdMenu = m.IdMenu
+                WHERE m.InfoMenu = @NombreMenu AND p.NombrePack = @NombrePack;
+            ";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NombreMenu", nombreMenu);
+                    command.Parameters.AddWithValue("@NombrePack", nombrePack);
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    return -1; // Valor de error si no se encuentra el stock mínimo
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock mínimo desde la capa de datos.", ex);
+            }
+        }
+
+        public int ObtenerStockMaximoPorPack(string nombreMenu, string nombrePack)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT s.StockMaximo
+                FROM stock s
+                INNER JOIN packs p ON s.IdPack = p.IdPack
+                INNER JOIN menu m ON p.IdMenu = m.IdMenu
+                WHERE m.InfoMenu = @NombreMenu AND p.NombrePack = @NombrePack;
+            ";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NombreMenu", nombreMenu);
+                    command.Parameters.AddWithValue("@NombrePack", nombrePack);
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    return -1; // Valor de error si no se encuentra el stock máximo
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock máximo desde la capa de datos.", ex);
+            }
+        }
+
+        public int ObtenerStockRealPorPack(string nombreMenu, string nombrePack)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT s.StockReal
+                FROM stock s
+                INNER JOIN packs p ON s.IdPack = p.IdPack
+                INNER JOIN menu m ON p.IdMenu = m.IdMenu
+                WHERE m.InfoMenu = @NombreMenu AND p.NombrePack = @NombrePack;
+            ";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NombreMenu", nombreMenu);
+                    command.Parameters.AddWithValue("@NombrePack", nombrePack);
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    return -1; // Valor de error si no se encuentra el stock real
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el stock real desde la capa de datos.", ex);
+            }
+        }
+
+
+        public List<string> ObtenerEstadosProduccion()
+        {
+            List<string> estadosProduccion = new List<string>();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT EstadoProduccion FROM estadosproduccion";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string nombreEstado = reader["EstadoProduccion"].ToString();
+                            estadosProduccion.Add(nombreEstado);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de acceso a datos al obtener los estados de producción.", ex);
+            }
+
+            return estadosProduccion;
+        }
+
+
+
+
+
+
+
     }
 }
