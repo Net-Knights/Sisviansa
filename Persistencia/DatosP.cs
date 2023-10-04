@@ -327,10 +327,162 @@ namespace Persistencia
         }
 
 
+        public int AgregarPedido(string tipoMenu, string nombrePack, int nroCliente, int stock, string estadoProduccion, int cantidadPacks)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Generar automáticamente el número de pedido
+                    int nroPedido = GenerarNumeroPedido();
+
+                    // Obtener el ID de producción según el estado seleccionado
+                    int idProduccion = ObtenerIdProduccionPorEstado(estadoProduccion);
+
+                    // Generar automáticamente el número de caja
+                    int nroCaja = GenerarNumeroCaja();
+                    // Obtener la fecha actual
+                    DateTime fechaActual = DateTime.Now;
+
+                    // Sumar 7 días al valor actual para obtener la fecha de vencimiento
+                    DateTime fechaVencimiento = fechaActual.AddDays(7);
+
+                    // Luego, inserta fechaVencimiento en la base de datos
+                    string insertCajaQuery = "INSERT INTO caja (NroCaja, TiempoVencimiento) VALUES (@NroCaja, @TiempoVencimiento)";
+                    MySqlCommand insertCajaCommand = new MySqlCommand(insertCajaQuery, connection);
+                    insertCajaCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                    insertCajaCommand.Parameters.AddWithValue("@TiempoVencimiento", fechaVencimiento);
+                    insertCajaCommand.ExecuteNonQuery();
 
 
+                    // Insertar el número de pedido en la tabla pedido
+                    string insertPedidoQuery = "INSERT INTO pedido (NroPedido) VALUES (@NroPedido)";
+                    MySqlCommand insertPedidoCommand = new MySqlCommand(insertPedidoQuery, connection);
+                    insertPedidoCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                    insertPedidoCommand.ExecuteNonQuery();
+
+                    // Insertar el pack en la tabla packs
+                    string insertPackQuery = "INSERT INTO packs (InfoMenu, StockReal, NroCaja, NroPedido, IdProduccion, CantPacks) " +
+                                             "VALUES (@InfoMenu, @StockReal, @NroCaja, @NroPedido, @IdProduccion, @CantPacks)";
+                    MySqlCommand insertPackCommand = new MySqlCommand(insertPackQuery, connection);
+                    insertPackCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
+                    insertPackCommand.Parameters.AddWithValue("@StockReal", stock);
+                    insertPackCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                    insertPackCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                    insertPackCommand.Parameters.AddWithValue("@IdProduccion", idProduccion);
+                    insertPackCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
+                    insertPackCommand.ExecuteNonQuery();
+
+                    // Actualizar el stock en la tabla Stock restando la cantidad de packs
+                    string updateStockQuery = "UPDATE stock SET StockReal = StockReal - @CantPacks " +
+                                              "WHERE IdPack IN (SELECT IdPack FROM packs WHERE NroPedido = @NroPedido)";
+                    MySqlCommand updateStockCommand = new MySqlCommand(updateStockQuery, connection);
+                    updateStockCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
+                    updateStockCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                    updateStockCommand.ExecuteNonQuery();
+                    return nroPedido; // Retorna el número de pedido generado
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de acceso a datos al agregar el pedido.", ex);
+            }
+        }
+
+        private int GenerarNumeroPedido()
+        {
+            
+            Random random = new Random();
+            return random.Next(1000, 9999); // Número de pedido aleatorio de 4 dígitos
+        }
+
+        private int ObtenerIdProduccionPorEstado(string estadoProduccion)
+        {
+            int idProduccion = -1;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT IdEstadoProduccion FROM estadosproduccion WHERE EstadoProduccion = @EstadoProduccion";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@EstadoProduccion", estadoProduccion);
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        idProduccion = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de acceso a datos al obtener el ID de producción.", ex);
+            }
+
+            return idProduccion;
+        }
+
+        private int GenerarNumeroCaja()
+        {
+            
+            Random random = new Random();
+            return random.Next(1000, 9999); // Número de caja aleatorio de 4 dígitos
+        }
 
 
+        public DataTable ObtenerPacksYClientePorNroCliente(int nroCliente)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                    SELECT p.IdPack, p.NombrePack, p.InfoMenu, p.IdMenu, p.StockReal, p.NroCaja, p.NroPedido, p.IdProduccion, p.CantPacks, c.NroCliente
+                    FROM packs p
+                    INNER JOIN cliente c ON p.NroCliente = c.NroCliente
+                    WHERE p.NroCliente = @NroCliente;
+                ";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NroCliente", nroCliente);
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
+            }
+        }
+
+
+        public DataTable ObtenerTodosLosPacks()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT * FROM packs"; // Obtener todos los datos de la tabla packs
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    DataTable dataTable = new DataTable();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+
+                    return dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener todos los packs desde la capa de datos.", ex);
+            }
+        }
 
     }
 }

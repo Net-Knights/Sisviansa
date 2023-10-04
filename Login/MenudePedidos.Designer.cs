@@ -35,7 +35,7 @@
             lbViandasPacks = new ListBox();
             label8 = new Label();
             dgvPedidos = new DataGridView();
-            numCantidadViandas = new NumericUpDown();
+            numCantidadPacks = new NumericUpDown();
             label13 = new Label();
             btnAgregar = new Button();
             groupBox3 = new GroupBox();
@@ -60,7 +60,7 @@
             label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numCantidadViandas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numCantidadPacks).BeginInit();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -82,7 +82,7 @@
             panel1.Controls.Add(lbViandasPacks);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(dgvPedidos);
-            panel1.Controls.Add(numCantidadViandas);
+            panel1.Controls.Add(numCantidadPacks);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(btnAgregar);
             panel1.Controls.Add(groupBox3);
@@ -125,7 +125,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(462, 96);
+            label8.Location = new Point(481, 96);
             label8.Name = "label8";
             label8.Size = new Size(104, 15);
             label8.TabIndex = 54;
@@ -140,12 +140,12 @@
             dgvPedidos.Size = new Size(544, 281);
             dgvPedidos.TabIndex = 39;
             // 
-            // numCantidadViandas
+            // numCantidadPacks
             // 
-            numCantidadViandas.Location = new Point(478, 118);
-            numCantidadViandas.Name = "numCantidadViandas";
-            numCantidadViandas.Size = new Size(45, 23);
-            numCantidadViandas.TabIndex = 53;
+            numCantidadPacks.Location = new Point(507, 118);
+            numCantidadPacks.Name = "numCantidadPacks";
+            numCantidadPacks.Size = new Size(45, 23);
+            numCantidadPacks.TabIndex = 53;
             // 
             // label13
             // 
@@ -380,7 +380,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numCantidadViandas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numCantidadPacks).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -413,7 +413,7 @@
         private Button btnVerificarStock;
         private Label label10;
         private Label lblMensajeStock;
-        private NumericUpDown numCantidadViandas;
+        private NumericUpDown numCantidadPacks;
         private Label label8;
         private Label label1;
         private ComboBox cbPacks;

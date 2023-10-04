@@ -52,6 +52,9 @@ namespace Login
                 MessageBox.Show("Error al cargar la información del menú: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
+
         private void CargarPacksConMenus(int idMenu)
         {
             try
@@ -108,9 +111,12 @@ namespace Login
 
 
             CargarDatosMenu();
-           
+
             cbEstadoProduccion.DropDown += CargarEstadosProduccion;
             CargarViandasSeleccionadas();
+            // Cargar la tabla "packs" en el DataGridView al cargar el formulario
+            DataTable packsTable = userModel.ObtenerTodosLosPacks();
+            dgvPedidos.DataSource = packsTable;
 
         }
         private void CargarViandasSeleccionadas()
@@ -220,14 +226,48 @@ namespace Login
                 }
             }
         }
-
+        private void CargarTodosLosPacksEnDataGridView()
+        {
+            try
+            {
+                DataTable packsTable = userModel.ObtenerTodosLosPacks();
+                dgvPedidos.DataSource = packsTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos de la tabla packs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            // Captura los datos ingresados por el usuario
+            string tipoMenu = cbTipomenu.SelectedItem.ToString();
+            string nombrePack = cbPacks.SelectedItem.ToString();
+            int nroCliente = int.Parse(txtNroclienteb.Text);
+            int stock = int.Parse(txtStock.Text);
+            string estadoProduccion = cbEstadoProduccion.SelectedItem.ToString();
+            int cantidadPacks = (int)numCantidadPacks.Value;
 
+            // Llama a la capa de lógica para agregar el pedido
+            int nroPedido = userModel.AgregarPedido(tipoMenu, nombrePack, nroCliente, stock, estadoProduccion, cantidadPacks);
 
+            if (nroPedido > 0)
+            {
+                // Mostrar mensaje de éxito
+                MessageBox.Show($"Pedido agregado con éxito. Número de pedido: {nroPedido}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Actualizar el DataGridView con los nuevos datos
+                DataTable packsTable = userModel.ObtenerTodosLosPacks();
+                dgvPedidos.DataSource = packsTable;
+            }
+            else
+            {
+                // Mostrar mensaje de error
+                MessageBox.Show("Error al agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void LimpiarFormulario()
         {
