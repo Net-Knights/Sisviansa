@@ -85,7 +85,7 @@ namespace Persistencia
                 connection.Open();
 
                 string query = @"
-            SELECT p.NombrePack
+            SELECT DISTINCT p.NombrePack
             FROM packs p
             WHERE p.IdMenu = @IdMenu;
         ";
@@ -327,7 +327,7 @@ namespace Persistencia
         }
 
 
-        public int AgregarPedido(string tipoMenu, string nombrePack, int nroCliente, int stock, string estadoProduccion, int cantidadPacks)
+        public int AgregarPedidoCompleto(string tipoMenu, int IdMenu, string nombrePack, int nroCliente, int stock, string estadoProduccion, int cantidadPacks, bool esPersonalizado)
         {
             try
             {
@@ -343,6 +343,7 @@ namespace Persistencia
 
                     // Generar automáticamente el número de caja
                     int nroCaja = GenerarNumeroCaja();
+
                     // Obtener la fecha actual
                     DateTime fechaActual = DateTime.Now;
 
@@ -356,32 +357,62 @@ namespace Persistencia
                     insertCajaCommand.Parameters.AddWithValue("@TiempoVencimiento", fechaVencimiento);
                     insertCajaCommand.ExecuteNonQuery();
 
-
                     // Insertar el número de pedido en la tabla pedido
                     string insertPedidoQuery = "INSERT INTO pedido (NroPedido) VALUES (@NroPedido)";
                     MySqlCommand insertPedidoCommand = new MySqlCommand(insertPedidoQuery, connection);
                     insertPedidoCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
                     insertPedidoCommand.ExecuteNonQuery();
 
-                    // Insertar el pack en la tabla packs
-                    string insertPackQuery = "INSERT INTO packs (InfoMenu, StockReal, NroCaja, NroPedido, IdProduccion, CantPacks) " +
-                                             "VALUES (@InfoMenu, @StockReal, @NroCaja, @NroPedido, @IdProduccion, @CantPacks)";
-                    MySqlCommand insertPackCommand = new MySqlCommand(insertPackQuery, connection);
-                    insertPackCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
-                    insertPackCommand.Parameters.AddWithValue("@StockReal", stock);
-                    insertPackCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
-                    insertPackCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
-                    insertPackCommand.Parameters.AddWithValue("@IdProduccion", idProduccion);
-                    insertPackCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
-                    insertPackCommand.ExecuteNonQuery();
+                    if (!esPersonalizado)
+                    {
+                        // Insertar el pack en la tabla packs incluyendo el stock
+                        string insertPackQuery = "INSERT INTO packs (InfoMenu, NombrePack, IdMenu, StockReal, NroCaja, NroPedido, IdProduccion, CantPacks) " +
+                                      "VALUES (@InfoMenu, @NombrePack, @IdMenu, @StockReal, @NroCaja, @NroPedido, @IdProduccion, @CantPacks)";
+                        MySqlCommand insertPackCommand = new MySqlCommand(insertPackQuery, connection);
+                        insertPackCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
+                        insertPackCommand.Parameters.AddWithValue("@StockReal", stock);
+                        insertPackCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                        insertPackCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                        insertPackCommand.Parameters.AddWithValue("@IdProduccion", idProduccion);
+                        insertPackCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
+                        insertPackCommand.Parameters.AddWithValue("@NombrePack", nombrePack);
+                        insertPackCommand.Parameters.AddWithValue("@IdMenu", IdMenu);
+                        insertPackCommand.ExecuteNonQuery();
 
-                    // Actualizar el stock en la tabla Stock restando la cantidad de packs
-                    string updateStockQuery = "UPDATE stock SET StockReal = StockReal - @CantPacks " +
-                                              "WHERE IdPack IN (SELECT IdPack FROM packs WHERE NroPedido = @NroPedido)";
-                    MySqlCommand updateStockCommand = new MySqlCommand(updateStockQuery, connection);
-                    updateStockCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
-                    updateStockCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
-                    updateStockCommand.ExecuteNonQuery();
+                        // Actualizar el stock en la tabla Stock restando la cantidad de packs
+                        string updateStockQuery = "UPDATE stock SET StockReal = StockReal - @CantPacks " +
+                                                   "WHERE IdPack IN (SELECT IdPack FROM packs WHERE NroPedido = @NroPedido)";
+                        MySqlCommand updateStockCommand = new MySqlCommand(updateStockQuery, connection);
+                        updateStockCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
+                        updateStockCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                        updateStockCommand.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        // Insertar el pack personalizado en la tabla packs sin incluir el stock
+                        string insertPackQuery = "INSERT INTO packs (InfoMenu, NombrePack, IdMenu, NroCaja, NroPedido, IdProduccion, CantPacks, EsPersonalizado) " +
+                                                 "VALUES (@InfoMenu, @NombrePack, @IdMenu, @NroCaja, @NroPedido, @IdProduccion, @CantPacks, @EsPersonalizado)";
+                        MySqlCommand insertPackCommand = new MySqlCommand(insertPackQuery, connection);
+                        insertPackCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
+                        insertPackCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                        insertPackCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                        insertPackCommand.Parameters.AddWithValue("@IdProduccion", idProduccion);
+                        insertPackCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
+                        insertPackCommand.Parameters.AddWithValue("@NombrePack", nombrePack);
+                        insertPackCommand.Parameters.AddWithValue("@IdMenu", IdMenu);
+                        insertPackCommand.Parameters.AddWithValue("@EsPersonalizado", true); // Es personalizado
+                        insertPackCommand.ExecuteNonQuery();
+                    }
+
+                    // Insertar en la tabla envasado
+                    string insertEnvasadoQuery = "INSERT INTO envasado (NroCaja, InfoMenu, CantPacks) " +
+                                                 "VALUES (@NroCaja, @InfoMenu, (SELECT CantPacks FROM packs WHERE NroPedido = @NroPedido LIMIT 1))";
+                    MySqlCommand insertEnvasadoCommand = new MySqlCommand(insertEnvasadoQuery, connection);
+                    insertEnvasadoCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                    insertEnvasadoCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
+                    insertEnvasadoCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                    insertEnvasadoCommand.ExecuteNonQuery();
+
                     return nroPedido; // Retorna el número de pedido generado
                 }
             }
@@ -393,7 +424,6 @@ namespace Persistencia
 
         private int GenerarNumeroPedido()
         {
-            
             Random random = new Random();
             return random.Next(1000, 9999); // Número de pedido aleatorio de 4 dígitos
         }
@@ -429,12 +459,11 @@ namespace Persistencia
 
         private int GenerarNumeroCaja()
         {
-            
             Random random = new Random();
             return random.Next(1000, 9999); // Número de caja aleatorio de 4 dígitos
         }
 
-
+        
         public DataTable ObtenerPacksYClientePorNroCliente(int nroCliente)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -462,25 +491,25 @@ namespace Persistencia
 
         public DataTable ObtenerTodosLosPacks()
         {
-            try
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
+                connection.Open();
 
-                    string query = "SELECT * FROM packs"; // Obtener todos los datos de la tabla packs
-                    MySqlCommand command = new MySqlCommand(query, connection);
+            string query = @"
+            SELECT * FROM packs
+            WHERE StockReal IS NOT NULL 
+            AND CantPacks IS NOT NULL 
+            AND NroPedido IS NOT NULL
+           
+        ";
 
-                    DataTable dataTable = new DataTable();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                    adapter.Fill(dataTable);
+                MySqlCommand command = new MySqlCommand(query, connection);
 
-                    return dataTable;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener todos los packs desde la capa de datos.", ex);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
             }
         }
 

@@ -53,7 +53,7 @@ namespace Login
             }
         }
 
-        
+
 
         private void CargarPacksConMenus(int idMenu)
         {
@@ -109,14 +109,13 @@ namespace Login
         {
 
 
-
             CargarDatosMenu();
 
             cbEstadoProduccion.DropDown += CargarEstadosProduccion;
             CargarViandasSeleccionadas();
+
             // Cargar la tabla "packs" en el DataGridView al cargar el formulario
-            DataTable packsTable = userModel.ObtenerTodosLosPacks();
-            dgvPedidos.DataSource = packsTable;
+            CargarTodosLosPacksEnDataGridView();
 
         }
         private void CargarViandasSeleccionadas()
@@ -226,47 +225,75 @@ namespace Login
                 }
             }
         }
+
+
+
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Captura los datos ingresados por el usuario
+                string tipoMenu = cbTipomenu.SelectedItem.ToString();
+                string nombrePack = cbPacks.SelectedItem.ToString();
+                int nroCliente = int.Parse(txtNroclienteb.Text);
+                int stock = 0; // Inicializamos stock en 0
+                string estadoProduccion = cbEstadoProduccion.SelectedItem.ToString();
+                int cantidadPacks = (int)numCantidadPacks.Value;
+
+                // Determina si el pack es personalizado
+                bool esPersonalizado = EsPackPersonalizado(nombrePack);
+
+                if (!esPersonalizado)
+                {
+                    // Si no es personalizado, toma el valor de txtStock
+                    stock = int.Parse(txtStock.Text);
+                }
+
+                // Llama al método ObtenerIdMenuPorNombre para obtener IdMenu
+                int IdMenu = userModel.ObtenerIdMenuPorNombre(tipoMenu);
+
+                if (IdMenu == -1)
+                {
+                    // Maneja el caso en que no se encontró un IdMenu válido.
+                    MessageBox.Show("No se encontró un menú válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    // Llama a la capa de lógica para agregar el pedido completo
+                    int nroPedido = userModel.AgregarPedidoCompleto(tipoMenu, IdMenu, nombrePack, nroCliente, stock, estadoProduccion, cantidadPacks, esPersonalizado);
+
+                    if (nroPedido > 0)
+                    {
+                        // Mostrar mensaje de éxito
+                        MessageBox.Show($"Pedido agregado con éxito. Número de pedido: {nroPedido}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Actualizar el DataGridView con los nuevos datos de la tabla "packs"
+                        CargarTodosLosPacksEnDataGridView();
+                    }
+                    else
+                    {
+                        // Mostrar mensaje de error
+                        MessageBox.Show("Error al agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar el pedido: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void CargarTodosLosPacksEnDataGridView()
         {
             try
             {
                 DataTable packsTable = userModel.ObtenerTodosLosPacks();
                 dgvPedidos.DataSource = packsTable;
+                dgvPedidos.Columns["IdPack"].Visible = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos de la tabla packs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            // Captura los datos ingresados por el usuario
-            string tipoMenu = cbTipomenu.SelectedItem.ToString();
-            string nombrePack = cbPacks.SelectedItem.ToString();
-            int nroCliente = int.Parse(txtNroclienteb.Text);
-            int stock = int.Parse(txtStock.Text);
-            string estadoProduccion = cbEstadoProduccion.SelectedItem.ToString();
-            int cantidadPacks = (int)numCantidadPacks.Value;
-
-            // Llama a la capa de lógica para agregar el pedido
-            int nroPedido = userModel.AgregarPedido(tipoMenu, nombrePack, nroCliente, stock, estadoProduccion, cantidadPacks);
-
-            if (nroPedido > 0)
-            {
-                // Mostrar mensaje de éxito
-                MessageBox.Show($"Pedido agregado con éxito. Número de pedido: {nroPedido}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Actualizar el DataGridView con los nuevos datos
-                DataTable packsTable = userModel.ObtenerTodosLosPacks();
-                dgvPedidos.DataSource = packsTable;
-            }
-            else
-            {
-                // Mostrar mensaje de error
-                MessageBox.Show("Error al agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void LimpiarFormulario()
@@ -337,10 +364,12 @@ namespace Login
 
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+
+
+       
+
+        private void btnEliminarP_Click(object sender, EventArgs e)
         {
-
-
 
         }
     }

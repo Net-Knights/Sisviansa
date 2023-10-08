@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenudePedidos));
             button1 = new Button();
             panel1 = new Panel();
-            btnEliminar = new Button();
+            btnEliminarP = new Button();
             label6 = new Label();
             lbViandasPacks = new ListBox();
-            label8 = new Label();
             dgvPedidos = new DataGridView();
-            numCantidadPacks = new NumericUpDown();
             label13 = new Label();
             btnAgregar = new Button();
             groupBox3 = new GroupBox();
             label5 = new Label();
             cbEstadoProduccion = new ComboBox();
             label1 = new Label();
+            label8 = new Label();
             cbPacks = new ComboBox();
             lblMensajeStock = new Label();
+            numCantidadPacks = new NumericUpDown();
             btnVerificarStock = new Button();
             label7 = new Label();
             cbViandas = new ComboBox();
@@ -60,8 +61,8 @@
             label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numCantidadPacks).BeginInit();
             groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numCantidadPacks).BeginInit();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,12 +78,10 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(btnEliminar);
+            panel1.Controls.Add(btnEliminarP);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(lbViandasPacks);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(dgvPedidos);
-            panel1.Controls.Add(numCantidadPacks);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(btnAgregar);
             panel1.Controls.Add(groupBox3);
@@ -94,15 +93,18 @@
             panel1.Size = new Size(801, 510);
             panel1.TabIndex = 24;
             // 
-            // btnEliminar
+            // btnEliminarP
             // 
-            btnEliminar.Location = new Point(591, 107);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(86, 41);
-            btnEliminar.TabIndex = 57;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
-            btnEliminar.Click += btnEliminar_Click;
+            btnEliminarP.FlatStyle = FlatStyle.Flat;
+            btnEliminarP.Image = (Image)resources.GetObject("btnEliminarP.Image");
+            btnEliminarP.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEliminarP.Location = new Point(566, 96);
+            btnEliminarP.Name = "btnEliminarP";
+            btnEliminarP.Size = new Size(111, 45);
+            btnEliminarP.TabIndex = 58;
+            btnEliminarP.Text = "       Eliminar";
+            btnEliminarP.UseVisualStyleBackColor = true;
+            btnEliminarP.Click += btnEliminarP_Click;
             // 
             // label6
             // 
@@ -122,15 +124,6 @@
             lbViandasPacks.Size = new Size(220, 289);
             lbViandasPacks.TabIndex = 55;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(481, 96);
-            label8.Name = "label8";
-            label8.Size = new Size(104, 15);
-            label8.TabIndex = 54;
-            label8.Text = "Cantidad de Packs";
-            // 
             // dgvPedidos
             // 
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -139,13 +132,6 @@
             dgvPedidos.RowTemplate.Height = 25;
             dgvPedidos.Size = new Size(544, 281);
             dgvPedidos.TabIndex = 39;
-            // 
-            // numCantidadPacks
-            // 
-            numCantidadPacks.Location = new Point(507, 118);
-            numCantidadPacks.Name = "numCantidadPacks";
-            numCantidadPacks.Size = new Size(45, 23);
-            numCantidadPacks.TabIndex = 53;
             // 
             // label13
             // 
@@ -164,7 +150,7 @@
             btnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
             btnAgregar.Location = new Point(683, 96);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(115, 63);
+            btnAgregar.Size = new Size(115, 45);
             btnAgregar.TabIndex = 37;
             btnAgregar.Text = "       Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -175,8 +161,10 @@
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(cbEstadoProduccion);
             groupBox3.Controls.Add(label1);
+            groupBox3.Controls.Add(label8);
             groupBox3.Controls.Add(cbPacks);
             groupBox3.Controls.Add(lblMensajeStock);
+            groupBox3.Controls.Add(numCantidadPacks);
             groupBox3.Controls.Add(btnVerificarStock);
             groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(cbViandas);
@@ -219,6 +207,15 @@
             label1.TabIndex = 54;
             label1.Text = "Packs:";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(264, 18);
+            label8.Name = "label8";
+            label8.Size = new Size(104, 15);
+            label8.TabIndex = 54;
+            label8.Text = "Cantidad de Packs";
+            // 
             // cbPacks
             // 
             cbPacks.FormattingEnabled = true;
@@ -236,6 +233,13 @@
             lblMensajeStock.Size = new Size(0, 15);
             lblMensajeStock.TabIndex = 52;
             // 
+            // numCantidadPacks
+            // 
+            numCantidadPacks.Location = new Point(290, 38);
+            numCantidadPacks.Name = "numCantidadPacks";
+            numCantidadPacks.Size = new Size(45, 23);
+            numCantidadPacks.TabIndex = 53;
+            // 
             // btnVerificarStock
             // 
             btnVerificarStock.Location = new Point(730, 36);
@@ -249,7 +253,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(306, 19);
+            label7.Location = new Point(397, 19);
             label7.Name = "label7";
             label7.Size = new Size(51, 15);
             label7.TabIndex = 50;
@@ -258,7 +262,7 @@
             // cbViandas
             // 
             cbViandas.FormattingEnabled = true;
-            cbViandas.Location = new Point(306, 42);
+            cbViandas.Location = new Point(377, 38);
             cbViandas.Name = "cbViandas";
             cbViandas.Size = new Size(121, 23);
             cbViandas.TabIndex = 49;
@@ -380,9 +384,9 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPedidos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numCantidadPacks).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numCantidadPacks).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
@@ -419,6 +423,6 @@
         private ComboBox cbPacks;
         private ListBox lbViandasPacks;
         private Label label6;
-        private Button btnEliminar;
+        private Button btnEliminarP;
     }
 }

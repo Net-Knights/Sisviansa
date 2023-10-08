@@ -192,7 +192,7 @@ namespace Logica
             }
         }
 
-        public int AgregarPedido(string tipoMenu, string nombrePack, int nroCliente, int stock, string estadoProduccion, int cantidadPacks)
+        public int AgregarPedidoCompleto(string tipoMenu, int IdMenu, string nombrePack, int nroCliente, int stock, string estadoProduccion, int cantidadPacks, bool esPersonalizado)
         {
             // Validación: Verificar si el número de cliente es positivo
             if (nroCliente <= 0)
@@ -206,10 +206,8 @@ namespace Logica
                 throw new ArgumentException("La cantidad de packs debe ser un valor positivo.");
             }
 
-            // Validación adicional si es necesario
-
             // Llama a la capa de datos para agregar el pedido
-            return datosP.AgregarPedido(tipoMenu, nombrePack, nroCliente, stock, estadoProduccion, cantidadPacks);
+            return datosP.AgregarPedidoCompleto(tipoMenu, IdMenu, nombrePack, nroCliente, stock, estadoProduccion, cantidadPacks, esPersonalizado);
         }
 
 
@@ -230,15 +228,17 @@ namespace Logica
         }
 
 
+
+
         public DataTable ObtenerTodosLosPacks()
         {
             try
             {
+                // Llama a la capa de acceso a datos para obtener todos los packs
                 return datosP.ObtenerTodosLosPacks();
             }
             catch (Exception ex)
             {
-                // Puedes manejar la excepción aquí, registrarla, mostrar un mensaje, etc.
                 throw new Exception("Error en la capa de lógica al obtener todos los packs.", ex);
             }
         }
