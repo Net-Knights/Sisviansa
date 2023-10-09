@@ -378,6 +378,16 @@ namespace Persistencia
                         insertPackCommand.Parameters.AddWithValue("@NombrePack", nombrePack);
                         insertPackCommand.Parameters.AddWithValue("@IdMenu", IdMenu);
                         insertPackCommand.ExecuteNonQuery();
+                        // Insertar en la tabla envasado
+                        string insertEnvasadoQuery = "INSERT INTO envasado (NroCaja, InfoMenu, CantidadPacks) " +
+                                                     "VALUES (@NroCaja, @InfoMenu, (SELECT CantPacks FROM packs WHERE NroPedido = @NroPedido LIMIT 1))";
+                        MySqlCommand insertEnvasadoCommand = new MySqlCommand(insertEnvasadoQuery, connection);
+                        insertEnvasadoCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                        insertEnvasadoCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
+                        insertEnvasadoCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                        insertEnvasadoCommand.ExecuteNonQuery();
+
+
 
                         // Actualizar el stock en la tabla Stock restando la cantidad de packs
                         string updateStockQuery = "UPDATE stock SET StockReal = StockReal - @CantPacks " +
@@ -386,6 +396,8 @@ namespace Persistencia
                         updateStockCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
                         updateStockCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
                         updateStockCommand.ExecuteNonQuery();
+
+                        return nroPedido; // Retorna el número de pedido generado
                     }
                     else
                     {
@@ -402,18 +414,20 @@ namespace Persistencia
                         insertPackCommand.Parameters.AddWithValue("@IdMenu", IdMenu);
                         insertPackCommand.Parameters.AddWithValue("@EsPersonalizado", true); // Es personalizado
                         insertPackCommand.ExecuteNonQuery();
+                        // Insertar en la tabla envasado
+                        string insertEnvasadoQuery = "INSERT INTO envasado (NroCaja, InfoMenu, CantidadPacks) " +
+                                                     "VALUES (@NroCaja, @InfoMenu, (SELECT CantPacks FROM packs WHERE NroPedido = @NroPedido LIMIT 1))";
+                        MySqlCommand insertEnvasadoCommand = new MySqlCommand(insertEnvasadoQuery, connection);
+                        insertEnvasadoCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
+                        insertEnvasadoCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
+                        insertEnvasadoCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
+                        insertEnvasadoCommand.ExecuteNonQuery();
+
+                        return nroPedido; // Retorna el número de pedido generado
+
                     }
 
-                    // Insertar en la tabla envasado
-                    string insertEnvasadoQuery = "INSERT INTO envasado (NroCaja, InfoMenu, CantPacks) " +
-                                                 "VALUES (@NroCaja, @InfoMenu, (SELECT CantPacks FROM packs WHERE NroPedido = @NroPedido LIMIT 1))";
-                    MySqlCommand insertEnvasadoCommand = new MySqlCommand(insertEnvasadoQuery, connection);
-                    insertEnvasadoCommand.Parameters.AddWithValue("@NroCaja", nroCaja);
-                    insertEnvasadoCommand.Parameters.AddWithValue("@InfoMenu", tipoMenu);
-                    insertEnvasadoCommand.Parameters.AddWithValue("@NroPedido", nroPedido);
-                    insertEnvasadoCommand.ExecuteNonQuery();
-
-                    return nroPedido; // Retorna el número de pedido generado
+                 
                 }
             }
             catch (Exception ex)
