@@ -366,7 +366,7 @@ namespace Login
 
 
 
-       
+
 
         private void btnEliminarP_Click(object sender, EventArgs e)
         {
