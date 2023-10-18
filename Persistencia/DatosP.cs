@@ -390,7 +390,7 @@ namespace Persistencia
 
 
                         // Actualizar el stock en la tabla Stock restando la cantidad de packs
-                        string updateStockQuery = "UPDATE stock SET StockReal = StockReal - @CantPacks " +
+                        string updateStockQuery = "UPDATE stock SET StockReal = StockReal - 1 " +
                                                    "WHERE IdPack IN (SELECT IdPack FROM packs WHERE NroPedido = @NroPedido)";
                         MySqlCommand updateStockCommand = new MySqlCommand(updateStockQuery, connection);
                         updateStockCommand.Parameters.AddWithValue("@CantPacks", cantidadPacks);
