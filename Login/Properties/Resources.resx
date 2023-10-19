@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="log_out_icon_234084" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\log_out_icon_234084.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona 4 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 4 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="window_maximize_icon_1812281" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\window_maximize_icon_1812281.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,11 +130,17 @@
   <data name="1904666-calculate-close-delete-hide-minimize-minus-remove_122516" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1904666-calculate-close-delete-hide-minimize-minus-remove_122516.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Zona 5 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 5 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="login_icon_176905" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login_icon_176905.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="3792033-broom-halloween-magic-witch_109010" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3792033-broom-halloween-magic-witch_109010.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona 6 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 6 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 3 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 3 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Truck_Yellow_icon-icons.com_54884" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Truck_Yellow_icon-icons.com_54884.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,6 +157,9 @@
   <data name="checkbox_103909" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checkbox_103909.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mapa_uruguay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapa_uruguay.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="customer_person_people_man_user_client_1629" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\customer_person_people_man_user_client_1629.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -159,6 +168,12 @@
   </data>
   <data name="account_login_log_in_icon_250759" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\account_login_log_in_icon_250759.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 1 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 1 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1_iX30968IvZXQt_WNfIwS7w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1_iX30968IvZXQt_WNfIwS7w.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="log-out_icon-icons.com_50106" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\log-out_icon-icons.com_50106.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,11 +187,17 @@
   <data name="internet_locked_padlock_password_secure_security_unlock_icon_127083" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\internet_locked_padlock_password_secure_security_unlock_icon_127083.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="zona ashe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zona ashe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="1492790846-9cancel_84247" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1492790846-9cancel_84247.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1486394965-12-bills_80559" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1486394965-12-bills_80559.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window_maximize_icon_181228" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_maximize_icon_181228.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="store_icon-icons.com_54371" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\store_icon-icons.com_54371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,17 +223,23 @@
   <data name="Why_Us-80_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Why_Us-80_icon-icons.com_572401.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="seo-social-web-network-internet_340_icon-icons.com_61497" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\seo-social-web-network-internet_340_icon-icons.com_61497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1490793853-user-interface15_82360" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1490793853-user-interface15_82360.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="log_out_icon_234084" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\log_out_icon_234084.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Why_Us-80_icon-icons.com_57240" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Why_Us-80_icon-icons.com_57240.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="window_maximize_icon_181228" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_maximize_icon_181228.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1_iX30968IvZXQt_WNfIwS7w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1_iX30968IvZXQt_WNfIwS7w.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="3741756-bussiness-ecommerce-marketplace-onlinestore-store-user_108907" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3741756-bussiness-ecommerce-marketplace-onlinestore-store-user_108907.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 2 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 2 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="internet_locked_padlock_password_secure_security_unlock_icon_1270831" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\internet_locked_padlock_password_secure_security_unlock_icon_1270831.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,10 +256,10 @@
   <data name="Menus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Menus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="seo-social-web-network-internet_340_icon-icons.com_61497" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\seo-social-web-network-internet_340_icon-icons.com_61497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="3792033-broom-halloween-magic-witch_109010" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3792033-broom-halloween-magic-witch_109010.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1490793853-user-interface15_82360" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1490793853-user-interface15_82360.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona 7 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 7 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

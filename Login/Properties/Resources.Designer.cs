@@ -313,6 +313,16 @@ namespace Login.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mapa_uruguay {
+            get {
+                object obj = ResourceManager.GetObject("mapa_uruguay", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Menus {
             get {
                 object obj = ResourceManager.GetObject("Menus", resourceCulture);
@@ -446,6 +456,86 @@ namespace Login.Properties {
         internal static System.Drawing.Bitmap window_restore_icon_144027 {
             get {
                 object obj = ResourceManager.GetObject("window_restore_icon_144027", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_1_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 1 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_2_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 2 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_3_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 3 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_4_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 4 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_5_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 5 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_6_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 6 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zona_7_Monte {
+            get {
+                object obj = ResourceManager.GetObject("Zona 7 Monte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zona_ashe {
+            get {
+                object obj = ResourceManager.GetObject("zona ashe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -18,12 +18,14 @@ namespace Logica
         private DatosU datosU;
         private DatosP datosP;
         private DatosL datosL;
+        private DatosZ datosZ;
 
         public UserModel()
         {
             datosU = new DatosU();
             datosP = new DatosP();
             datosP = new DatosP();
+            datosZ = new DatosZ();
         }
         private bool IsValidEmail(string email)
         {
@@ -229,7 +231,6 @@ namespace Logica
 
 
 
-
         public DataTable ObtenerTodosLosPacks()
         {
             try
@@ -240,6 +241,50 @@ namespace Logica
             catch (Exception ex)
             {
                 throw new Exception("Error en la capa de lógica al obtener todos los packs.", ex);
+            }
+        }
+
+
+        //Logica de zonas
+
+
+
+
+
+
+        public List<string> ObtenerDepartamentos()
+        {
+            try
+            {
+                return datosZ.ObtenerDepartamentos();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al obtener departamentos.", ex);
+            }
+        }
+
+        public List<int> ObtenerIdsZonasPorDepartamento(int idDpto)
+        {
+            try
+            {
+                return datosZ.ObtenerIdsZonasPorDepartamento(idDpto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los IDs de zonas por departamento desde la capa de lógica.", ex);
+            }
+        }
+
+        public int ObtenerIdDepartamentoPorNombre(string nombreDepartamento)
+        {
+            try
+            {
+                return datosZ.ObtenerIdDepartamentoPorNombre(nombreDepartamento);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al obtener el ID del departamento por nombre.", ex);
             }
         }
 
