@@ -118,148 +118,256 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Zona 4 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 4 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona18Cerr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona18Cerr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="window_maximize_icon_1812281" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_maximize_icon_1812281.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona33Rio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona33Rio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1496676725-rounded-high-ultra-colour02-maps_84627" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1496676725-rounded-high-ultra-colour02-maps_84627.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1904666-calculate-close-delete-hide-minimize-minus-remove_122516" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1904666-calculate-close-delete-hide-minimize-minus-remove_122516.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zona 5 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 5 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="login_icon_176905" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login_icon_176905.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zona 6 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 6 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zona 3 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 3 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Truck_Yellow_icon-icons.com_54884" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Truck_Yellow_icon-icons.com_54884.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1490793864-user-interface16_82335" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1490793864-user-interface16_82335.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="login_icon_1769051" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login_icon_1769051.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="maestro-0ogway_2-League of Legends1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\maestro-0ogway_2-League of Legends1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="checkbox_103909" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\checkbox_103909.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mapa_uruguay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mapa_uruguay.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="customer_person_people_man_user_client_1629" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\customer_person_people_man_user_client_1629.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="maestro-0ogway_2-League of Legends" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\maestro-0ogway_2-League of Legends.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="account_login_log_in_icon_250759" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\account_login_log_in_icon_250759.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zona 1 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 1 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1_iX30968IvZXQt_WNfIwS7w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1_iX30968IvZXQt_WNfIwS7w.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="log-out_icon-icons.com_50106" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\log-out_icon-icons.com_50106.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shopping-cart-add-button_icon-icons.com_56132" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shopping-cart-add-button_icon-icons.com_56132.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="internet_locked_padlock_password_secure_security_unlock_icon_127083" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\internet_locked_padlock_password_secure_security_unlock_icon_127083.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zona ashe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zona ashe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1492790846-9cancel_84247" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1492790846-9cancel_84247.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1486394965-12-bills_80559" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1486394965-12-bills_80559.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window_maximize_icon_181228" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_maximize_icon_181228.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="store_icon-icons.com_54371" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\store_icon-icons.com_54371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="isotiupo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\isotiupo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1496676725-rounded-high-ultra-colour02-maps_846271" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1496676725-rounded-high-ultra-colour02-maps_846271.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="window_restore_icon_144027" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\window_restore_icon_144027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="seo-social-web-network-internet_262_icon-icons.com_61518" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\seo-social-web-network-internet_262_icon-icons.com_61518.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Truck_Yellow_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Truck_Yellow_icon-icons.com_548841.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="store_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\store_icon-icons.com_543711.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Why_Us-80_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Why_Us-80_icon-icons.com_572401.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="seo-social-web-network-internet_340_icon-icons.com_61497" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\seo-social-web-network-internet_340_icon-icons.com_61497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1490793853-user-interface15_82360" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1490793853-user-interface15_82360.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="log_out_icon_234084" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\log_out_icon_234084.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Why_Us-80_icon-icons.com_57240" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Why_Us-80_icon-icons.com_57240.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="3741756-bussiness-ecommerce-marketplace-onlinestore-store-user_108907" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3741756-bussiness-ecommerce-marketplace-onlinestore-store-user_108907.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Zona 2 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 2 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="internet_locked_padlock_password_secure_security_unlock_icon_1270831" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\internet_locked_padlock_password_secure_security_unlock_icon_1270831.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo 11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo 11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="savetheapplication_guardar_2958" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\savetheapplication_guardar_2958.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona25Fl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona25Fl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="-meal_89750" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\-meal_89750.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Menus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Menus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="login_icon_176905" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login_icon_176905.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo 11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo 11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona42Sori" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona42Sori.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona19Cerr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona19Cerr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona22D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona22D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona10A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona10A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="log-out_icon-icons.com_50106" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\log-out_icon-icons.com_50106.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="store_icon-icons.com_54371" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\store_icon-icons.com_54371.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 7 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 7 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona20Col" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona20Col.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="store_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\store_icon-icons.com_543711.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona30P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona30P.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window_restore_icon_144027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_restore_icon_144027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona26Florida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona26Florida.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internet_locked_padlock_password_secure_security_unlock_icon_127083" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet_locked_padlock_password_secure_security_unlock_icon_127083.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shopping-cart-add-button_icon-icons.com_56132" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shopping-cart-add-button_icon-icons.com_56132.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Truck_Yellow_icon-icons.com_54884" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Truck_Yellow_icon-icons.com_54884.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="maestro-0ogway_2-League of Legends1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maestro-0ogway_2-League of Legends1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="seo-social-web-network-internet_262_icon-icons.com_61518" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\seo-social-web-network-internet_262_icon-icons.com_61518.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 3 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 3 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona40SanJ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona40SanJ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona14C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona14C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="log_out_icon_234084" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\log_out_icon_234084.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona34Riv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona34Riv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="3741756-bussiness-ecommerce-marketplace-onlinestore-store-user_108907" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3741756-bussiness-ecommerce-marketplace-onlinestore-store-user_108907.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona12TyT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona12TyT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="customer_person_people_man_user_client_1629" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\customer_person_people_man_user_client_1629.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1_iX30968IvZXQt_WNfIwS7w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1_iX30968IvZXQt_WNfIwS7w.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona23D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona23D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internet_locked_padlock_password_secure_security_unlock_icon_1270831" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet_locked_padlock_password_secure_security_unlock_icon_1270831.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 6 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 6 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zona ashe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zona ashe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1486394965-12-bills_80559" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1486394965-12-bills_80559.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona13TyT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona13TyT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona29Lav" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona29Lav.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona27Florida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona27Florida.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 1 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 1 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona38Sal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona38Sal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Truck_Yellow_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Truck_Yellow_icon-icons.com_548841.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="seo-social-web-network-internet_340_icon-icons.com_61497" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\seo-social-web-network-internet_340_icon-icons.com_61497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona39Sal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona39Sal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="3792033-broom-halloween-magic-witch_109010" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3792033-broom-halloween-magic-witch_109010.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Zona 7 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Zona 7 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Zona16Mal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona16Mal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="isotiupo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\isotiupo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona36Roch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona36Roch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona28Lav" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona28Lav.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Why_Us-80_icon-icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Why_Us-80_icon-icons.com_572401.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1904666-calculate-close-delete-hide-minimize-minus-remove_122516" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1904666-calculate-close-delete-hide-minimize-minus-remove_122516.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona15C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona15C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona24Fl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona24Fl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1490793864-user-interface16_82335" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1490793864-user-interface16_82335.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona21Col" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona21Col.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window_maximize_icon_181228" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_maximize_icon_181228.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="account_login_log_in_icon_250759" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\account_login_log_in_icon_250759.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mapa_uruguay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapa_uruguay.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="checkbox_103909" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checkbox_103909.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona35Riv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona35Riv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona8Tac" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona8Tac.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona41SanJ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona41SanJ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="maestro-0ogway_2-League of Legends" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maestro-0ogway_2-League of Legends.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 2 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 2 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona37Roch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona37Roch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1496676725-rounded-high-ultra-colour02-maps_84627" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1496676725-rounded-high-ultra-colour02-maps_84627.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1490793853-user-interface15_82360" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1490793853-user-interface15_82360.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1492790846-9cancel_84247" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1492790846-9cancel_84247.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona32Rio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona32Rio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona17Mal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona17Mal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 4 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 4 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona43Sori" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona43Sori.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona31P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona31P.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window_maximize_icon_1812281" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_maximize_icon_1812281.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona 5 Monte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona 5 Monte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="savetheapplication_guardar_2958" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\savetheapplication_guardar_2958.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona9Tac" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona9Tac.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login_icon_1769051" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login_icon_1769051.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1496676725-rounded-high-ultra-colour02-maps_846271" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1496676725-rounded-high-ultra-colour02-maps_846271.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Why_Us-80_icon-icons.com_57240" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Why_Us-80_icon-icons.com_57240.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Zona11A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zona11A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

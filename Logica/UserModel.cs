@@ -288,6 +288,42 @@ namespace Logica
             }
         }
 
+        public bool ExisteNumeroCliente(string numeroCliente)
+        {
+            try
+            {
+                return datosZ.ExisteNumeroCliente(numeroCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al verificar si el número de cliente existe.", ex);
+            }
+        }
+
+        public int ObtenerIdClientePorNumero(string numeroCliente)
+        {
+            try
+            {
+                return datosZ.ObtenerIdClientePorNumero(numeroCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al obtener el ID del cliente por número.", ex);
+            }
+        }
+
+        public bool GuardarVive(int idZona, int idDepartamento, int idCliente)
+        {
+            try
+            {
+                return datosZ.GuardarVive(idZona, idDepartamento, idCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al guardar datos en la tabla 'vive'.", ex);
+            }
+        }
+
     }
 
 }
