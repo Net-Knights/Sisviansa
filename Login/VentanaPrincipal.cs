@@ -23,7 +23,8 @@ namespace Login
         private DatosU datosU;
         private DatosP datosP;
         private DatosL datosL;
-        
+        private string token;
+
 
         [STAThread]
         static void Main()

@@ -10,6 +10,10 @@ using Persistencia;
 using RegistroUsuarios.Entities;
 using System.Text.RegularExpressions;
 using Persistencia;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
 namespace Logica
 {
     
@@ -19,6 +23,7 @@ namespace Logica
         private DatosP datosP;
         private DatosL datosL;
         private DatosZ datosZ;
+        private DatosClienteC datosCliente = new DatosClienteC();
 
         public UserModel()
         {
@@ -247,11 +252,6 @@ namespace Logica
 
         //Logica de zonas
 
-
-
-
-
-
         public List<string> ObtenerDepartamentos()
         {
             try
@@ -324,9 +324,34 @@ namespace Logica
             }
         }
 
-    }
+        //logica cliente comun
 
+
+        public DataTable ObtenerDatosCliente(int nroCliente)
+        {
+            try { 
+                
+                return datosCliente.ObtenerDatosCliente(nroCliente);
+
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica.", ex);
+            }
+
+
+
+
+
+
+
+
+        }
+
+    }
 }
+
 
 
 

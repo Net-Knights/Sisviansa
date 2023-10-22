@@ -43,7 +43,7 @@
             button7 = new Button();
             btn_Perfil = new Button();
             button2 = new Button();
-            button1 = new Button();
+            BtnPedido = new Button();
             pictureBox1 = new PictureBox();
             panelContenedor = new Panel();
             BarraTitulo.SuspendLayout();
@@ -192,7 +192,7 @@
             panel1.Controls.Add(button7);
             panel1.Controls.Add(btn_Perfil);
             panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(BtnPedido);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 33);
@@ -202,6 +202,7 @@
             // 
             // button7
             // 
+            button7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button7.Cursor = Cursors.Hand;
             button7.FlatAppearance.BorderSize = 0;
             button7.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
@@ -241,27 +242,28 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Image = Properties.Resources._1486394965_12_bills_80559;
             button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(0, 159);
+            button2.Location = new Point(0, 160);
             button2.Name = "button2";
             button2.Size = new Size(169, 23);
             button2.TabIndex = 16;
             button2.Text = "Historial de pedidos";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BtnPedido
             // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Image = Properties.Resources.Menus;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(0, 103);
-            button1.Name = "button1";
-            button1.Size = new Size(166, 28);
-            button1.TabIndex = 15;
-            button1.Text = "Hacer pedido";
-            button1.UseVisualStyleBackColor = true;
+            BtnPedido.Cursor = Cursors.Hand;
+            BtnPedido.FlatAppearance.BorderSize = 0;
+            BtnPedido.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
+            BtnPedido.FlatStyle = FlatStyle.Flat;
+            BtnPedido.Image = Properties.Resources.Menus;
+            BtnPedido.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnPedido.Location = new Point(0, 103);
+            BtnPedido.Name = "BtnPedido";
+            BtnPedido.Size = new Size(166, 28);
+            BtnPedido.TabIndex = 15;
+            BtnPedido.Text = "Hacer pedido";
+            BtnPedido.UseVisualStyleBackColor = true;
+            BtnPedido.Click += BtnPedido_Click;
             // 
             // pictureBox1
             // 
@@ -319,7 +321,7 @@
         private Button button7;
         private Button btn_Perfil;
         private Button button2;
-        private Button button1;
+        private Button BtnPedido;
         private PictureBox pictureBox1;
         private PictureBox btn_restaurar;
         private PictureBox btn_minimizar;

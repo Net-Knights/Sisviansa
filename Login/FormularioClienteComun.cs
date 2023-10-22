@@ -79,8 +79,13 @@ namespace Login
 
         private void btn_Perfil_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new PedidoClienteC());
+            AbrirFormEnPanel(new MiPerfilC());
+        }
 
+
+        private void BtnPedido_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new MenudePedidos());
         }
     }
 }
