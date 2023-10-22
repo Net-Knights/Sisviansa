@@ -292,11 +292,11 @@ namespace Login
                     // Guardar datos en la tabla 'vive'
                     if (userModel.GuardarVive(idZona, idDepartamento, idCliente))
                     {
-                        MessageBox.Show("Datos guardados correctamente en la tabla 'vive'.");
+                        MessageBox.Show("Datos guardados correctamente.");
                     }
                     else
                     {
-                        MessageBox.Show("Error al guardar datos en la tabla 'vive'.");
+                        MessageBox.Show("Error al guardar datos.");
                     }
                 }
                 else

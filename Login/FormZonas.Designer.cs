@@ -648,6 +648,7 @@
             // 
             // Guardar
             // 
+            Guardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             Guardar.FlatStyle = FlatStyle.Flat;
             Guardar.Location = new Point(705, 408);
             Guardar.Name = "Guardar";
