@@ -30,6 +30,9 @@
         {
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            btnAceptar = new Button();
+            ingrese = new Label();
+            txtNrocliente = new TextBox();
             lEmail = new Label();
             lAutorizacion = new Label();
             lTelefono = new Label();
@@ -44,6 +47,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            btnModificar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -51,7 +55,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.login_icon_176905;
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(116, 112);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -61,6 +65,10 @@
             // panel2
             // 
             panel2.BackColor = Color.Azure;
+            panel2.Controls.Add(btnModificar);
+            panel2.Controls.Add(btnAceptar);
+            panel2.Controls.Add(ingrese);
+            panel2.Controls.Add(txtNrocliente);
             panel2.Controls.Add(lEmail);
             panel2.Controls.Add(lAutorizacion);
             panel2.Controls.Add(lTelefono);
@@ -82,10 +90,40 @@
             panel2.Size = new Size(800, 450);
             panel2.TabIndex = 1;
             // 
+            // btnAceptar
+            // 
+            btnAceptar.BackColor = Color.FromArgb(128, 255, 255);
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.Location = new Point(140, 87);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(75, 23);
+            btnAceptar.TabIndex = 19;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
+            // 
+            // ingrese
+            // 
+            ingrese.AutoSize = true;
+            ingrese.Location = new Point(125, 21);
+            ingrese.Name = "ingrese";
+            ingrese.Size = new Size(159, 15);
+            ingrese.TabIndex = 18;
+            ingrese.Text = "Ingrese su numero de cliente";
+            // 
+            // txtNrocliente
+            // 
+            txtNrocliente.BackColor = SystemColors.ScrollBar;
+            txtNrocliente.BorderStyle = BorderStyle.None;
+            txtNrocliente.Location = new Point(140, 57);
+            txtNrocliente.Name = "txtNrocliente";
+            txtNrocliente.Size = new Size(100, 16);
+            txtNrocliente.TabIndex = 17;
+            // 
             // lEmail
             // 
             lEmail.AutoSize = true;
-            lEmail.Location = new Point(313, 276);
+            lEmail.Location = new Point(464, 276);
             lEmail.Name = "lEmail";
             lEmail.Size = new Size(0, 15);
             lEmail.TabIndex = 15;
@@ -93,7 +131,7 @@
             // lAutorizacion
             // 
             lAutorizacion.AutoSize = true;
-            lAutorizacion.Location = new Point(313, 224);
+            lAutorizacion.Location = new Point(462, 224);
             lAutorizacion.Name = "lAutorizacion";
             lAutorizacion.Size = new Size(0, 15);
             lAutorizacion.TabIndex = 14;
@@ -101,7 +139,7 @@
             // lTelefono
             // 
             lTelefono.AutoSize = true;
-            lTelefono.Location = new Point(313, 174);
+            lTelefono.Location = new Point(458, 174);
             lTelefono.Name = "lTelefono";
             lTelefono.Size = new Size(0, 15);
             lTelefono.TabIndex = 13;
@@ -109,7 +147,7 @@
             // lDireccion
             // 
             lDireccion.AutoSize = true;
-            lDireccion.Location = new Point(313, 131);
+            lDireccion.Location = new Point(458, 131);
             lDireccion.Name = "lDireccion";
             lDireccion.Size = new Size(0, 15);
             lDireccion.TabIndex = 12;
@@ -117,7 +155,7 @@
             // lCi
             // 
             lCi.AutoSize = true;
-            lCi.Location = new Point(313, 95);
+            lCi.Location = new Point(458, 95);
             lCi.Name = "lCi";
             lCi.Size = new Size(0, 15);
             lCi.TabIndex = 11;
@@ -125,7 +163,7 @@
             // lApellido
             // 
             lApellido.AutoSize = true;
-            lApellido.Location = new Point(313, 58);
+            lApellido.Location = new Point(458, 57);
             lApellido.Name = "lApellido";
             lApellido.Size = new Size(0, 15);
             lApellido.TabIndex = 10;
@@ -133,7 +171,7 @@
             // lNombre
             // 
             lNombre.AutoSize = true;
-            lNombre.Location = new Point(319, 21);
+            lNombre.Location = new Point(462, 21);
             lNombre.Name = "lNombre";
             lNombre.Size = new Size(0, 15);
             lNombre.TabIndex = 9;
@@ -141,7 +179,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(162, 224);
+            label7.Location = new Point(353, 224);
             label7.Name = "label7";
             label7.Size = new Size(77, 15);
             label7.TabIndex = 7;
@@ -150,7 +188,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(162, 174);
+            label6.Location = new Point(353, 174);
             label6.Name = "label6";
             label6.Size = new Size(55, 15);
             label6.TabIndex = 6;
@@ -159,7 +197,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(163, 131);
+            label5.Location = new Point(354, 131);
             label5.Name = "label5";
             label5.Size = new Size(60, 15);
             label5.TabIndex = 5;
@@ -168,7 +206,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(162, 276);
+            label4.Location = new Point(353, 276);
             label4.Name = "label4";
             label4.Size = new Size(105, 15);
             label4.TabIndex = 4;
@@ -177,7 +215,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(163, 95);
+            label3.Location = new Point(354, 95);
             label3.Name = "label3";
             label3.Size = new Size(21, 15);
             label3.TabIndex = 3;
@@ -186,7 +224,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(163, 58);
+            label2.Location = new Point(354, 58);
             label2.Name = "label2";
             label2.Size = new Size(54, 15);
             label2.TabIndex = 2;
@@ -195,11 +233,23 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(162, 21);
+            label1.Location = new Point(353, 21);
             label1.Name = "label1";
             label1.Size = new Size(54, 15);
             label1.TabIndex = 1;
             label1.Text = "Nombre:";
+            // 
+            // btnModificar
+            // 
+            btnModificar.BackColor = Color.IndianRed;
+            btnModificar.FlatStyle = FlatStyle.Flat;
+            btnModificar.Location = new Point(140, 127);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(75, 23);
+            btnModificar.TabIndex = 20;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click;
             // 
             // MiPerfilC
             // 
@@ -233,5 +283,9 @@
         private Label lCi;
         private Label lApellido;
         private Label lNombre;
+        private Label ingrese;
+        private TextBox txtNrocliente;
+        private Button btnAceptar;
+        private Button btnModificar;
     }
 }

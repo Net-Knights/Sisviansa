@@ -28,39 +28,63 @@ namespace Login
         }
 
 
-        public void SetNroCliente(int nroCliente)
-        {
-            this.nroCliente = nroCliente;
-        }
+
 
         private void MiPerfilC_Load(object sender, EventArgs e)
         {
-          
 
-            DataTable datosCliente = userModel.ObtenerDatosCliente(nroCliente);
 
-            if (datosCliente.Rows.Count > 0)
+
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
             {
-                DataRow row = datosCliente.Rows[0];
-                
-                lAutorizacion.Text = row["Autorizacion"].ToString();
-                lEmail.Text = row["Mail"].ToString();
-                lTelefono.Text = row["Telefono"].ToString();
-                lDireccion.Text = row["Direccion"].ToString();
-                lCi.Text = row["CI"].ToString();
-                lNombre.Text = row["Nombre"].ToString();
-                lApellido.Text = row["Apellido"].ToString();
+                if (int.TryParse(txtNrocliente.Text, out int nroCliente))
+                {
+                    List<string> datosCliente = userModel.ObtenerDatosClientePorNroCliente(nroCliente);
+
+                    if (datosCliente.Count > 0)
+                    {
+                        lAutorizacion.Text = datosCliente[0];
+                        lEmail.Text = datosCliente[1];
+                        lTelefono.Text = datosCliente[2];
+                        lDireccion.Text = datosCliente[3];
+                        lCi.Text = datosCliente[4];
+                        lNombre.Text = datosCliente[5];
+                        lApellido.Text = datosCliente[6];
+
+                        // Mostrar los labels
+                        lAutorizacion.Visible = true;
+                        lEmail.Visible = true;
+                        lTelefono.Visible = true;
+                        lDireccion.Visible = true;
+                        lCi.Visible = true;
+                        lNombre.Visible = true;
+                        lApellido.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron datos para ese número de cliente.", "Datos no encontrados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Número de cliente no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se encontraron datos para el cliente especificado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close(); // Cerrar el formulario si no se encuentran datos para el cliente
+                MessageBox.Show("Error al obtener los datos del cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-
-
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            EditDataClientec editForm = new EditDataClientec();
+            editForm.Show();
+        }
     }
 }
 

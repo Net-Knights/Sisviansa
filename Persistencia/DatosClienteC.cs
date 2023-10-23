@@ -19,12 +19,11 @@ namespace Persistencia
         private string connectionString = ConfigurationManager.ConnectionStrings["BdConection"].ConnectionString;
 
 
-        public DataTable ObtenerDatosCliente(int nroCliente)
+        public List<string> ObtenerDatosClientePorNroCliente(int nroCliente)
         {
-            DataTable dataTable = new DataTable();
-
             try
             {
+                List<string> datosCliente = new List<string>();
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
@@ -38,25 +37,28 @@ namespace Persistencia
                     {
                         command.Parameters.AddWithValue("@nroCliente", nroCliente);
 
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            adapter.Fill(dataTable);
+                            if (reader.Read())
+                            {
+                                // Agregar los valores a la lista en el orden deseado
+                                datosCliente.Add(reader.GetString("Autorizacion"));
+                                datosCliente.Add(reader.GetString("Mail"));
+                                datosCliente.Add(reader.GetString("Telefono"));
+                                datosCliente.Add(reader.GetString("Direccion"));
+                                datosCliente.Add(reader.GetString("CI"));
+                                datosCliente.Add(reader.GetString("Nombre"));
+                                datosCliente.Add(reader.GetString("Apellido"));
+                            }
                         }
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                // Manejo de la excepción de MySQL
-                Console.WriteLine("Error de MySQL: " + ex.Message);
+                return datosCliente;
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones generales
-                Console.WriteLine("Error: " + ex.Message);
+                throw new Exception("Error al obtener los datos del cliente: " + ex.Message);
             }
-
-            return dataTable;
         }
     }
 }

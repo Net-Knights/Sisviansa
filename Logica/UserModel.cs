@@ -23,7 +23,7 @@ namespace Logica
         private DatosP datosP;
         private DatosL datosL;
         private DatosZ datosZ;
-        private DatosClienteC datosCliente = new DatosClienteC();
+        private DatosClienteC datosClienteC = new DatosClienteC();
 
         public UserModel()
         {
@@ -327,30 +327,29 @@ namespace Logica
         //logica cliente comun
 
 
-        public DataTable ObtenerDatosCliente(int nroCliente)
+        public List<string> ObtenerDatosClientePorNroCliente(int nroCliente)
         {
-            try { 
-                
-                return datosCliente.ObtenerDatosCliente(nroCliente);
-
-
-            }
-            catch(Exception ex)
+            try
             {
-                throw new Exception("Error en la capa de lógica.", ex);
+                return datosClienteC.ObtenerDatosClientePorNroCliente(nroCliente);
             }
-
-
-
-
-
-
-
-
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la lógica al obtener los datos del cliente: " + ex.Message);
+            }
         }
 
+
+
+
+
+
+
+
     }
-}
+
+    }
+
 
 
 
