@@ -44,5 +44,8 @@ namespace RegistroUsuarios.Entities
         public string NombreUsuario { get; set; }
         public string Contraseña { get; set; }
         public string Rol { get; set; }
+
+        public static string NombreUsuarioLogueado { get; set; }
+        public static string RolLogueado { get; set; }
     }
 }

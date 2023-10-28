@@ -327,19 +327,29 @@ namespace Logica
         //logica cliente comun
 
 
-        public List<string> ObtenerDatosClientePorNroCliente(int nroCliente)
+        public List<string> ObtenerDatosClientePorUsuario(string usuario)
         {
             try
             {
-                return datosClienteC.ObtenerDatosClientePorNroCliente(nroCliente);
+                return datosClienteC.ObtenerDatosClientePorUsuario(usuario);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la lógica al obtener los datos del cliente: " + ex.Message);
+                throw new Exception("Error en la lógica: " + ex.Message);
             }
         }
 
-
+        public bool ActualizarDatosCliente(string nuevoApellido, string nuevoCI, string nuevaDireccion, string nuevoTelefono, string nuevoMail)
+        {
+            try
+            {
+                return datosClienteC.ActualizarDatosCliente(nuevoApellido, nuevoCI, nuevaDireccion, nuevoTelefono, nuevoMail);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica: " + ex.Message);
+            }
+        }
 
 
 

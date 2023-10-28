@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logica;
 using Persistencia;
+using RegistroUsuarios.Entities;
 
 namespace Login
 {
@@ -32,53 +33,37 @@ namespace Login
 
         private void MiPerfilC_Load(object sender, EventArgs e)
         {
-
-
-
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
             try
             {
-                if (int.TryParse(txtNrocliente.Text, out int nroCliente))
+                // Obtén el nombre de usuario desde LoginGeneral
+                string nombreUsuario = LoginGeneral.NombreUsuarioLogueado;
+
+                List<string> datos = userModel.ObtenerDatosClientePorUsuario(nombreUsuario);
+
+                if (datos.Count > 0)
                 {
-                    List<string> datosCliente = userModel.ObtenerDatosClientePorNroCliente(nroCliente);
-
-                    if (datosCliente.Count > 0)
-                    {
-                        lAutorizacion.Text = datosCliente[0];
-                        lEmail.Text = datosCliente[1];
-                        lTelefono.Text = datosCliente[2];
-                        lDireccion.Text = datosCliente[3];
-                        lCi.Text = datosCliente[4];
-                        lNombre.Text = datosCliente[5];
-                        lApellido.Text = datosCliente[6];
-
-                        // Mostrar los labels
-                        lAutorizacion.Visible = true;
-                        lEmail.Visible = true;
-                        lTelefono.Visible = true;
-                        lDireccion.Visible = true;
-                        lCi.Visible = true;
-                        lNombre.Visible = true;
-                        lApellido.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontraron datos para ese número de cliente.", "Datos no encontrados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    // Mostrar los datos en los labels correspondientes
+                    lNroCliente.Text = datos[0];
+                    lAutorizacion.Text = datos[1];
+                    lEmail.Text = datos[2];
+                    lTelefono.Text = datos[3];
+                    lDireccion.Text = datos[4];
+                    lCi.Text = datos[5];
+                    lNombre.Text = datos[6];
+                    lApellido.Text = datos[7];
                 }
                 else
                 {
-                    MessageBox.Show("Número de cliente no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se encontraron datos para el usuario especificado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener los datos del cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la presentación: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {

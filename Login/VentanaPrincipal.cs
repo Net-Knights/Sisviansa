@@ -69,6 +69,8 @@ namespace Login
 
                 if (usuarioLogueado != null)
                 {
+                    LoginGeneral.NombreUsuarioLogueado = usuarioLogueado.NombreUsuario;
+                    LoginGeneral.RolLogueado = usuarioLogueado.Rol;
                     string mensaje = $"Bienvenido {usuarioLogueado.NombreUsuario} ({usuarioLogueado.Rol}).";
                     MessageBox.Show(mensaje, "Inicio de Sesión Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
