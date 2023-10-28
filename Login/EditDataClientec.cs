@@ -33,23 +33,26 @@ namespace Login
 
             try
             {
-                bool exito = userModel.ActualizarDatosCliente(nuevoApellido, nuevoCI, nuevaDireccion, nuevoTelefono, nuevoMail);
+                // Obtén el nombre de usuario desde LoginGeneral
+                string nombreUsuario = LoginGeneral.NombreUsuarioLogueado;
 
-                if (exito)
+                bool actualizacionExitosa = userModel.ActualizarDatosCliente(nombreUsuario, nuevoApellido, nuevoCI, nuevaDireccion, nuevoTelefono, nuevoMail);
+
+                if (actualizacionExitosa)
                 {
-                    MessageBox.Show("Los datos se actualizaron con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    MessageBox.Show("Datos actualizados exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("No se pudieron actualizar los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudieron actualizar los datos. Por favor, verifica la información proporcionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en la presentación: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+    
 
         private void btnVolver_Click(object sender, EventArgs e)
         {

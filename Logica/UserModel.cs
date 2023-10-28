@@ -339,15 +339,15 @@ namespace Logica
             }
         }
 
-        public bool ActualizarDatosCliente(string nuevoApellido, string nuevoCI, string nuevaDireccion, string nuevoTelefono, string nuevoMail)
+        public bool ActualizarDatosCliente(string nombreUsuario, string nuevoApellido, string nuevoCI, string nuevaDireccion, string nuevoTelefono, string nuevoMail)
         {
             try
             {
-                return datosClienteC.ActualizarDatosCliente(nuevoApellido, nuevoCI, nuevaDireccion, nuevoTelefono, nuevoMail);
+                return datosClienteC.ActualizarDatosCliente(nombreUsuario, nuevoApellido, nuevoCI, nuevaDireccion, nuevoTelefono, nuevoMail);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la capa de lógica: " + ex.Message);
+                throw new Exception("Error en la lógica: " + ex.Message);
             }
         }
 

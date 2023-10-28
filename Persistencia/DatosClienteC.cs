@@ -62,20 +62,21 @@ namespace Persistencia
         }
 
 
-        public bool ActualizarDatosCliente(string nuevoApellido, string nuevoCI, string nuevaDireccion, string nuevoTelefono, string nuevoMail)
+        public bool ActualizarDatosCliente(string nombreUsuario, string nuevoApellido, string nuevoCI, string nuevaDireccion, string nuevoTelefono, string nuevoMail)
         {
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string queryComun = "UPDATE comun SET Apellido = @NuevoApellido, CI = @NuevoCI";
-                    string queryCliente = "UPDATE cliente SET Mail = @NuevoMail, Telefono = @NuevoTelefono, Direccion = @NuevaDireccion";
+                    string queryComun = "UPDATE comun SET Apellido = @NuevoApellido, CI = @NuevoCI WHERE Nombre = @NombreUsuario";
+                    string queryCliente = "UPDATE cliente SET Mail = @NuevoMail, Telefono = @NuevoTelefono, Direccion = @NuevaDireccion WHERE NroCliente = (SELECT c.NroCliente FROM comun c WHERE c.Nombre = @NombreUsuario)";
 
                     using (MySqlCommand command = new MySqlCommand(queryComun, connection))
                     {
                         command.Parameters.AddWithValue("@NuevoApellido", nuevoApellido);
                         command.Parameters.AddWithValue("@NuevoCI", nuevoCI);
+                        command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
 
                         int rowsAffectedComun = command.ExecuteNonQuery();
 
@@ -84,6 +85,7 @@ namespace Persistencia
                             commandCliente.Parameters.AddWithValue("@NuevoMail", nuevoMail);
                             commandCliente.Parameters.AddWithValue("@NuevoTelefono", nuevoTelefono);
                             commandCliente.Parameters.AddWithValue("@NuevaDireccion", nuevaDireccion);
+                            commandCliente.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
 
                             int rowsAffectedCliente = commandCliente.ExecuteNonQuery();
 
