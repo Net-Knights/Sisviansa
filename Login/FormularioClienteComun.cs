@@ -85,7 +85,7 @@ namespace Login
 
         private void BtnPedido_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new MenudePedidos());
+            AbrirFormEnPanel(new pedido());
         }
     }
 }
