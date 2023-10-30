@@ -32,21 +32,22 @@ namespace Persistencia
                 connection.Open();
 
                 string query = @"
-                SELECT 
-                c.NroCliente,
-                c.Autorizacion,
-                c.Mail AS 'Mail',
-                c.Telefono AS 'Telefono',
-                c.Direccion AS 'Direccion',
-                co.Ci AS 'Ci',
-                co.Nombre AS 'Nombre',
-                co.Apellido AS 'Apellido',
-                    ru.Roles AS 'Rol'
-                FROM Cliente c
-                LEFT JOIN Comun co ON c.NroCliente = co.NroCliente
-                LEFT JOIN roles_usuarios ru ON ru.Roles = 'Comun'
-                WHERE ru.Roles IS NOT NULL;
-                ";
+        SELECT 
+            c.NroCliente,
+            c.Autorizacion,
+            c.Mail AS 'Mail',
+            c.Telefono AS 'Telefono',
+            c.Direccion AS 'Direccion',
+            co.Ci AS 'Ci',
+            co.Nombre AS 'Nombre',
+            co.Apellido AS 'Apellido',
+            ru.Roles AS 'Rol'
+        FROM Cliente c
+        LEFT JOIN Comun co ON c.NroCliente = co.NroCliente
+        LEFT JOIN roles_usuarios ru ON ru.Roles = 'Comun'
+        WHERE ru.Roles IS NOT NULL
+            AND c.NroCliente NOT IN (SELECT NroCliente FROM Empresa WHERE NroCliente IS NOT NULL);
+        ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -58,53 +59,85 @@ namespace Persistencia
         }
         public DataTable BuscarClientePorNroCliente(int nroCliente)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                connection.Open();
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
 
-                string query = @"
+                    string query = @"
             SELECT 
                 c.NroCliente,
                 c.Autorizacion,
                 c.Mail AS 'MailCliente',
                 c.Telefono AS 'TelefonoCliente',
                 c.Direccion AS 'DireccionCliente',
-                co.Ci AS 'CiComun',
-                co.Nombre AS 'NombreComun',
-                co.Apellido AS 'ApellidoComun',
-                e.RUT AS 'RutEmpresa',
+                co.Ci AS 'Ci',
+                co.Nombre AS 'Nombre',
+                co.Apellido AS 'Apellido',
+                e.RUT AS 'Rut',
                 e.NombreEmpresa AS 'NombreEmpresa'
             FROM Cliente c
             LEFT JOIN Comun co ON c.NroCliente = co.NroCliente
             LEFT JOIN Empresa e ON c.NroCliente = e.NroCliente
             WHERE c.NroCliente = @NroCliente;";
 
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@NroCliente", nroCliente);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NroCliente", nroCliente);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
 
-                return dataTable;
+                    return dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, puedes registrar el error o lanzar una excepción personalizada.
+                throw new Exception("Error en la capa de datos al buscar cliente por NroCliente: " + ex.Message);
             }
         }
 
-        public void EliminarCliente(int nroCliente)
+        public void EliminarCliente(int nroCliente, string tipoCliente)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
 
-                string query = "DELETE FROM Cliente WHERE NroCliente = @NroCliente";
+                    string deleteQuery = "";
 
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@NroCliente", nroCliente);
+                    if (tipoCliente == "Comun")
+                    {
+                        // Eliminar datos del Cliente Común
+                        deleteQuery = "DELETE FROM Comun WHERE NroCliente = @NroCliente";
+                    }
+                    else if (tipoCliente == "Empresa")
+                    {
+                        // Eliminar datos del Cliente Empresa
+                        deleteQuery = "DELETE FROM Empresa WHERE NroCliente = @NroCliente";
+                    }
 
-                command.ExecuteNonQuery();
+                    // Ejecutar la consulta de eliminación en la tabla correspondiente
+                    MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, connection);
+                    deleteCommand.Parameters.AddWithValue("@NroCliente", nroCliente);
+                    deleteCommand.ExecuteNonQuery();
+
+                    // Luego, eliminar el registro principal de la tabla Cliente
+                    string deleteClienteQuery = "DELETE FROM Cliente WHERE NroCliente = @NroCliente";
+                    MySqlCommand deleteClienteCommand = new MySqlCommand(deleteClienteQuery, connection);
+                    deleteClienteCommand.Parameters.AddWithValue("@NroCliente", nroCliente);
+                    deleteClienteCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error en la capa de datos al eliminar el cliente: " + ex.Message, ex);
+                }
             }
         }
 
-        
+
         public DataTable ObtenerDatosClientesEmpresa()
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))

@@ -100,30 +100,7 @@ namespace Login
         private void CargarDatosClientesComunes()
         {
             DataTable clientesComunes = datosU.ObtenerDatosClientesComunes();
-
-            // Filtrar los resultados para mostrar solo los clientes con el rol de "Común"
-            var filteredRows = clientesComunes.AsEnumerable().Where(row => string.Equals(row.Field<string>("Rol"), "Comun", StringComparison.OrdinalIgnoreCase));
-
-            // Crear un nuevo DataTable con las columnas deseadas
-            DataTable dataTableClientes = new DataTable();
-            dataTableClientes.Columns.Add("NroCliente", typeof(int));
-            dataTableClientes.Columns.Add("Autorizacion", typeof(string));
-            dataTableClientes.Columns.Add("Mail", typeof(string));
-            dataTableClientes.Columns.Add("Telefono", typeof(string));
-            dataTableClientes.Columns.Add("Direccion", typeof(string));
-            dataTableClientes.Columns.Add("Ci", typeof(string));
-            dataTableClientes.Columns.Add("Nombre", typeof(string));
-            dataTableClientes.Columns.Add("Apellido", typeof(string));
-            dataTableClientes.Columns.Add("Rol", typeof(string)); // Agregar columna para el rol
-
-            // Agregar los datos filtrados al DataTable
-            foreach (DataRow row in filteredRows)
-            {
-                dataTableClientes.Rows.Add(row["NroCliente"], row["Autorizacion"], row["Mail"], row["Telefono"], row["Direccion"], row["Ci"], row["Nombre"], row["Apellido"], row["Rol"]);
-            }
-
-            // Asignar el DataTable al DataGridView de clientes
-            dgvClientes.DataSource = dataTableClientes;
+            dgvClientes.DataSource = clientesComunes;
         }
 
         // Método para cargar los datos de clientes empresa en dgvEmpresa
@@ -136,39 +113,53 @@ namespace Login
 
         private void AbmCliente_Load(object sender, EventArgs e)
         {
-            // Cargar todos los datos de las tablas Cliente, Comun, Empresa y login en el DataGridView
             CargarDatosClientesComunes();
             CargarDatosClientesEmpresa();
 
-            // Ajustar el diseño del DataGridView, si es necesario
-            // Ejemplo:
+            // Ajustar el diseño de los DataGridView, si es necesario
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+         
+
         }
 
         private void pbBuscar_Click(object sender, EventArgs e)
         {
+            dgvClientes.DataSource = null; // Borrar los datos existentes en dgvClientes
+            dgvEmpresa.DataSource = null; // Borrar los datos existentes en dgvEmpresa
+
             if (int.TryParse(txtNroCliente.Text, out int nroCliente))
             {
-                // Buscar cliente por NroCliente y mostrar resultados en el DataGridView
                 DataTable clienteEncontrado = datosU.BuscarClientePorNroCliente(nroCliente);
 
                 if (clienteEncontrado.Rows.Count > 0)
                 {
-                   
-                    dgvClientes.DataSource = clienteEncontrado;
+                    if (clienteEncontrado.Columns.Contains("Nombre") && clienteEncontrado.Rows[0]["Nombre"] != DBNull.Value)
+                    {
+                        dgvClientes.DataSource = clienteEncontrado;
+
+                        // Ocultar las columnas innecesarias en el dgvClientes
+                        dgvClientes.Columns["Rut"].Visible = false;
+                        dgvClientes.Columns["NombreEmpresa"].Visible = false;
+                    }
+                    else if (clienteEncontrado.Columns.Contains("NombreEmpresa") && clienteEncontrado.Rows[0]["NombreEmpresa"] != DBNull.Value)
+                    {
+                        dgvEmpresa.DataSource = clienteEncontrado;
+
+                        // Ocultar las columnas innecesarias en el dgvEmpresa
+                        dgvEmpresa.Columns["Ci"].Visible = false;
+                        dgvEmpresa.Columns["Nombre"].Visible = false;
+                        dgvEmpresa.Columns["Apellido"].Visible = false;
+                    }
                 }
                 else
                 {
-                    // Si no se encontraron resultados, mostrar un mensaje al usuario
                     MessageBox.Show("No se encontraron resultados para el NroCliente especificado.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvClientes.DataSource = null; 
                 }
             }
             else
             {
                 MessageBox.Show("Ingrese un NroCliente válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dgvClientes.DataSource = null; 
             }
         }
 
@@ -213,22 +204,44 @@ namespace Login
 
         }
 
+
+
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvClientes.SelectedRows.Count > 0)
+            try
             {
-                int nroCliente = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells["NroCliente"].Value);
-                if (MessageBox.Show("¿Está seguro de que desea eliminar el cliente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (dgvClientes.SelectedRows.Count > 0)
                 {
-                    datosU.EliminarCliente(nroCliente);
-                    MessageBox.Show("Cliente eliminado correctamente.");
-                    CargarDatosClientesComunes();
+                    int nroCliente = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells["NroCliente"].Value);
+                    string tipoCliente = dgvClientes.SelectedRows[0].Cells["Rol"].Value.ToString();
+
+                    if (MessageBox.Show("¿Está seguro de que desea eliminar el cliente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        userModel.EliminarCliente(nroCliente, tipoCliente);
+                        MessageBox.Show("Cliente eliminado correctamente.");
+                        CargarDatosClientesComunes();
+                    }
+                }
+                else if (dgvEmpresa.SelectedRows.Count > 0)
+                {
+                    int nroCliente = Convert.ToInt32(dgvEmpresa.SelectedRows[0].Cells["NroCliente"].Value);
+                    string tipoCliente = "Empresa";
+
+                    if (MessageBox.Show("¿Está seguro de que desea eliminar el cliente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        userModel.EliminarCliente(nroCliente, tipoCliente);
+                        MessageBox.Show("Cliente eliminado correctamente.");
+                        CargarDatosClientesEmpresa();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione un cliente para eliminar.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un cliente para eliminar.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al eliminar el cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -263,21 +276,9 @@ namespace Login
             }
         }
 
-        private void rbSiEmpresa_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbSiEmpresa.Checked)
-            {
-                ActualizarAutorizacionEnDataGridView(dgvEmpresa, "Si");
-            }
-        }
 
-        private void rbNoEmpresa_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbNoEmpresa.Checked)
-            {
-                ActualizarAutorizacionEnDataGridView(dgvEmpresa, "No");
-            }
-        }
+
+
 
         private void ActualizarAutorizacionEnDataGridView(DataGridView dgv, string autorizacion)
         {

@@ -30,9 +30,6 @@
         {
             panel1 = new Panel();
             BtnActualizarAutorizacion = new Button();
-            rbNoEmpresa = new RadioButton();
-            label8 = new Label();
-            rbSiEmpresa = new RadioButton();
             rbNo = new RadioButton();
             label4 = new Label();
             rbSi = new RadioButton();
@@ -79,9 +76,6 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Controls.Add(BtnActualizarAutorizacion);
-            panel1.Controls.Add(rbNoEmpresa);
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(rbSiEmpresa);
             panel1.Controls.Add(rbNo);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(rbSi);
@@ -117,7 +111,7 @@
             // BtnActualizarAutorizacion
             // 
             BtnActualizarAutorizacion.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            BtnActualizarAutorizacion.Location = new Point(3, 475);
+            BtnActualizarAutorizacion.Location = new Point(17, 551);
             BtnActualizarAutorizacion.Name = "BtnActualizarAutorizacion";
             BtnActualizarAutorizacion.Size = new Size(128, 25);
             BtnActualizarAutorizacion.TabIndex = 42;
@@ -125,47 +119,11 @@
             BtnActualizarAutorizacion.UseVisualStyleBackColor = true;
             BtnActualizarAutorizacion.Click += BtnActualizarAutorizacion_Click;
             // 
-            // rbNoEmpresa
-            // 
-            rbNoEmpresa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            rbNoEmpresa.AutoSize = true;
-            rbNoEmpresa.Location = new Point(43, 456);
-            rbNoEmpresa.Name = "rbNoEmpresa";
-            rbNoEmpresa.Size = new Size(41, 19);
-            rbNoEmpresa.TabIndex = 41;
-            rbNoEmpresa.TabStop = true;
-            rbNoEmpresa.Text = "No";
-            rbNoEmpresa.UseVisualStyleBackColor = true;
-            rbNoEmpresa.CheckedChanged += rbNoEmpresa_CheckedChanged;
-            // 
-            // label8
-            // 
-            label8.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label8.AutoSize = true;
-            label8.Location = new Point(0, 438);
-            label8.Name = "label8";
-            label8.Size = new Size(125, 15);
-            label8.TabIndex = 40;
-            label8.Text = "Autorizacion Empresa:";
-            // 
-            // rbSiEmpresa
-            // 
-            rbSiEmpresa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            rbSiEmpresa.AutoSize = true;
-            rbSiEmpresa.Location = new Point(3, 456);
-            rbSiEmpresa.Name = "rbSiEmpresa";
-            rbSiEmpresa.Size = new Size(34, 19);
-            rbSiEmpresa.TabIndex = 39;
-            rbSiEmpresa.TabStop = true;
-            rbSiEmpresa.Text = "Si";
-            rbSiEmpresa.UseVisualStyleBackColor = true;
-            rbSiEmpresa.CheckedChanged += rbSiEmpresa_CheckedChanged;
-            // 
             // rbNo
             // 
             rbNo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             rbNo.AutoSize = true;
-            rbNo.Location = new Point(44, 416);
+            rbNo.Location = new Point(78, 526);
             rbNo.Name = "rbNo";
             rbNo.Size = new Size(41, 19);
             rbNo.TabIndex = 38;
@@ -178,7 +136,7 @@
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(3, 398);
+            label4.Location = new Point(20, 508);
             label4.Name = "label4";
             label4.Size = new Size(120, 15);
             label4.TabIndex = 37;
@@ -188,7 +146,7 @@
             // 
             rbSi.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             rbSi.AutoSize = true;
-            rbSi.Location = new Point(4, 416);
+            rbSi.Location = new Point(38, 526);
             rbSi.Name = "rbSi";
             rbSi.Size = new Size(34, 19);
             rbSi.TabIndex = 36;
@@ -200,7 +158,7 @@
             // lblDireccion
             // 
             lblDireccion.AutoSize = true;
-            lblDireccion.Location = new Point(3, 343);
+            lblDireccion.Location = new Point(0, 297);
             lblDireccion.Name = "lblDireccion";
             lblDireccion.Size = new Size(60, 15);
             lblDireccion.TabIndex = 35;
@@ -208,7 +166,7 @@
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(0, 361);
+            txtDireccion.Location = new Point(0, 315);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(193, 23);
             txtDireccion.TabIndex = 34;
@@ -216,7 +174,7 @@
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(4, 253);
+            lblTelefono.Location = new Point(3, 253);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(55, 15);
             lblTelefono.TabIndex = 28;
@@ -225,7 +183,7 @@
             // lblCi
             // 
             lblCi.AutoSize = true;
-            lblCi.Location = new Point(4, 297);
+            lblCi.Location = new Point(3, 253);
             lblCi.Name = "lblCi";
             lblCi.Size = new Size(21, 15);
             lblCi.TabIndex = 32;
@@ -249,7 +207,7 @@
             // 
             // txtCI
             // 
-            txtCI.Location = new Point(0, 317);
+            txtCI.Location = new Point(0, 271);
             txtCI.Name = "txtCI";
             txtCI.Size = new Size(193, 23);
             txtCI.TabIndex = 31;
@@ -265,7 +223,7 @@
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(1, 271);
+            txtTelefono.Location = new Point(0, 271);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(193, 23);
             txtTelefono.TabIndex = 27;
@@ -337,7 +295,7 @@
             BtnEliminar.FlatStyle = FlatStyle.Flat;
             BtnEliminar.Image = Properties.Resources.seo_social_web_network_internet_262_icon_icons_com_61518;
             BtnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnEliminar.Location = new Point(12, 597);
+            BtnEliminar.Location = new Point(12, 617);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.Size = new Size(149, 25);
             BtnEliminar.TabIndex = 19;
@@ -353,7 +311,7 @@
             BtnGuardar.FlatStyle = FlatStyle.Flat;
             BtnGuardar.Image = Properties.Resources.savetheapplication_guardar_2958;
             BtnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnGuardar.Location = new Point(12, 565);
+            BtnGuardar.Location = new Point(12, 585);
             BtnGuardar.Name = "BtnGuardar";
             BtnGuardar.Size = new Size(149, 26);
             BtnGuardar.TabIndex = 18;
@@ -422,7 +380,7 @@
             dgvEmpresa.Location = new Point(0, 361);
             dgvEmpresa.Name = "dgvEmpresa";
             dgvEmpresa.RowTemplate.Height = 25;
-            dgvEmpresa.Size = new Size(586, 198);
+            dgvEmpresa.Size = new Size(765, 198);
             dgvEmpresa.TabIndex = 15;
             // 
             // label5
@@ -450,9 +408,8 @@
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientes.Location = new Point(2, 48);
             dgvClientes.Name = "dgvClientes";
-            dgvClientes.ReadOnly = true;
             dgvClientes.RowTemplate.Height = 25;
-            dgvClientes.Size = new Size(747, 292);
+            dgvClientes.Size = new Size(763, 246);
             dgvClientes.TabIndex = 11;
             // 
             // pbBuscar
@@ -551,9 +508,6 @@
         private RadioButton rbNo;
         private DataGridView dgvEmpresa;
         private Label label5;
-        private RadioButton rbNoEmpresa;
-        private Label label8;
-        private RadioButton rbSiEmpresa;
         private Button BtnActualizarAutorizacion;
     }
 }

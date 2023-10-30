@@ -84,6 +84,39 @@ namespace Logica
             }
         }
 
+        public void EliminarCliente(int nroCliente, string tipoCliente)
+        {
+            try
+            {
+                datosU.EliminarCliente(nroCliente, tipoCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa de lógica al eliminar el cliente: " + ex.Message, ex);
+            }
+        }
+
+        public DataTable BuscarClientePorNroCliente(int nroCliente)
+        {
+            try
+            {
+                // Llamar a la capa de datos para buscar el cliente por NroCliente
+                return datosU.BuscarClientePorNroCliente(nroCliente);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, puedes registrar el error o lanzar una excepción personalizada.
+                throw new Exception("Error en la capa de lógica al buscar cliente por NroCliente: " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
 
 
         //logica para los pedidos
