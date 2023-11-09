@@ -120,10 +120,10 @@ namespace Login
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Validar que solo se ingresen letras y que no se exceda de un cierto tamaño (opcional)
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) || txtNombre.Text.Length >= 50)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) || txtNombre.Text.Length >= 20)
             {
                 e.Handled = true;
-                toolTip.Show("El nombre solo puede contener letras y debe tener un máximo de 50 caracteres.", txtNombre);
+                toolTip.Show("El nombre solo puede contener letras y debe tener un máximo de 20 caracteres.", txtNombre);
             }
             else
             {
@@ -134,10 +134,10 @@ namespace Login
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Validar que solo se ingresen letras y que no se exceda de un cierto tamaño (opcional)
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) || txtApellido.Text.Length >= 50)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) || txtApellido.Text.Length >= 20)
             {
                 e.Handled = true;
-                toolTip.Show("El apellido solo puede contener letras y debe tener un máximo de 50 caracteres.", txtApellido);
+                toolTip.Show("El apellido solo puede contener letras y debe tener un máximo de 20 caracteres.", txtApellido);
             }
             else
             {

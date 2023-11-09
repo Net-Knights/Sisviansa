@@ -65,11 +65,13 @@
             txtNroCliente = new TextBox();
             label7 = new Label();
             label6 = new Label();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEmpresa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbBuscar).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -360,24 +362,21 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(dgvEmpresa);
-            panel2.Controls.Add(label5);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(dgvClientes);
             panel2.Controls.Add(pbBuscar);
             panel2.Controls.Add(txtNroCliente);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
-            panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(200, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(765, 646);
+            panel2.Size = new Size(766, 312);
             panel2.TabIndex = 1;
             // 
             // dgvEmpresa
             // 
             dgvEmpresa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEmpresa.Location = new Point(0, 361);
+            dgvEmpresa.Location = new Point(3, 32);
             dgvEmpresa.Name = "dgvEmpresa";
             dgvEmpresa.RowTemplate.Height = 25;
             dgvEmpresa.Size = new Size(765, 198);
@@ -386,7 +385,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(0, 343);
+            label5.Location = new Point(15, 8);
             label5.Name = "label5";
             label5.Size = new Size(95, 15);
             label5.TabIndex = 14;
@@ -449,11 +448,22 @@
             label6.TabIndex = 7;
             label6.Text = "Lista de Clientes:";
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(dgvEmpresa);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(200, 315);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(765, 331);
+            panel3.TabIndex = 2;
+            // 
             // AbmCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(965, 646);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -467,6 +477,8 @@
             ((System.ComponentModel.ISupportInitialize)dgvEmpresa).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbBuscar).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -509,5 +521,6 @@
         private DataGridView dgvEmpresa;
         private Label label5;
         private Button BtnActualizarAutorizacion;
+        private Panel panel3;
     }
 }

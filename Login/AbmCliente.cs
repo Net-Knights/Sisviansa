@@ -119,7 +119,7 @@ namespace Login
             // Ajustar el diseño de los DataGridView, si es necesario
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEmpresa.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-         
+
 
         }
 

@@ -263,7 +263,7 @@
             BtnPedido.TabIndex = 15;
             BtnPedido.Text = "Hacer pedido";
             BtnPedido.UseVisualStyleBackColor = true;
-            BtnPedido.Click += BtnPedido_Click;
+          
             // 
             // pictureBox1
             // 

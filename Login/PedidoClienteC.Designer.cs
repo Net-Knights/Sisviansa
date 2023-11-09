@@ -186,7 +186,7 @@
             btnAgregar.TabIndex = 63;
             btnAgregar.Text = "       Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
+            //btnAgregar.Click += btnAgregar_Click;
             // 
             // groupBox3
             // 
