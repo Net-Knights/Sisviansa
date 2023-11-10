@@ -283,25 +283,54 @@ namespace Login
                 string numeroCliente = txtNroCliente.Text;
 
                 // Comprobar si el número de cliente existe en la base de datos
-                if (userModel.ExisteNumeroCliente(numeroCliente))
+                try
                 {
-                    int idZona = Convert.ToInt32(cbZona.SelectedItem);
-                    int idDepartamento = userModel.ObtenerIdDepartamentoPorNombre(cbDepar.SelectedItem.ToString());
-                    int idCliente = userModel.ObtenerIdClientePorNumero(numeroCliente);
-
-                    // Guardar datos en la tabla 'vive'
-                    if (userModel.GuardarVive(idZona, idDepartamento, idCliente))
+                    if (userModel.ExisteNumeroCliente(numeroCliente))
                     {
-                        MessageBox.Show("Datos guardados correctamente.");
+                        int idZona = Convert.ToInt32(cbZona.SelectedItem);
+                        int idDepartamento = userModel.ObtenerIdDepartamentoPorNombre(cbDepar.SelectedItem.ToString());
+                        int idCliente = userModel.ObtenerIdClientePorNumero(numeroCliente);
+
+                        // Verificar si ya existe un cliente con el mismo número
+                        try
+                        {
+                            if (userModel.ExisteClienteConNumero(idCliente))
+                            {
+                                MessageBox.Show("Ya existe un cliente agendado con ese número.");
+                            }
+                            else
+                            {
+                                // Guardar datos en la tabla 'vive'
+                                try
+                                {
+                                    if (userModel.GuardarVive(idZona, idDepartamento, idCliente))
+                                    {
+                                        MessageBox.Show("Datos guardados correctamente.");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error al guardar datos.");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Error al guardar datos.");
+                        MessageBox.Show("El número de cliente no existe en la base de datos.");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("El número de cliente no existe en la base de datos.");
+                    MessageBox.Show(ex.Message);
                 }
             }
             else

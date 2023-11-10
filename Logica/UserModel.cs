@@ -333,6 +333,20 @@ namespace Logica
             }
         }
 
+        public bool ExisteClienteConNumero(int idCliente)
+        {
+            try
+            {
+                // Llamada al método de la capa de datos para verificar si ya existe un cliente con el mismo número
+                return datosZ.ExisteClienteConNumero(idCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar si ya existe un cliente con el mismo número.", ex);
+            }
+        }
+
+
         public int ObtenerIdClientePorNumero(string numeroCliente)
         {
             try

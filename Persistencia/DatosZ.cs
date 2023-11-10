@@ -130,6 +130,26 @@ namespace Persistencia
             }
         }
 
+        public bool ExisteClienteConNumero(int idCliente)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) FROM vive WHERE IdCliente = @IdCliente";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@IdCliente", idCliente);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar si ya existe un cliente con el mismo número.", ex);
+            }
+        }
+
         public int ObtenerIdClientePorNumero(string numeroCliente)
         {
             try
