@@ -171,37 +171,58 @@ namespace Login
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-
-            if (cbTipoCliente.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Por favor, seleccione un tipo de cliente.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (cbTipoCliente.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un tipo de cliente.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string tipoCliente = cbTipoCliente.SelectedItem.ToString();
+                string nombre = txtNombre.Text;
+                string apellido = txtApellido.Text;
+                string correoElectronico = txtCorreoElectronico.Text;
+                string telefono = txtTelefono.Text;
+                string ci = txtCI.Text;
+                string direccion = txtDireccion.Text;
+                string rut = txtRUT.Text;
+                string nombreEmpresa = txtNombreEmpresa.Text;
+                string direccionEmpresa = txtDireccionEmpresa.Text;
+
+                // Validar el RUT
+                if (rut.Length > 9)
+                {
+                    MessageBox.Show("El RUT de la empresa no puede tener más de 9 dígitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validar la CI
+                if (ci.Length > 8)
+                {
+                    MessageBox.Show("La CI no puede tener más de 8 dígitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validar el teléfono
+                if (telefono.Length > 9)
+                {
+                    MessageBox.Show("El teléfono no puede tener más de 9 dígitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                             
+
+                // Llamar al método de la capa de datosU para guardar el cliente
+                datosU.GuardarCliente(tipoCliente, nombre, apellido, correoElectronico, telefono, ci, tipoCliente == "Empresa" ? direccionEmpresa : direccion, rut, nombreEmpresa, tipoCliente == "Empresa" ? direccionEmpresa : ""); // Si es Empresa, la dirección de la empresa se guarda en la columna Direccion
+
+                MessageBox.Show("Registro exitoso.");
+                CargarDatosClientesComunes();
+                CargarDatosClientesEmpresa();
             }
-
-            string tipoCliente = cbTipoCliente.SelectedItem.ToString();
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            string correoElectronico = txtCorreoElectronico.Text;
-            string telefono = txtTelefono.Text;
-            string ci = txtCI.Text;
-            string direccion = txtDireccion.Text;
-            string rut = txtRUT.Text;
-            string nombreEmpresa = txtNombreEmpresa.Text;
-            string direccionEmpresa = txtDireccionEmpresa.Text;
-
-            if (rut.Length > 9)
+            catch (Exception ex)
             {
-                MessageBox.Show("El RUT de la empresa no puede tener más de 9 dígitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show($"Error al guardar los datos: {ex.Message}", "Error de Guardado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // Llamar al método de la capa de datosU para guardar el cliente
-            datosU.GuardarCliente(tipoCliente, nombre, apellido, correoElectronico, telefono, ci, tipoCliente == "Empresa" ? direccionEmpresa : direccion, rut, nombreEmpresa, tipoCliente == "Empresa" ? direccionEmpresa : ""); // Si es Empresa, la dirección de la empresa se guarda en la columna Direccion
-
-            MessageBox.Show("Registro exitoso.");
-            CargarDatosClientesComunes();
-            CargarDatosClientesEmpresa();
-
         }
 
 

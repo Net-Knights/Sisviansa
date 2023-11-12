@@ -183,7 +183,7 @@
             txtApellido.Location = new Point(214, 266);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(100, 23);
-            txtApellido.TabIndex = 31;
+            txtApellido.TabIndex = 4;
             txtApellido.KeyPress += txtApellido_KeyPress;
             // 
             // txtNombre
@@ -192,7 +192,7 @@
             txtNombre.Location = new Point(214, 222);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(100, 23);
-            txtNombre.TabIndex = 30;
+            txtNombre.TabIndex = 3;
             txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // label1
@@ -223,7 +223,7 @@
             txtDireccion.Location = new Point(214, 438);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(100, 23);
-            txtDireccion.TabIndex = 27;
+            txtDireccion.TabIndex = 8;
             // 
             // lblTelefono
             // 
@@ -242,7 +242,7 @@
             txtTelefono.Location = new Point(214, 398);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(100, 23);
-            txtTelefono.TabIndex = 21;
+            txtTelefono.TabIndex = 7;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // lblDireccion
@@ -317,7 +317,7 @@
             txtContraseña.Location = new Point(214, 134);
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Size = new Size(100, 23);
-            txtContraseña.TabIndex = 14;
+            txtContraseña.TabIndex = 2;
             // 
             // txtCorreoElectronico
             // 
@@ -325,7 +325,7 @@
             txtCorreoElectronico.Location = new Point(214, 314);
             txtCorreoElectronico.Name = "txtCorreoElectronico";
             txtCorreoElectronico.Size = new Size(100, 23);
-            txtCorreoElectronico.TabIndex = 13;
+            txtCorreoElectronico.TabIndex = 5;
             // 
             // txtCI
             // 
@@ -333,7 +333,7 @@
             txtCI.Location = new Point(214, 359);
             txtCI.Name = "txtCI";
             txtCI.Size = new Size(100, 23);
-            txtCI.TabIndex = 12;
+            txtCI.TabIndex = 6;
             txtCI.KeyPress += txtCI_KeyPress;
             // 
             // txtNombreUsuario
@@ -342,7 +342,7 @@
             txtNombreUsuario.Location = new Point(214, 94);
             txtNombreUsuario.Name = "txtNombreUsuario";
             txtNombreUsuario.Size = new Size(100, 23);
-            txtNombreUsuario.TabIndex = 11;
+            txtNombreUsuario.TabIndex = 1;
             // 
             // lblIngrese
             // 

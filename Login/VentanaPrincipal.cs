@@ -43,6 +43,7 @@ namespace Login
             datosP = new DatosP();
             datosL = new DatosL();
             txtPassword.PasswordChar = '*';
+            userModel = new UserModel();
 
         }
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -64,8 +65,19 @@ namespace Login
                     MessageBox.Show("Por favor, ingrese el usuario y la contraseña.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                // Validar el formato del nombre de usuario y la contraseña usando UserModel
+                if (!userModel.ValidarNombreUsuario(usuario))
+                {
+                    MessageBox.Show("El nombre de usuario solo debe contener letras y números.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-               LoginGeneral usuarioLogueado = datosL.IniciarSesion(usuario, contraseña);
+                if (!userModel.ValidarContraseña(contraseña))
+                {
+                    MessageBox.Show("La contraseña no puede incluir caracteres especiales.", "Formato Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                LoginGeneral usuarioLogueado = datosL.IniciarSesion(usuario, contraseña);
 
                 if (usuarioLogueado != null)
                 {

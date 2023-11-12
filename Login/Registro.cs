@@ -21,7 +21,7 @@ namespace Login
     {
 
         private UserModel userModel;
-      private DatosL datosL;
+        private DatosL datosL;
         private ToolTip toolTip; // Variable para el control ToolTip
 
         public Registro()

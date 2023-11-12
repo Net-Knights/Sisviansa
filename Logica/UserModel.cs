@@ -70,6 +70,88 @@ namespace Logica
                 throw new Exception("Error al guardar el usuario.", ex);
             }
         }
+        public bool ValidarNombreUsuario(string usuario)
+        {
+            try
+            {
+                // Utiliza expresiones regulares para verificar si el nombre de usuario contiene solo letras y números
+                if (!Regex.IsMatch(usuario, "^[a-zA-Z0-9]+$"))
+                {
+                    throw new Exception("El nombre de usuario solo debe contener letras y números.");
+                }
+
+                return true; // La validación fue exitosa
+            }
+            catch (Exception ex)
+            {
+                // Puedes registrar el error si lo necesitas
+                // Logging.LogError(ex);
+                return false; // La validación falló
+            }
+        }
+
+        public bool ValidarContraseña(string contraseña)
+        {
+            try
+            {
+                // Utiliza expresiones regulares para verificar si la contraseña no incluye caracteres especiales
+                if (!Regex.IsMatch(contraseña, "^[a-zA-Z0-9]+$"))
+                {
+                    throw new Exception("La contraseña no puede incluir caracteres especiales.");
+                }
+
+                return true; // La validación fue exitosa
+            }
+            catch (Exception ex)
+            {
+                // Puedes registrar el error si lo necesitas
+                // Logging.LogError(ex);
+                return false; // La validación falló
+            }
+        }
+
+
+      
+
+        public bool ValidarCI(string ci)
+        {
+            try
+            {
+                return Regex.IsMatch(ci, @"^\d{1,8}$");
+            }
+            catch (Exception ex)
+            {
+                
+                return false; // La validación falló
+            }
+        }
+
+        public bool ValidarRUT(string rut)
+        {
+            try
+            {
+                return Regex.IsMatch(rut, @"^\d{1,11}$");
+            }
+            catch (Exception ex)
+            {
+                
+                return false; // La validación falló
+            }
+        }
+
+        public bool ValidarTelefono(string telefono)
+        {
+            try
+            {
+                return Regex.IsMatch(telefono, @"^\d{1,9}$");
+            }
+            catch (Exception ex)
+            {
+                
+                return false; // La validación falló
+            }
+        }
+
 
         public void EliminarUsuario(string usuario)
         {

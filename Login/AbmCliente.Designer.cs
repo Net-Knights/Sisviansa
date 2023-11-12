@@ -57,20 +57,20 @@
             txtApellido = new TextBox();
             label1 = new Label();
             panel2 = new Panel();
-            dgvEmpresa = new DataGridView();
-            label5 = new Label();
             label3 = new Label();
             dgvClientes = new DataGridView();
             pbBuscar = new PictureBox();
             txtNroCliente = new TextBox();
             label7 = new Label();
             label6 = new Label();
+            dgvEmpresa = new DataGridView();
+            label5 = new Label();
             panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvEmpresa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbBuscar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEmpresa).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -160,7 +160,7 @@
             // lblDireccion
             // 
             lblDireccion.AutoSize = true;
-            lblDireccion.Location = new Point(0, 297);
+            lblDireccion.Location = new Point(-5, 346);
             lblDireccion.Name = "lblDireccion";
             lblDireccion.Size = new Size(60, 15);
             lblDireccion.TabIndex = 35;
@@ -168,7 +168,7 @@
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(0, 315);
+            txtDireccion.Location = new Point(1, 364);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(193, 23);
             txtDireccion.TabIndex = 34;
@@ -176,7 +176,7 @@
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(3, 253);
+            lblTelefono.Location = new Point(1, 297);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(55, 15);
             lblTelefono.TabIndex = 28;
@@ -209,7 +209,7 @@
             // 
             // txtCI
             // 
-            txtCI.Location = new Point(0, 271);
+            txtCI.Location = new Point(1, 320);
             txtCI.Name = "txtCI";
             txtCI.Size = new Size(193, 23);
             txtCI.TabIndex = 31;
@@ -373,24 +373,6 @@
             panel2.Size = new Size(766, 312);
             panel2.TabIndex = 1;
             // 
-            // dgvEmpresa
-            // 
-            dgvEmpresa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEmpresa.Location = new Point(3, 32);
-            dgvEmpresa.Name = "dgvEmpresa";
-            dgvEmpresa.RowTemplate.Height = 25;
-            dgvEmpresa.Size = new Size(765, 198);
-            dgvEmpresa.TabIndex = 15;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(15, 8);
-            label5.Name = "label5";
-            label5.Size = new Size(95, 15);
-            label5.TabIndex = 14;
-            label5.Text = "Cliente empresa:";
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -448,6 +430,24 @@
             label6.TabIndex = 7;
             label6.Text = "Lista de Clientes:";
             // 
+            // dgvEmpresa
+            // 
+            dgvEmpresa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEmpresa.Location = new Point(3, 32);
+            dgvEmpresa.Name = "dgvEmpresa";
+            dgvEmpresa.RowTemplate.Height = 25;
+            dgvEmpresa.Size = new Size(765, 198);
+            dgvEmpresa.TabIndex = 15;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(15, 8);
+            label5.Name = "label5";
+            label5.Size = new Size(95, 15);
+            label5.TabIndex = 14;
+            label5.Text = "Cliente empresa:";
+            // 
             // panel3
             // 
             panel3.Controls.Add(label5);
@@ -474,9 +474,9 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvEmpresa).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbBuscar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEmpresa).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
